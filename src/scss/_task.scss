@@ -1,6 +1,7 @@
 .task {
 	margin: 2rem 0;
-	height: 12rem;
+	max-height: 12rem;
+	min-height: 12rem;
 	position: relative;
 	overflow: hidden;
 	padding: 2rem 2rem;
@@ -48,9 +49,32 @@
 		color: $desc-color;
 		font-size: 1.6rem;
 	}
+
+	&-expand {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		font-size: 1.8rem;
+		font-weight: 900;
+		height: 2rem;
+		width: 2rem;
+		background-color: #000;
+		color: #fff;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		cursor: pointer;
+		font-family: Arial, Helvetica, sans-serif;
+	}
 }
 
-.task.expand {
+.plus.hidden,
+.minus.hidden {
+	display: none;
+}
+
+.task.expanded {
 	overflow: visible;
-	height: auto;
+	max-height: unset;
+	min-height: unset;
 }

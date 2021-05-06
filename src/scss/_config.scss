@@ -34,7 +34,7 @@ img {
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: center;
-	max-width: 60rem;
+	max-width: $max-width;
 	margin: 0 auto;
 	border: 2px solid #000;
 	background-color: $bg-color;

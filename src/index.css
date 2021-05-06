@@ -69,9 +69,19 @@ img {
   padding: 2rem 3rem;
 }
 
+.task-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  overflow-y: scroll;
+  height: 100%;
+}
+
 .task {
   margin: 2rem 0;
-  height: 12rem;
+  max-height: 12rem;
+  min-height: 12rem;
   position: relative;
   overflow: hidden;
   padding: 2rem 2rem;
@@ -121,7 +131,92 @@ img {
   font-size: 1.6rem;
 }
 
-.task.expand {
+.task-expand {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: 1.8rem;
+  font-weight: 900;
+  height: 2rem;
+  width: 2rem;
+  background-color: #000;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.plus.hidden,
+.minus.hidden {
+  display: none;
+}
+
+.task.expanded {
   overflow: visible;
-  height: auto;
+  max-height: unset;
+  min-height: unset;
+}
+
+.users {
+  display: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 2;
+  font-size: 2rem;
+}
+
+.users-container {
+  width: 80%;
+  height: 80%;
+}
+
+.users-heading {
+  color: #fff;
+  background-color: #458fff;
+  width: 100%;
+  display: block;
+  text-align: center;
+  padding: 2rem 3rem;
+  position: relative;
+}
+
+.users-close {
+  position: absolute;
+  right: 2rem;
+  cursor: pointer;
+}
+
+.users-list {
+  height: 100%;
+  list-style-type: none;
+  background-color: #fff;
+  overflow-y: scroll;
+}
+
+.users-list-item {
+  border-bottom: 1px solid #ccc;
+  padding: 2rem 3rem;
+}
+
+.users-list-item:hover {
+  background-color: #eee;
+}
+
+.users-list-item:active {
+  background-color: rgba(231, 31, 62, 0.1);
+}
+
+.users.display {
+  display: flex;
 }
