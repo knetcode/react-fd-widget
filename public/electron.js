@@ -6,9 +6,12 @@ let mainWindow;
 
 function createWindow() {
 	mainWindow = new BrowserWindow({
-		width: 800,
-		height: 600,
+		width: 500,
+		height: 700,
 		show: false,
+		webPreferences: {
+			nodeIntegration: true,
+		},
 	});
 	const startURL = isDev
 		? 'http://localhost:3000'
