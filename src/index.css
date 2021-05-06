@@ -1,13 +1,127 @@
-body {
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap");
+* {
+  box-sizing: border-box;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+html {
+  font-size: 10px;
+}
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+button:active,
+input:focus {
+  outline: 0;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.container {
+  width: 90%;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  max-width: 60rem;
+  margin: 0 auto;
+  border: 2px solid #000;
+  background-color: #fff7f5;
+  height: 100vh;
+}
+
+.btn {
+  display: block;
+  border: 0;
+  padding: 1rem 2.5rem;
+  border-radius: 4px;
+  background-color: #458fff;
+  color: #fff;
+  font-weight: bold;
+  letter-spacing: 1px;
+  font-size: 1.6rem;
+  cursor: pointer;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+  transform: translate(1px, 1px);
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 10rem;
+  width: 100%;
+  background: linear-gradient(120deg, #e71f3e 30%, #de1e53 60%, #c71c87 95%);
+  padding: 2rem 3rem;
+}
+
+.task {
+  margin: 2rem 0;
+  height: 12rem;
+  position: relative;
+  overflow: hidden;
+  padding: 2rem 2rem;
+  background-color: #fff;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.task-priority {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+}
+
+.task-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.8rem;
+}
+
+.task-link {
+  color: #00b2ff;
+  font-size: 1.8rem;
+  text-decoration: none;
+  display: block;
+  font-weight: 400;
+}
+
+.task-resolve {
+  display: block;
+  border: 0;
+  padding: 1rem 2.5rem;
+  border-radius: 4px;
+  background-color: #458fff;
+  color: #fff;
+  font-weight: bold;
+  letter-spacing: 1px;
+  font-size: 1.6rem;
+  cursor: pointer;
+}
+
+.task-description {
+  color: #777777;
+  font-size: 1.6rem;
+}
+
+.task.expand {
+  overflow: visible;
+  height: auto;
 }

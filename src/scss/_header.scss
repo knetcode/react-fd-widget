@@ -1,0 +1,10 @@
+.header {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	height: 10rem;
+	width: 100%;
+	background: linear-gradient(120deg, #e71f3e 30%, #de1e53 60%, #c71c87 95%);
+	padding: 2rem 3rem;
+}

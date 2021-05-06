@@ -1,0 +1,56 @@
+.task {
+	margin: 2rem 0;
+	height: 12rem;
+	position: relative;
+	overflow: hidden;
+	padding: 2rem 2rem;
+	background-color: #fff;
+	box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+
+	&-priority {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 4px;
+		height: 100%;
+	}
+
+	&-header {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 0.8rem;
+	}
+
+	&-link {
+		color: $link-color;
+		font-size: 1.8rem;
+		text-decoration: none;
+		display: block;
+		font-weight: 400;
+	}
+
+	&-resolve {
+		display: block;
+		border: 0;
+		padding: 1rem 2.5rem;
+		border-radius: 4px;
+		background-color: $btn-color;
+		color: #fff;
+		font-weight: bold;
+		letter-spacing: 1px;
+		font-size: 1.6rem;
+		cursor: pointer;
+	}
+
+	&-description {
+		color: $desc-color;
+		font-size: 1.6rem;
+	}
+}
+
+.task.expand {
+	overflow: visible;
+	height: auto;
+}
