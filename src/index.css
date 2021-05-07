@@ -1,8 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap");
 * {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+  margin: 0rem;
+  padding: 0rem;
 }
 
 html {
@@ -39,184 +39,92 @@ img {
   height: 100vh;
 }
 
-.btn {
+.btn-block {
   display: block;
-  border: 0;
-  padding: 1rem 2.5rem;
-  border-radius: 4px;
-  background-color: #458fff;
-  color: #fff;
-  font-weight: bold;
-  letter-spacing: 1px;
-  font-size: 1.6rem;
-  cursor: pointer;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  width: 100%;
 }
 
-.btn:active {
-  transform: translate(1px, 1px);
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
+.row {
+  width: 100%;
+}
+
+.ctk-red {
+  background-color: #e71f3e !important;
 }
 
 .header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  height: 10rem;
+  background-color: #e71f3e;
+  color: #fff;
   width: 100%;
-  background: linear-gradient(120deg, #e71f3e 30%, #de1e53 60%, #c71c87 95%);
-  padding: 2rem 3rem;
-}
-
-.task-list {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  overflow-y: scroll;
-  height: 100%;
-}
-
-.task {
-  margin: 2rem 0;
-  max-height: 12rem;
-  min-height: 12rem;
-  position: relative;
-  overflow: hidden;
-  padding: 2rem 2rem;
-  background-color: #fff;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.task-priority {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 4px;
-  height: 100%;
-}
-
-.task-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.8rem;
-}
-
-.task-link {
-  color: #00b2ff;
-  font-size: 1.8rem;
-  text-decoration: none;
-  display: block;
-  font-weight: 400;
-}
-
-.task-resolve {
-  display: block;
-  border: 0;
-  padding: 1rem 2.5rem;
-  border-radius: 4px;
-  background-color: #458fff;
-  color: #fff;
-  font-weight: bold;
-  letter-spacing: 1px;
-  font-size: 1.6rem;
-  cursor: pointer;
-}
-
-.task-description {
-  color: #777777;
-  font-size: 1.6rem;
-}
-
-.task-expand {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  font-size: 1.8rem;
-  font-weight: 900;
-  height: 2rem;
-  width: 2rem;
-  background-color: #000;
-  color: #fff;
+  height: 5rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
-  font-family: Arial, Helvetica, sans-serif;
 }
 
-.plus.hidden,
-.minus.hidden {
-  display: none;
-}
-
-.task.expanded {
-  overflow: visible;
-  max-height: unset;
-  min-height: unset;
-}
-
-.users {
-  display: none;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100vw;
-  height: 100vh;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(0, 0, 0, 0.7);
-  z-index: 2;
-  font-size: 2rem;
-}
-
-.users-container {
-  width: 80%;
-  height: 80%;
-}
-
-.users-heading {
-  color: #fff;
-  background-color: #458fff;
-  width: 100%;
-  display: block;
+.header h1 {
+  margin: 0;
   text-align: center;
-  padding: 2rem 3rem;
-  position: relative;
+  padding: 0;
+  font-size: 3rem;
 }
 
-.users-close {
-  position: absolute;
-  right: 2rem;
-  cursor: pointer;
+.tickets {
+  width: 100%;
+  padding: 1rem 0;
 }
 
-.users-list {
-  height: 100%;
-  list-style-type: none;
+.ticket {
   background-color: #fff;
-  overflow-y: scroll;
-}
-
-.users-list-item {
-  border-bottom: 1px solid #ccc;
-  padding: 2rem 3rem;
-}
-
-.users-list-item:hover {
-  background-color: #eee;
-}
-
-.users-list-item:active {
-  background-color: rgba(231, 31, 62, 0.1);
-}
-
-.users.display {
+  color: #000;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+  padding: 2rem;
+  border-radius: 1rem;
+}
+
+.ticket-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.ticket-header h2,
+.ticket-header h4 {
+  margin: 0;
+  padding: 0;
+}
+
+.ticket-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.red {
+  background-color: #e71f3e !important;
+}
+
+.tabs {
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.4);
+}
+
+.tabs a {
+  color: #f392a1 !important;
+}
+
+.tabs a.active {
+  color: #fff !important;
+}
+
+.tabs .indicator {
+  background-color: #fff !important;
+  opacity: 0.75;
 }

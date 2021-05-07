@@ -2,8 +2,8 @@
 
 * {
 	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
+	margin: 0rem;
+	padding: 0rem;
 }
 
 html {
@@ -41,22 +41,15 @@ img {
 	height: 100vh;
 }
 
-.btn {
+.btn-block {
 	display: block;
-	border: 0;
-	padding: 1rem 2.5rem;
-	border-radius: 4px;
-	background-color: $btn-color;
-	color: #fff;
-	font-weight: bold;
-	letter-spacing: 1px;
-	font-size: 1.6rem;
-	cursor: pointer;
-	box-shadow: 2px 2px 4px rgba($color: #000, $alpha: 0.2);
+	width: 100%;
 }
 
-.btn:active {
-	// transform: scale(0.98);
-	transform: translate(1px, 1px);
-	box-shadow: 0px 0px 4px rgba($color: #000, $alpha: 0.2);
+.row {
+	width: 100%;
+}
+
+.ctk-red {
+	background-color: $ctk-red !important;
 }

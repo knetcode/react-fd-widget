@@ -1,0 +1,20 @@
+.red {
+	background-color: #e71f3e !important;
+}
+
+.tabs {
+	box-shadow: 0 4px 4px rgba($color: #000000, $alpha: 0.4);
+
+	a {
+		color: lighten($color: #e71f3e, $amount: 25) !important;
+
+		&.active {
+			color: #fff !important;
+		}
+	}
+
+	.indicator {
+		background-color: #fff !important;
+		opacity: 0.75;
+	}
+}

@@ -12,10 +12,9 @@ function createWindow() {
 		webPreferences: {
 			nodeIntegration: true,
 		},
+		icon: './favicon.ico',
 	});
-	const startURL = isDev
-		? 'http://localhost:3000'
-		: `file://${path.join(__dirname, '../build/index.html')}`;
+	const startURL = isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`;
 
 	mainWindow.loadURL(startURL);
 

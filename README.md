@@ -45,3 +45,11 @@ Status
 > 3 = Pending
 > 4 = Resolved
 > 5 = Closed
+
+---
+
+React Materialize components
+
+> https://github.com/react-materialize/react-materialize
+
+> http://react-materialize.github.io/react-materialize/?path=/story/react-materialize--welcome

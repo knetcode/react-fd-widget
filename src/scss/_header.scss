@@ -1,10 +1,16 @@
 .header {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	align-items: center;
-	height: 10rem;
+	background-color: $ctk-red;
+	color: #fff;
 	width: 100%;
-	background: linear-gradient(120deg, #e71f3e 30%, #de1e53 60%, #c71c87 95%);
-	padding: 2rem 3rem;
+	height: 5rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	h1 {
+		margin: 0;
+		text-align: center;
+		padding: 0;
+		font-size: 3rem;
+	}
 }

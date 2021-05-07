@@ -1,0 +1,36 @@
+.ticket {
+	background-color: #fff;
+	color: #000;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 2rem 0;
+	padding: 2rem;
+	border-radius: 1rem;
+
+	&-header {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+		width: 100%;
+
+		h2,
+		h4 {
+			margin: 0;
+			padding: 0;
+		}
+	}
+
+	&-body {
+	}
+
+	&-footer {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+		width: 100%;
+	}
+}
