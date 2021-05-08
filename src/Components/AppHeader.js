@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Header = ({ appName }) => {
+const AppHeader = ({ appName }) => {
 	return (
 		<header className='header'>
 			<h1>{appName}</h1>
@@ -8,4 +8,4 @@ const Header = ({ appName }) => {
 	);
 };
 
-export default Header;
+export default AppHeader;

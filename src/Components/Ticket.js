@@ -1,18 +1,23 @@
 import React from 'react';
-import { Badge } from 'react-materialize';
+import { FaExternalLinkAlt } from 'react-icons/fa';
 
-const Ticket = () => {
+const Ticket = ({ priority }) => {
 	return (
 		<div className='ticket z-depth-2'>
 			<div className='ticket-header'>
-				<div>
+				<div className='ticket-header-left'>
 					<h2>Subject</h2>
 					<h4>ID</h4>
 				</div>
-				<div>
-					<a href='!#'>Link</a>
-					<strong>URGENT</strong>
+				<div className='ticket-header-right'>
+					<a href='!#'>
+						<FaExternalLinkAlt />
+					</a>
+					<div className='badge' style={{ backgroundColor: `${priority.color}` }}>
+						{priority.text}
+					</div>
 				</div>
+				{console.log(priority)}
 			</div>
 
 			<div className='ticket-body'>
@@ -33,10 +38,10 @@ const Ticket = () => {
 			</div>
 
 			<div className='ticket-footer'>
-				<button type='submit' className='btn'>
+				<button type='submit' className='btn ctk-red waves-light waves-effect'>
 					Resolve
 				</button>
-				<button type='submit' className='btn'>
+				<button type='submit' className='btn transparent waves-effect z-depth-0 text-ctk-pink'>
 					Expand
 				</button>
 			</div>

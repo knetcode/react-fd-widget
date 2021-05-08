@@ -1,4 +1,19 @@
 .tickets {
 	width: 100%;
 	padding: 1rem 0;
+
+	.btn-add {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 2.6rem;
+		position: fixed;
+		bottom: 0;
+		right: 1rem;
+		transform: translate(-50%, -50%);
+
+		&:focus {
+			background-color: $ctk-pink;
+		}
+	}
 }

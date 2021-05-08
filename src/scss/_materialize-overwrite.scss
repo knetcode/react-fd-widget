@@ -18,3 +18,19 @@
 		opacity: 0.75;
 	}
 }
+
+.btn {
+	border-radius: 4px;
+}
+
+.btn,
+.btn-large {
+	z-index: 100;
+}
+
+.btn:focus,
+.btn-large:focus,
+.btn-small:focus,
+.btn-floating:focus {
+	background-color: none;
+}

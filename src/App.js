@@ -9,7 +9,8 @@
 // 	const data = await res.json();
 // };
 
-import Header from './Components/Header';
+import AppHeader from './Components/AppHeader';
+import AppFooter from './Components/AppFooter';
 import { Tab, Tabs } from 'react-materialize';
 import Tickets from './Components/Tickets';
 
@@ -18,13 +19,16 @@ function App() {
 
 	return (
 		<div className='app-container'>
-			<Header appName={appName} />
+			<AppHeader appName={appName} />
 			<Tabs className='red'>
-				<Tab title='Tickets' className=' white-text'>
-					<Tickets />
+				<Tab title='Tickets' className=' white-text '>
+					<div className='container'>
+						<Tickets />
+					</div>
 				</Tab>
 				<Tab title='tab2'>Tab2</Tab>
 			</Tabs>
+			<AppFooter />
 		</div>
 	);
 }
