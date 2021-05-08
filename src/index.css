@@ -226,7 +226,6 @@ img {
   border-radius: 4px;
 }
 
-.btn,
-.btn-large {
+.btn-floating {
   z-index: 100;
 }
