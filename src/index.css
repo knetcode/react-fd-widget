@@ -230,10 +230,3 @@ img {
 .btn-large {
   z-index: 100;
 }
-
-.btn:focus,
-.btn-large:focus,
-.btn-small:focus,
-.btn-floating:focus {
-  background-color: none;
-}
