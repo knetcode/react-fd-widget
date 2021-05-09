@@ -1,8 +1,8 @@
-const { app, BrowserWindow } = require('electron');
-const isDev = require('electron-is-dev');
-const path = require('path');
+const { app, BrowserWindow } = require('electron')
+const isDev = require('electron-is-dev')
+const path = require('path')
 
-let mainWindow;
+let mainWindow
 
 function createWindow() {
 	mainWindow = new BrowserWindow({
@@ -13,14 +13,14 @@ function createWindow() {
 			nodeIntegration: true,
 		},
 		icon: './favicon.ico',
-	});
-	const startURL = isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`;
+	})
+	const startURL = isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`
 
-	mainWindow.loadURL(startURL);
+	mainWindow.loadURL(startURL)
 
-	mainWindow.once('ready-to-show', () => mainWindow.show());
+	mainWindow.once('ready-to-show', () => mainWindow.show())
 	mainWindow.on('closed', () => {
-		mainWindow = null;
-	});
+		mainWindow = null
+	})
 }
-app.on('ready', createWindow);
+app.on('ready', createWindow)

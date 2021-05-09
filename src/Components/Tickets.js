@@ -1,51 +1,38 @@
-import React from 'react';
-import Ticket from './Ticket';
-import { FaPlus } from 'react-icons/fa';
+import React from 'react'
+import Ticket from './Ticket'
+import { FaPlus } from 'react-icons/fa'
 
-const Tickets = ({ content }) => {
-	const priorities = {
-		low: {
-			color: '#20e800',
-			text: 'low',
-		},
-		medium: {
-			color: '#2a27c5',
-			text: 'medium',
-		},
-		high: {
-			color: '#ff7a00',
-			text: 'high',
-		},
-		urgent: {
-			color: '#e91414',
-			text: 'urgent',
-		},
-	};
+const Tickets = ({ tickets, agents, FD_URL }) => {
+	const ticketsArr = tickets.tickets
+	const agentsArr = agents.agents
+
+	console.log(agentsArr)
+
+	const comparePriority = (a, b) => {
+		if (a.priority < b.priority) {
+			return -1
+		} else if (a.priority > b.priority) {
+			return 1
+		} else {
+			return 0
+		}
+	}
+
+	ticketsArr.sort(comparePriority)
 
 	return (
 		<div className='tickets white-text'>
 			<button type='submit' className='btn btn-block'>
 				Username Selection
 			</button>
-
-			<Ticket priority={priorities.urgent} />
-			<Ticket priority={priorities.high} />
-			<Ticket priority={priorities.medium} />
-			<Ticket priority={priorities.low} />
-			<Ticket priority={priorities.urgent} />
-			<Ticket priority={priorities.high} />
-			<Ticket priority={priorities.medium} />
-			<Ticket priority={priorities.low} />
-			<Ticket priority={priorities.urgent} />
-			<Ticket priority={priorities.high} />
-			<Ticket priority={priorities.medium} />
-			<Ticket priority={priorities.low} />
-
-			<button class='btn-floating btn-large waves-effect waves-light ctk-pink btn-add'>
+			{ticketsArr.map((ticket) => {
+				return <Ticket ticket={ticket} agents={agents} key={ticket.id} FD_URL={FD_URL} />
+			})}
+			<button className='btn-floating btn-large waves-effect waves-light ctk-pink btn-add'>
 				<FaPlus />
 			</button>
 		</div>
-	);
-};
+	)
+}
 
-export default Tickets;
+export default Tickets

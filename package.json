@@ -9,8 +9,10 @@
 		"appId": "com.my-website.my-app",
 		"productName": "MyApp",
 		"copyright": "Copyright © 2019 ${author}",
+		"compression": "maximum",
 		"win": {
-			"icon": "./public/favicon.ico"
+			"icon": "./public/favicon.ico",
+			"target": "NSIS"
 		},
 		"files": [
 			"./build/**/*",
