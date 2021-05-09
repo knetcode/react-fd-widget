@@ -11,8 +11,7 @@
 		"copyright": "Copyright © 2019 ${author}",
 		"compression": "maximum",
 		"win": {
-			"icon": "./public/favicon.ico",
-			"target": "NSIS"
+			"icon": "./public/favicon.ico"
 		},
 		"files": [
 			"./build/**/*",

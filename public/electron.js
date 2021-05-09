@@ -13,6 +13,8 @@ function createWindow() {
 			nodeIntegration: true,
 		},
 		icon: './favicon.ico',
+		minWidth: 350,
+		frame: false,
 	})
 	const startURL = isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`
 

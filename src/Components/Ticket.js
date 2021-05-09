@@ -1,7 +1,6 @@
 import React from 'react'
-import { FaExternalLinkAlt } from 'react-icons/fa'
 
-const Ticket = ({ ticket, agents, FD_URL }) => {
+const Ticket = ({ ticket, agentsArr, FD_URL }) => {
 	const expand = (e) => {
 		e.target.parentElement.previousElementSibling.classList.toggle('expanded')
 
@@ -12,6 +11,16 @@ const Ticket = ({ ticket, agents, FD_URL }) => {
 		if (!e.target.parentElement.previousElementSibling.classList.contains('expanded')) {
 			e.target.innerText = 'EXPAND'
 		}
+	}
+
+	const getAgent = (agentID) => {
+		let agentName
+		agentsArr.forEach((agent) => {
+			if (agentID === agent.id) {
+				agentName = agent.first_name
+			}
+		})
+		return agentName
 	}
 
 	const priorityColor = {
@@ -67,14 +76,13 @@ const Ticket = ({ ticket, agents, FD_URL }) => {
 		<div className='ticket z-depth-2'>
 			<div className='ticket-header'>
 				<div className='ticket-header-left'>
-					<h2>{ticket.subject}</h2>
+					<a href={`${FD_URL}tickets/${ticket.id}`} target='_blank' rel='noreferrer'>
+						<h2>{ticket.subject}</h2>
+					</a>
 					<h4>ID#{ticket.id}</h4>
-					<h4>Assigned {ticket.responder_id}</h4>
+					<h4>Assigned to {getAgent(ticket.responder_id)}</h4>
 				</div>
 				<div className='ticket-header-right'>
-					<a href={`${FD_URL}tickets/${ticket.id}`} target='_blank' rel='noreferrer'>
-						<FaExternalLinkAlt />
-					</a>
 					<div className='badge' style={{ backgroundColor: setPriorityColor(ticket.priority) }}>
 						{setPriorityText(ticket.priority)}
 					</div>

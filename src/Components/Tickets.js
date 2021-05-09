@@ -1,12 +1,11 @@
 import React from 'react'
 import Ticket from './Ticket'
 import { FaPlus } from 'react-icons/fa'
+import { useState } from 'react'
 
 const Tickets = ({ tickets, agents, FD_URL }) => {
 	const ticketsArr = tickets.tickets
 	const agentsArr = agents.agents
-
-	console.log(agentsArr)
 
 	const comparePriority = (a, b) => {
 		if (a.priority < b.priority) {
@@ -18,15 +17,32 @@ const Tickets = ({ tickets, agents, FD_URL }) => {
 		}
 	}
 
-	ticketsArr.sort(comparePriority)
+	const [selectedUser, setSelectedUser] = useState(null)
+
+	const filteredArr = ticketsArr.filter((ticket) => ticket.responder_id === selectedUser).sort(comparePriority)
 
 	return (
 		<div className='tickets white-text'>
-			<button type='submit' className='btn btn-block'>
-				Username Selection
-			</button>
-			{ticketsArr.map((ticket) => {
-				return <Ticket ticket={ticket} agents={agents} key={ticket.id} FD_URL={FD_URL} />
+			<div className='tickets-user-select'>
+				<label htmlFor='users-drop'>Choose a User:</label>
+
+				<select
+					name='users-drop'
+					id='users-drop'
+					onChange={(e) => {
+						setSelectedUser(+e.target.value)
+					}}
+				>
+					<option value=''></option>
+					{agentsArr.map((agent) => (
+						<option key={agent.id} value={agent.id}>
+							{agent.first_name}
+						</option>
+					))}
+				</select>
+			</div>
+			{filteredArr.map((ticket) => {
+				return <Ticket ticket={ticket} agentsArr={agentsArr} key={ticket.id} FD_URL={FD_URL} />
 			})}
 			<button className='btn-floating btn-large waves-effect waves-light ctk-pink btn-add'>
 				<FaPlus />

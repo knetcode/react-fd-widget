@@ -48,7 +48,7 @@ function App() {
 			<Tabs className='red'>
 				<Tab title='Tickets' className=' white-text '>
 					<div className='container'>
-						{(tickets, agents && <Tickets tickets={tickets} agents={agents} FD_URL={FD_URL} />)}
+						{tickets && agents && <Tickets tickets={tickets} agents={agents} FD_URL={FD_URL} />}
 					</div>
 				</Tab>
 				<Tab title='TAB 2'>TAB 2</Tab>

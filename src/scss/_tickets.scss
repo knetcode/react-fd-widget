@@ -1,6 +1,18 @@
 .tickets {
 	width: 100%;
 	padding: 1rem 0;
+	margin-bottom: 5rem;
+
+	&-user-select {
+		width: 100%;
+		color: #333;
+
+		select {
+			height: 4rem;
+			display: block;
+			font-size: 2rem;
+		}
+	}
 
 	.btn-add {
 		display: flex;
