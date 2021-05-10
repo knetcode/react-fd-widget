@@ -28,6 +28,10 @@ Working Fetch
 
 > `fetch('https://itsd-computicket.freshservice.com/api/v2/agents', {headers: {Authorization: 'Basic SkRDNlNxTE5wMzN5eEZmODdqbXY6WA==', 'Content-Type': 'application/json',}, method: 'GET',})`
 
+Update CURL
+
+> curl -v -u JDC6SqLNp33yxFf87jmv:X -H "Content-Type: application/json" -X PUT -d '{ "status": 2 }' 'https://itsd-computicket.freshservice.com/api/v2/tickets/19092'
+
 ---
 
 Priorities

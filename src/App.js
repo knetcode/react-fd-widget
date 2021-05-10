@@ -46,6 +46,11 @@ function App() {
 			setTickets(ticketsFromServer)
 		}
 		getTickets(pageIndex)
+		setInterval(() => {
+			getTickets(pageIndex)
+			console.log('fired')
+		}, 15000)
+
 		console.log(`Page Number: %c${pageIndex}`, 'color: limegreen')
 	}, [pageIndex])
 

@@ -21,6 +21,24 @@ const Ticket = ({ ticket, agentsArr, FD_URL, putContent }) => {
 	// 	return agentName
 	// }
 
+	// const getStatus = (status) => {
+	// 	if (status === 2) {
+	// 		return 'Open'
+	// 	}
+	// 	if (status === 3) {
+	// 		return 'Pending'
+	// 	}
+	// 	if (status === 4) {
+	// 		return 'Resolved'
+	// 	}
+	// 	if (status === 5) {
+	// 		return 'Closed'
+	// 	}
+	// 	if (status === 6) {
+	// 		return 'In Progress'
+	// 	}
+	// }
+
 	const priorityColor = {
 		urgent: {
 			color: '#e91414',
@@ -69,24 +87,6 @@ const Ticket = ({ ticket, agentsArr, FD_URL, putContent }) => {
 			return priorityColor.low.text
 		}
 	}
-
-	// const getStatus = (status) => {
-	// 	if (status === 2) {
-	// 		return 'Open'
-	// 	}
-	// 	if (status === 3) {
-	// 		return 'Pending'
-	// 	}
-	// 	if (status === 4) {
-	// 		return 'Resolved'
-	// 	}
-	// 	if (status === 5) {
-	// 		return 'Closed'
-	// 	}
-	// 	if (status === 6) {
-	// 		return 'In Progress'
-	// 	}
-	// }
 
 	const resolveTicket = async (e) => {
 		const ticketID = +e.target.value
