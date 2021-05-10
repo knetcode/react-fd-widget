@@ -30,7 +30,9 @@ const Tickets = ({ tickets, agents, FD_URL, pageIndex, setPageIndex, putContent 
 		}
 	}
 
-	const [selectedUser, setSelectedUser] = useState(+JSON.parse(localStorage.getItem('selectedUser')))
+	const [selectedUser, setSelectedUser] = useState(
+		localStorage.getItem('selectedUser') ? +JSON.parse(localStorage.getItem('selectedUser')) : 100
+	)
 	useEffect(() => addExpandBtn, [selectedUser])
 	useEffect(() => {
 		localStorage.setItem('selectedUser', JSON.stringify(selectedUser))
@@ -59,6 +61,7 @@ const Tickets = ({ tickets, agents, FD_URL, pageIndex, setPageIndex, putContent 
 				<select
 					name='users-drop'
 					id='users-drop'
+					defaultValue={selectedUser}
 					onChange={(e) => {
 						setSelectedUser(+e.target.value || e.target.value)
 					}}

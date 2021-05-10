@@ -70,23 +70,23 @@ const Ticket = ({ ticket, agentsArr, FD_URL, putContent }) => {
 		}
 	}
 
-	const getStatus = (status) => {
-		if (status === 2) {
-			return 'Open'
-		}
-		if (status === 3) {
-			return 'Pending'
-		}
-		if (status === 4) {
-			return 'Resolved'
-		}
-		if (status === 5) {
-			return 'Closed'
-		}
-		if (status === 6) {
-			return 'In Progress'
-		}
-	}
+	// const getStatus = (status) => {
+	// 	if (status === 2) {
+	// 		return 'Open'
+	// 	}
+	// 	if (status === 3) {
+	// 		return 'Pending'
+	// 	}
+	// 	if (status === 4) {
+	// 		return 'Resolved'
+	// 	}
+	// 	if (status === 5) {
+	// 		return 'Closed'
+	// 	}
+	// 	if (status === 6) {
+	// 		return 'In Progress'
+	// 	}
+	// }
 
 	const resolveTicket = async (e) => {
 		const ticketID = +e.target.value
@@ -101,7 +101,13 @@ const Ticket = ({ ticket, agentsArr, FD_URL, putContent }) => {
 		<div className='ticket z-depth-2'>
 			<div className='ticket-header'>
 				<div className='ticket-header-left'>
-					<a href={`${FD_URL}tickets/${ticket.id}`} target='_blank' rel='noreferrer' className='ticket-subject'>
+					<a
+						href={`${FD_URL}tickets/${ticket.id}`}
+						target='_blank'
+						rel='noreferrer'
+						className='ticket-subject'
+						// onClick={(e) => linkExternal(e)}
+					>
 						{ticket.subject}
 					</a>
 					<h4>ID#{ticket.id}</h4>
