@@ -7,10 +7,46 @@
 	justify-content: center;
 	align-items: center;
 
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 100;
+	width: 100%;
+
 	h1 {
 		margin: 0;
 		text-align: center;
 		padding: 0;
 		font-size: 3rem;
+		-webkit-app-region: drag;
+		cursor: pointer;
 	}
+
+	.app-btn {
+		background: transparent;
+		border: 0;
+		color: #fff;
+		display: inline-flex;
+		position: fixed;
+		top: 1rem;
+		right: 1rem;
+		font-size: 2rem;
+		cursor: pointer;
+
+		&-close {
+			right: 1rem;
+		}
+		&-refresh {
+			right: 4rem;
+		}
+	}
+}
+
+.top-tabs {
+	position: fixed;
+	top: 5rem;
+	left: 0;
+	right: 0;
+	z-index: 100;
 }

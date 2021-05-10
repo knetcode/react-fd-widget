@@ -1,16 +1,27 @@
 .tickets {
 	width: 100%;
 	padding: 1rem 0;
-	margin-bottom: 5rem;
+	margin: 10rem 0 5rem;
 
 	&-user-select {
 		width: 100%;
 		color: #333;
+		height: 100%;
+		position: relative;
+
+		label {
+			font-size: 1.2rem;
+		}
 
 		select {
 			height: 4rem;
 			display: block;
 			font-size: 2rem;
+			appearance: none;
+
+			option {
+				height: 5rem;
+			}
 		}
 	}
 
@@ -27,5 +38,10 @@
 		&:focus {
 			background-color: $ctk-pink;
 		}
+	}
+
+	.btn-load-more {
+		// font-weight: bold;
+		letter-spacing: 1px;
 	}
 }

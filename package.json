@@ -1,17 +1,17 @@
 {
 	"name": "react-fd-widget",
-	"description": "FreshDesk Widget",
+	"description": "withIT",
 	"author": "Kyle Esterhuizen",
 	"homepage": "./",
 	"main": "./public/electron.js",
 	"version": "0.0.1",
 	"build": {
-		"appId": "com.my-website.my-app",
-		"productName": "MyApp",
-		"copyright": "Copyright © 2019 ${author}",
+		"appId": "com.computicket.withIT",
+		"productName": "withIT",
+		"copyright": "Copyright © 2021 ${author}",
 		"compression": "maximum",
 		"win": {
-			"icon": "./public/favicon.ico"
+			"icon": "./public/logo-small.ico"
 		},
 		"files": [
 			"./build/**/*",
@@ -31,6 +31,7 @@
 		"@testing-library/user-event": "^12.1.10",
 		"concurrently": "^6.0.2",
 		"electron-is-dev": "^2.0.0",
+		"electron-open-link-in-browser": "^1.0.2",
 		"materialize-css": "^1.0.0-rc.2",
 		"react": "^17.0.2",
 		"react-dom": "^17.0.2",
@@ -46,6 +47,7 @@
 	},
 	"scripts": {
 		"dev": "concurrently \"npm start\" \"wait-on http://localhost:3000 && electron .\"",
+		"estart": "electron .",
 		"start": "react-scripts start",
 		"react-build": "react-scripts build",
 		"test": "react-scripts test",

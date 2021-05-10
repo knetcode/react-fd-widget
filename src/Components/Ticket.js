@@ -1,6 +1,4 @@
-import React from 'react'
-
-const Ticket = ({ ticket, agentsArr, FD_URL }) => {
+const Ticket = ({ ticket, agentsArr, FD_URL, putContent }) => {
 	const expand = (e) => {
 		e.target.parentElement.previousElementSibling.classList.toggle('expanded')
 
@@ -13,15 +11,15 @@ const Ticket = ({ ticket, agentsArr, FD_URL }) => {
 		}
 	}
 
-	const getAgent = (agentID) => {
-		let agentName
-		agentsArr.forEach((agent) => {
-			if (agentID === agent.id) {
-				agentName = agent.first_name
-			}
-		})
-		return agentName
-	}
+	// const getAgent = (agentID) => {
+	// 	let agentName
+	// 	agentsArr.forEach((agent) => {
+	// 		if (agentID === agent.id) {
+	// 			agentName = agent.first_name
+	// 		}
+	// 	})
+	// 	return agentName
+	// }
 
 	const priorityColor = {
 		urgent: {
@@ -43,44 +41,72 @@ const Ticket = ({ ticket, agentsArr, FD_URL }) => {
 	}
 
 	const setPriorityColor = (priority) => {
-		if (priority === 1) {
+		if (priority === 4) {
 			return priorityColor.urgent.color
 		}
-		if (priority === 2) {
+		if (priority === 3) {
 			return priorityColor.high.color
 		}
-		if (priority === 3) {
-			return priorityColor.med.color
+		if (priority === 2) {
+			return priorityColor.medium.color
 		}
-		if (priority === 4) {
+		if (priority === 1) {
 			return priorityColor.low.color
 		}
 	}
 
 	const setPriorityText = (priority) => {
-		if (priority === 1) {
+		if (priority === 4) {
 			return priorityColor.urgent.text
 		}
-		if (priority === 2) {
+		if (priority === 3) {
 			return priorityColor.high.text
 		}
-		if (priority === 3) {
-			return priorityColor.med.text
+		if (priority === 2) {
+			return priorityColor.medium.text
 		}
-		if (priority === 4) {
+		if (priority === 1) {
 			return priorityColor.low.text
 		}
+	}
+
+	const getStatus = (status) => {
+		if (status === 2) {
+			return 'Open'
+		}
+		if (status === 3) {
+			return 'Pending'
+		}
+		if (status === 4) {
+			return 'Resolved'
+		}
+		if (status === 5) {
+			return 'Closed'
+		}
+		if (status === 6) {
+			return 'In Progress'
+		}
+	}
+
+	const resolveTicket = async (e) => {
+		const ticketID = +e.target.value
+		const body = {
+			status: 4,
+		}
+		await putContent('tickets', ticketID, body)
+		window.location.reload()
 	}
 
 	return (
 		<div className='ticket z-depth-2'>
 			<div className='ticket-header'>
 				<div className='ticket-header-left'>
-					<a href={`${FD_URL}tickets/${ticket.id}`} target='_blank' rel='noreferrer'>
-						<h2>{ticket.subject}</h2>
+					<a href={`${FD_URL}tickets/${ticket.id}`} target='_blank' rel='noreferrer' className='ticket-subject'>
+						{ticket.subject}
 					</a>
 					<h4>ID#{ticket.id}</h4>
-					<h4>Assigned to {getAgent(ticket.responder_id)}</h4>
+					{/* <h4>Assigned to {getAgent(ticket.responder_id)}</h4> */}
+					{/* <h4>Status: {getStatus(ticket.status)}</h4> */}
 				</div>
 				<div className='ticket-header-right'>
 					<div className='badge' style={{ backgroundColor: setPriorityColor(ticket.priority) }}>
@@ -94,10 +120,15 @@ const Ticket = ({ ticket, agentsArr, FD_URL }) => {
 			</div>
 
 			<div className='ticket-footer'>
-				<button type='submit' className='btn ctk-red waves-light waves-effect'>
+				<button
+					className='btn ctk-red waves-light waves-effect'
+					value={ticket.id}
+					onClick={(e) => resolveTicket(e)}
+				>
 					Resolve
 				</button>
-				<button type='submit' className='btn transparent waves-effect z-depth-0 text-ctk-pink' onClick={expand}>
+
+				<button className='btn transparent waves-effect z-depth-0 text-ctk-pink expanding-btn' onClick={expand}>
 					Expand
 				</button>
 			</div>
