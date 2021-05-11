@@ -9,4 +9,5 @@
 ~~5. Handle no tickets for user~~  
 ~~6. Test urgency~~  
 7. Pagination  
-8. Unassigned tickets
+8. Unassigned tickets  
+9. Scroll to expanded view

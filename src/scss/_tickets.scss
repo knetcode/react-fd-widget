@@ -14,13 +14,14 @@
 		}
 
 		select {
-			height: 4rem;
+			height: 5rem;
 			display: block;
 			font-size: 2rem;
 			appearance: none;
-			line-height: auto;
+			line-height: unset;
 
 			option {
+				line-height: unset;
 				height: 5rem;
 			}
 		}
