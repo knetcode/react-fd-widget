@@ -12,7 +12,7 @@ const API = {
 const FD_URL = process.env.REACT_APP_FD_URL
 
 function App() {
-	const [pageIndex, setPageIndex] = useState(1)
+	// const [pageIndex, setPageIndex] = useState(1)
 	const [tickets, setTickets] = useState(null)
 	const [agents, setAgents] = useState(null)
 
@@ -26,7 +26,7 @@ function App() {
 	}
 
 	const putContent = async (query, id, body) => {
-		const res = await fetch(`${API.URL}${query}/${id}`, {
+		const res = await fetch(`${API.URL}${query}${id}.json`, {
 			body: JSON.stringify(body),
 			headers: { Authorization: `${API.KEY}`, 'Content-Type': 'application/json' },
 			method: 'PUT',
@@ -36,31 +36,39 @@ function App() {
 	}
 
 	useEffect(() => {
-		const getTickets = async (page) => {
-			const ticketsFromServer = await fetchContent(`tickets?page=${page}&per_page=100`)
-			ticketsFromServer.tickets.forEach((ticket) => {
+		const getTickets = async () => {
+			// const ticketsFromServer = await fetchContent('helpdesk/tickets/filter/all_tickets?format=json')
+			const ticketsFromServer = await fetchContent('helpdesk/tickets/filter/unresolved?format=json')
+
+			ticketsFromServer.forEach((ticket) => {
 				if (ticket.responder_id === null) {
 					ticket.responder_id = 100
 				}
 			})
-			setTickets(ticketsFromServer)
-		}
-		getTickets(pageIndex)
-		setInterval(() => {
-			getTickets(pageIndex)
-			console.log('fired')
-		}, 15000)
 
-		console.log(`Page Number: %c${pageIndex}`, 'color: limegreen')
-	}, [pageIndex])
+			setTickets(ticketsFromServer)
+			console.log(ticketsFromServer)
+		}
+		getTickets()
+		// setInterval(() => {
+		// 	getTickets(pageIndex)
+		// }, 15000)
+	}, [])
 
 	useEffect(() => {
 		const getAgents = async () => {
-			const agentsFromServer = await fetchContent('agents')
+			const agentsFromServer = await fetchContent('/agents.json')
 			setAgents(agentsFromServer)
 		}
 		getAgents()
 	}, [])
+
+	// const alltickets = async () => {
+	// 	const txlist = await fetchContent('helpdesk/tickets/filter/all_tickets?format=json&page=3')
+	// 	console.log(txlist)
+	// }
+
+	// alltickets()
 
 	return (
 		<div className='app-container'>
@@ -73,8 +81,8 @@ function App() {
 								tickets={tickets}
 								agents={agents}
 								FD_URL={FD_URL}
-								pageIndex={pageIndex}
-								setPageIndex={setPageIndex}
+								// pageIndex={pageIndex}
+								// setPageIndex={setPageIndex}
 								putContent={putContent}
 							/>
 						)}

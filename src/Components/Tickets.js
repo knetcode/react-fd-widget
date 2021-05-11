@@ -2,23 +2,27 @@ import React, { useEffect } from 'react'
 import Ticket from './Ticket'
 import { FaPlus } from 'react-icons/fa'
 import { useState } from 'react'
+import NoTicket from './NoTicket'
 
-const Tickets = ({ tickets, agents, FD_URL, pageIndex, setPageIndex, putContent }) => {
-	const ticketsArr = tickets.tickets
-	const agentsArr = agents.agents
+const Tickets = ({ tickets, agents, FD_URL, putContent }) => {
+	const ticketsArr = tickets
+	const agentsArr = agents
 
-	const loadingAnimation = () => {
-		const loader = document.createElement('div')
-		loader.classList.add('loader')
-		loader.innerHTML = `<h2>Loading...</h2>`
-		document.body.appendChild(loader)
-		console.log(document.body)
-		setTimeout(() => {
-			if (document.body.lastElementChild.classList.contains('loader')) {
-				document.body.lastElementChild.remove()
-			}
-		}, 2000)
-	}
+	// console.log(ticketsArr)
+	// console.log(agentsArr)
+
+	// const loadingAnimation = () => {
+	// 	const loader = document.createElement('div')
+	// 	loader.classList.add('loader')
+	// 	loader.innerHTML = `<h2>Loading...</h2>`
+	// 	document.body.appendChild(loader)
+	// 	console.log(document.body)
+	// 	setTimeout(() => {
+	// 		if (document.body.lastElementChild.classList.contains('loader')) {
+	// 			document.body.lastElementChild.remove()
+	// 		}
+	// 	}, 2000)
+	// }
 
 	const comparePriority = (a, b) => {
 		if (a.priority < b.priority) {
@@ -52,12 +56,12 @@ const Tickets = ({ tickets, agents, FD_URL, pageIndex, setPageIndex, putContent 
 	window.addEventListener('resize', addExpandBtn)
 
 	const filteredArr = ticketsArr.filter((ticket) => ticket.responder_id === selectedUser).sort(comparePriority)
+	// console.log(filteredArr)
 
 	return (
 		<div className='tickets white-text'>
 			<div className='tickets-user-select'>
 				<label htmlFor='users-drop'>Choose a User:</label>
-
 				<select
 					name='users-drop'
 					id='users-drop'
@@ -67,22 +71,35 @@ const Tickets = ({ tickets, agents, FD_URL, pageIndex, setPageIndex, putContent 
 					}}
 				>
 					<option value='100'>Unassigned</option>
-					{agentsArr.map((agent) => (
-						<option key={agent.id} value={agent.id}>
-							{agent.first_name}
-						</option>
-					))}
+					{agentsArr.map((agent) => {
+						// console.log(agent.agent.user.name)
+						// console.log(agent.agent.user.id)
+
+						return (
+							<option key={agent.agent.user.id} value={agent.agent.user.id}>
+								{agent.agent.user.name}
+							</option>
+						)
+					})}
 				</select>
 			</div>
-			{filteredArr.map((ticket) => {
-				return (
-					<Ticket ticket={ticket} agentsArr={agentsArr} key={ticket.id} FD_URL={FD_URL} putContent={putContent} />
-				)
-			})}
+
+			{filteredArr.length > 0 ? (
+				filteredArr.map((ticket) => {
+					return <Ticket ticket={ticket} key={ticket.display_id} FD_URL={FD_URL} putContent={putContent} />
+				})
+			) : (
+				<NoTicket />
+			)}
+
+			{/* {filteredArr.map((ticket) => {
+				return <Ticket ticket={ticket} key={ticket.display_id} FD_URL={FD_URL} putContent={putContent} />
+			})} */}
+
 			<button className='btn-floating btn-large waves-effect waves-light ctk-pink btn-add'>
 				<FaPlus />
 			</button>
-			<button
+			{/* <button
 				id='load-more-btn'
 				onClick={() => {
 					setPageIndex(pageIndex + 1)
@@ -92,7 +109,7 @@ const Tickets = ({ tickets, agents, FD_URL, pageIndex, setPageIndex, putContent 
 				className='btn-block ctk-red btn btn-load-more'
 			>
 				Load More
-			</button>
+			</button> */}
 		</div>
 	)
 }
