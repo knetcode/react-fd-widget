@@ -32,6 +32,7 @@ function App() {
 			method: 'PUT',
 		})
 		const dataObj = await res.json()
+		console.log(dataObj)
 		return dataObj
 	}
 

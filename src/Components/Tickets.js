@@ -38,6 +38,7 @@ const Tickets = ({ tickets, agents, FD_URL, putContent }) => {
 		localStorage.getItem('selectedUser') ? +JSON.parse(localStorage.getItem('selectedUser')) : 100
 	)
 	useEffect(() => addExpandBtn, [selectedUser])
+	useEffect(() => addExpandBtn, [])
 	useEffect(() => {
 		localStorage.setItem('selectedUser', JSON.stringify(selectedUser))
 		setSelectedUser(selectedUser)

@@ -9,5 +9,8 @@
 ~~5. Handle no tickets for user~~  
 ~~6. Test urgency~~  
 7. Pagination  
-8. Unassigned tickets  
-9. Scroll to expanded view
+~~8. Unassigned tickets~~  
+~~9. Scroll to expanded view~~  
+~~10. Overdue styling~~  
+11. Shrink install files  
+12. Expand animations

@@ -9,6 +9,8 @@ const Ticket = ({ ticket, FD_URL, putContent }) => {
 		if (!e.target.parentElement.previousElementSibling.classList.contains('expanded')) {
 			e.target.innerText = 'EXPAND'
 		}
+
+		document.querySelector(`#tx${ticket.display_id}`).scrollIntoView({ behavior: 'smooth' })
 	}
 
 	// const getAgent = (agentID) => {
@@ -108,40 +110,45 @@ const Ticket = ({ ticket, FD_URL, putContent }) => {
 		// const ticketID = 19092
 		const body = {
 			helpdesk_ticket: {
-				status: 4,
+				status: 6,
+				due_by: new Date('2021-09-20T08:13:15+02:00'),
 			},
 		}
 		await putContent('helpdesk/tickets/', ticketID, body)
-		window.location.reload()
+		// window.location.reload()
 	}
 
 	const formatDate = (date) => {
+		const now = new Date()
+		const dueDate = new Date(date)
 		const d = new Date(date).getDate()
-		const months = [
-			'January',
-			'February',
-			'March',
-			'April',
-			'May',
-			'June',
-			'July',
-			'August',
-			'September',
-			'October',
-			'November',
-			'December',
-		]
+		const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 		const m = months[new Date(date).getMonth()]
-		const displayDate = `${d} ${m}`
-		return displayDate
+		const y = new Date(date).getFullYear()
+		const displayDate = `${d} ${m} ${y}`
+		if (now > dueDate) {
+			return (
+				<div className='overdue due-date'>
+					<h4>Due By</h4>
+					<p>{displayDate}</p>
+				</div>
+			)
+		} else {
+			return (
+				<div className='due-date'>
+					<h4>Due By</h4>
+					<p>{displayDate}</p>
+				</div>
+			)
+		}
 	}
 
 	// console.log(ticket)
 
 	return (
-		<div className='ticket z-depth-2'>
+		<div id={`tx${ticket.display_id}`} className='ticket z-depth-2'>
 			<div className='ticket-header'>
-				<div className='ticket-header-left'>
+				<div className='ticket-header-top'>
 					<a
 						href={`${FD_URL}tickets/${ticket.display_id}`}
 						target='_blank'
@@ -151,18 +158,17 @@ const Ticket = ({ ticket, FD_URL, putContent }) => {
 					>
 						{ticket.subject}
 					</a>
-					<h4>ID#{ticket.display_id}</h4>
-					{/* <h4>Assigned to {ticket.responder_name}</h4> */}
-					<h4>Status: {ticket.status_name}</h4>
-				</div>
-				<div className='ticket-header-right'>
-					<div className='due-date'>
-						<h4>Due By</h4>
-						<p>{formatDate(ticket.due_by)}</p>
-					</div>
 					<div className='badge' style={{ backgroundColor: setPriorityColor(ticket.priority_name) }}>
 						{ticket.priority_name}
 					</div>
+				</div>
+				<div className='ticket-header-bottom'>
+					<div className='ticket-info'>
+						<h4>ID#{ticket.display_id}</h4>
+						{/* <h4>Assigned to {ticket.responder_name}</h4> */}
+						<h4>Status: {ticket.status_name}</h4>
+					</div>
+					{formatDate(ticket.due_by)}
 				</div>
 			</div>
 

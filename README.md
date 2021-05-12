@@ -57,3 +57,11 @@ React Materialize components
 > https://github.com/react-materialize/react-materialize
 
 > http://react-materialize.github.io/react-materialize/?path=/story/react-materialize--welcome
+
+---
+
+Run Chrome without CORS interference
+
+> WIN+R
+
+> chrome.exe --user-data-dir="C:/Chrome dev session" --disable-web-security
