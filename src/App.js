@@ -15,6 +15,7 @@ function App() {
 	// const [pageIndex, setPageIndex] = useState(1)
 	const [tickets, setTickets] = useState(null)
 	const [agents, setAgents] = useState(null)
+	const [fields, setFields] = useState(null)
 
 	const fetchContent = async (query) => {
 		const res = await fetch(`${API.URL}${query}`, {
@@ -25,6 +26,23 @@ function App() {
 		return dataObj
 	}
 
+	useEffect(() => {
+		const getAgents = async () => {
+			const agentsFromServer = await fetchContent('/agents.json')
+			setAgents(agentsFromServer)
+		}
+		getAgents()
+	}, [])
+
+	useEffect(() => {
+		const getFields = async () => {
+			const fieldsFromServer = await fetchContent('/ticket_fields.json')
+			setFields(fieldsFromServer)
+		}
+		getFields()
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [])
+
 	const putContent = async (query, id, body) => {
 		const res = await fetch(`${API.URL}${query}${id}.json`, {
 			body: JSON.stringify(body),
@@ -33,6 +51,17 @@ function App() {
 		})
 		const dataObj = await res.json()
 		console.log(dataObj)
+		return dataObj
+	}
+
+	const postContent = async (query, body) => {
+		const res = await fetch(`${API.URL}${query}.json`, {
+			body: JSON.stringify(body),
+			headers: { Authorization: `${API.KEY}`, 'Content-Type': 'application/json' },
+			method: 'POST',
+		})
+		const dataObj = await res.json()
+		console.log(dataObj.item.helpdesk_ticket.display_id)
 		return dataObj
 	}
 
@@ -85,6 +114,8 @@ function App() {
 								// pageIndex={pageIndex}
 								// setPageIndex={setPageIndex}
 								putContent={putContent}
+								fields={fields}
+								postContent={postContent}
 							/>
 						)}
 					</div>

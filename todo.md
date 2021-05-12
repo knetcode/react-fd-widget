@@ -12,5 +12,5 @@
 ~~8. Unassigned tickets~~  
 ~~9. Scroll to expanded view~~  
 ~~10. Overdue styling~~  
-11. Shrink install files  
+~~11. Shrink install files~~  
 12. Expand animations

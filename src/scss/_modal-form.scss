@@ -1,0 +1,16 @@
+.modal-form {
+	margin-top: 2rem;
+
+	.input-field {
+		margin-top: 3rem;
+		font-size: 1.6rem;
+	}
+
+	.modal-radio-priority {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: flex-start;
+		margin-bottom: 2rem;
+	}
+}

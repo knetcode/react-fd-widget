@@ -43,6 +43,11 @@ img {
   width: 100%;
 }
 
+.btn-reset {
+  margin-top: 1rem;
+  color: #333;
+}
+
 .row {
   width: 100%;
 }
@@ -301,6 +306,7 @@ body::-webkit-scrollbar-thumb {
   text-transform: uppercase;
   margin-right: 0;
   font-weight: normal;
+  margin-bottom: 0.5rem;
 }
 
 .ticket-header-bottom {
@@ -360,6 +366,23 @@ body::-webkit-scrollbar-thumb {
   display: none;
 }
 
+.modal-form {
+  margin-top: 2rem;
+}
+
+.modal-form .input-field {
+  margin-top: 3rem;
+  font-size: 1.6rem;
+}
+
+.modal-form .modal-radio-priority {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+}
+
 .red {
   background-color: #e71f3e !important;
 }
@@ -387,4 +410,57 @@ body::-webkit-scrollbar-thumb {
 
 .btn-floating {
   z-index: 100;
+}
+
+input:not([type]):focus:not([readonly]),
+input[type='text']:not(.browser-default):focus:not([readonly]),
+input[type='password']:not(.browser-default):focus:not([readonly]),
+input[type='email']:not(.browser-default):focus:not([readonly]),
+input[type='url']:not(.browser-default):focus:not([readonly]),
+input[type='time']:not(.browser-default):focus:not([readonly]),
+input[type='date']:not(.browser-default):focus:not([readonly]),
+input[type='datetime']:not(.browser-default):focus:not([readonly]),
+input[type='datetime-local']:not(.browser-default):focus:not([readonly]),
+input[type='tel']:not(.browser-default):focus:not([readonly]),
+input[type='number']:not(.browser-default):focus:not([readonly]),
+input[type='search']:not(.browser-default):focus:not([readonly]),
+textarea.materialize-textarea:focus:not([readonly]) {
+  border-bottom: 1px solid #e71f3e;
+  box-shadow: 0 1px 0 0 #e71f3e;
+}
+
+input:not([type]),
+input[type='text']:not(.browser-default),
+input[type='password']:not(.browser-default),
+input[type='email']:not(.browser-default),
+input[type='url']:not(.browser-default),
+input[type='time']:not(.browser-default),
+input[type='date']:not(.browser-default),
+input[type='datetime']:not(.browser-default),
+input[type='datetime-local']:not(.browser-default),
+input[type='tel']:not(.browser-default),
+input[type='number']:not(.browser-default),
+input[type='search']:not(.browser-default),
+textarea.materialize-textarea {
+  height: 4rem;
+}
+
+input:not([type]):focus:not([readonly]) + label,
+input[type='text']:not(.browser-default):focus:not([readonly]) + label,
+input[type='password']:not(.browser-default):focus:not([readonly]) + label,
+input[type='email']:not(.browser-default):focus:not([readonly]) + label,
+input[type='url']:not(.browser-default):focus:not([readonly]) + label,
+input[type='time']:not(.browser-default):focus:not([readonly]) + label,
+input[type='date']:not(.browser-default):focus:not([readonly]) + label,
+input[type='datetime']:not(.browser-default):focus:not([readonly]) + label,
+input[type='datetime-local']:not(.browser-default):focus:not([readonly]) + label,
+input[type='tel']:not(.browser-default):focus:not([readonly]) + label,
+input[type='number']:not(.browser-default):focus:not([readonly]) + label,
+input[type='search']:not(.browser-default):focus:not([readonly]) + label,
+textarea.materialize-textarea:focus:not([readonly]) + label {
+  color: #e71f3e;
+}
+
+.input-field > label {
+  font-size: 1.6rem;
 }

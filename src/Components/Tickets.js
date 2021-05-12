@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react'
 import Ticket from './Ticket'
-import { FaPlus } from 'react-icons/fa'
+
 import { useState } from 'react'
 import NoTicket from './NoTicket'
 
-const Tickets = ({ tickets, agents, FD_URL, putContent }) => {
+import AddModal from './AddModal'
+
+const Tickets = ({ tickets, agents, FD_URL, putContent, fields, postContent }) => {
 	const ticketsArr = tickets
 	const agentsArr = agents
 
@@ -97,9 +99,6 @@ const Tickets = ({ tickets, agents, FD_URL, putContent }) => {
 				return <Ticket ticket={ticket} key={ticket.display_id} FD_URL={FD_URL} putContent={putContent} />
 			})} */}
 
-			<button className='btn-floating btn-large waves-effect waves-light ctk-pink btn-add'>
-				<FaPlus />
-			</button>
 			{/* <button
 				id='load-more-btn'
 				onClick={() => {
@@ -111,6 +110,8 @@ const Tickets = ({ tickets, agents, FD_URL, putContent }) => {
 			>
 				Load More
 			</button> */}
+
+			<AddModal fields={fields} selectedUser={selectedUser} postContent={postContent} />
 		</div>
 	)
 }

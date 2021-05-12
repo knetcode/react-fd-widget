@@ -110,12 +110,11 @@ const Ticket = ({ ticket, FD_URL, putContent }) => {
 		// const ticketID = 19092
 		const body = {
 			helpdesk_ticket: {
-				status: 6,
-				due_by: new Date('2021-09-20T08:13:15+02:00'),
+				status: 4,
 			},
 		}
 		await putContent('helpdesk/tickets/', ticketID, body)
-		// window.location.reload()
+		window.location.reload()
 	}
 
 	const formatDate = (date) => {
