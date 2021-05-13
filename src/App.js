@@ -1,6 +1,6 @@
 import AppHeader from './Components/AppHeader'
 import AppFooter from './Components/AppFooter'
-import { Tab, Tabs, Toast } from 'react-materialize'
+import { Tab, Tabs } from 'react-materialize'
 import Tickets from './Components/Tickets'
 import { useState, useEffect } from 'react'
 
@@ -12,7 +12,6 @@ const API = {
 const FD_URL = process.env.REACT_APP_FD_URL
 
 function App() {
-	// const [pageIndex, setPageIndex] = useState(1)
 	const [tickets, setTickets] = useState(null)
 	const [agents, setAgents] = useState(null)
 	const [fields, setFields] = useState(null)
@@ -50,7 +49,7 @@ function App() {
 			method: 'PUT',
 		})
 		const dataObj = await res.json()
-		// console.log(dataObj)
+
 		return dataObj
 	}
 
@@ -66,7 +65,6 @@ function App() {
 	}
 
 	const getTickets = async () => {
-		// const ticketsFromServer = await fetchContent('helpdesk/tickets/filter/all_tickets?format=json')
 		const ticketsFromServer = await fetchContent('helpdesk/tickets/filter/unresolved?format=json')
 		ticketsFromServer.forEach((ticket) => {
 			if (ticket.responder_id === null) {
@@ -79,10 +77,10 @@ function App() {
 
 	useEffect(() => {
 		getTickets()
-		setInterval(() => {
-			getTickets()
-			console.log('refreshed')
-		}, 60000)
+		// setInterval(() => {
+		// 	getTickets()
+		// 	console.log('refreshed')
+		// }, 60000)
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
@@ -94,12 +92,9 @@ function App() {
 		getAgents()
 	}, [])
 
-	// const alltickets = async () => {
-	// 	const txlist = await fetchContent('helpdesk/tickets/filter/all_tickets?format=json&page=3')
-	// 	console.log(txlist)
-	// }
-
-	// alltickets()
+	const eg = 'JDC6SqLNp33yxFf87jmv:X'
+	const cv = `Basic ${window.btoa(eg)}`
+	console.log(cv)
 
 	return (
 		<div className='app-container'>
@@ -112,8 +107,6 @@ function App() {
 								tickets={tickets}
 								agents={agents}
 								FD_URL={FD_URL}
-								// pageIndex={pageIndex}
-								// setPageIndex={setPageIndex}
 								putContent={putContent}
 								fields={fields}
 								postContent={postContent}
@@ -124,13 +117,6 @@ function App() {
 				</Tab>
 				<Tab title='TAB 2'>TAB 2</Tab>
 			</Tabs>
-			{/* <Toast
-				options={{
-					html: `hello`,
-				}}
-			>
-				Toast
-			</Toast> */}
 			<AppFooter />
 		</div>
 	)

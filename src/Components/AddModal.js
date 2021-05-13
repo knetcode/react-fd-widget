@@ -12,7 +12,6 @@ const AddModal = ({ fields, selectedUser, postContent, getTickets }) => {
 	const prioritiesArr = fields[7].ticket_field.choices
 	const firstArr = prioritiesArr[0]
 	firstArr[2] = true
-	// console.log(firstArr)
 
 	const modalSubmit = async (e) => {
 		e.preventDefault()
@@ -21,8 +20,6 @@ const AddModal = ({ fields, selectedUser, postContent, getTickets }) => {
 		const addSubject = document.querySelector('#modal-add-subject')
 		const addDescription = document.querySelector('#modal-add-description')
 		const addPriority = document.querySelector('input[type="radio"]:checked')
-		// console.log(addEmail, addSubject, addDescription, addPriority)
-		// console.log(addPriority)
 		const body = {
 			helpdesk_ticket: {
 				description: addDescription.value,

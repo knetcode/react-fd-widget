@@ -7,22 +7,6 @@ const Tickets = ({ tickets, agents, FD_URL, putContent, fields, postContent, get
 	const ticketsArr = tickets
 	const agentsArr = agents
 
-	// console.log(ticketsArr)
-	// console.log(agentsArr)
-
-	// const loadingAnimation = () => {
-	// 	const loader = document.createElement('div')
-	// 	loader.classList.add('loader')
-	// 	loader.innerHTML = `<h2>Loading...</h2>`
-	// 	document.body.appendChild(loader)
-	// 	console.log(document.body)
-	// 	setTimeout(() => {
-	// 		if (document.body.lastElementChild.classList.contains('loader')) {
-	// 			document.body.lastElementChild.remove()
-	// 		}
-	// 	}, 2000)
-	// }
-
 	const comparePriority = (a, b) => {
 		if (a.priority < b.priority) {
 			return 1
@@ -56,8 +40,6 @@ const Tickets = ({ tickets, agents, FD_URL, putContent, fields, postContent, get
 	window.addEventListener('resize', addExpandBtn)
 
 	const filteredArr = ticketsArr.filter((ticket) => ticket.responder_id === selectedUser).sort(comparePriority)
-	// console.log(filteredArr)
-	// console.log(selectedUser)
 
 	return (
 		<div className='tickets white-text'>
@@ -73,9 +55,6 @@ const Tickets = ({ tickets, agents, FD_URL, putContent, fields, postContent, get
 				>
 					<option value='100'>Unassigned</option>
 					{agentsArr.map((agent) => {
-						// console.log(agent.agent.user.name)
-						// console.log(agent.agent.user.id)
-
 						return (
 							<option key={agent.agent.user.id} value={agent.agent.user.id}>
 								{agent.agent.user.name}
@@ -100,22 +79,6 @@ const Tickets = ({ tickets, agents, FD_URL, putContent, fields, postContent, get
 			) : (
 				<NoTicket />
 			)}
-
-			{/* {filteredArr.map((ticket) => {
-				return <Ticket ticket={ticket} key={ticket.display_id} FD_URL={FD_URL} putContent={putContent} />
-			})} */}
-
-			{/* <button
-				id='load-more-btn'
-				onClick={() => {
-					setPageIndex(pageIndex + 1)
-					document.documentElement.scrollTop = 0
-					loadingAnimation()
-				}}
-				className='btn-block ctk-red btn btn-load-more'
-			>
-				Load More
-			</button> */}
 
 			<AddModal fields={fields} selectedUser={selectedUser} postContent={postContent} getTickets={getTickets} />
 		</div>
