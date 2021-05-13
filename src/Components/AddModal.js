@@ -17,28 +17,35 @@ const AddModal = ({ fields, selectedUser, postContent, getTickets }) => {
 	const modalSubmit = async (e) => {
 		e.preventDefault()
 		// console.log('submitted')
-		const addEmail = document.querySelector('#modal-add-email').value
-		const addSubject = document.querySelector('#modal-add-subject').value
-		const addDescription = document.querySelector('#modal-add-description').value
-		const addPriority = document.querySelector('input[type="radio"]:checked').value
+		const addModal = document.querySelector('#add-modal')
+		const addEmail = document.querySelector('#modal-add-email')
+		const addSubject = document.querySelector('#modal-add-subject')
+		const addDescription = document.querySelector('#modal-add-description')
+		const addPriority = document.querySelector('input[type="radio"]:checked')
 		// console.log(addEmail, addSubject, addDescription, addPriority)
 		// console.log(addPriority)
 		const body = {
 			helpdesk_ticket: {
-				description: addDescription,
-				subject: addSubject,
-				email: addEmail,
-				responder_id: +selectedUser,
-				priority: +addPriority,
+				description: addDescription.value,
+				subject: addSubject.value,
+				email: addEmail.value,
+				responder_id: +selectedUser === 100 ? null : +selectedUser,
+				priority: +addPriority.value,
 				status: 2,
 			},
 		}
-		postContent('helpdesk/tickets', body, getTickets())
+		console.log(body)
+		// postContent('helpdesk/tickets', body, getTickets())
 		// setTimeout(getTickets, 500)
+		// addModal.classList.remove('open')
+		// addModal.classList.add('modal-close')
+		addEmail.value = ''
+		addSubject.value = ''
+		addDescription.value = ''
 	}
 
 	return (
-		<Modal header='Quick Add Ticket' trigger={trigger}>
+		<Modal header='Quick Add Ticket' trigger={trigger} id='add-modal'>
 			<form
 				className='modal-form'
 				id='modal-form'

@@ -79,3 +79,8 @@ textarea.materialize-textarea:focus:not([readonly]) + label {
 .input-field > label {
 	font-size: 1.6rem;
 }
+
+[type='radio']:not(:checked) + span,
+[type='radio']:checked + span {
+	font-size: 1.6rem;
+}

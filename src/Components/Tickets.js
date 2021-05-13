@@ -1,9 +1,6 @@
-import React, { useEffect } from 'react'
-import Ticket from './Ticket'
-
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import NoTicket from './NoTicket'
-
+import Ticket from './Ticket'
 import AddModal from './AddModal'
 
 const Tickets = ({ tickets, agents, FD_URL, putContent, fields, postContent, getTickets }) => {
@@ -39,8 +36,8 @@ const Tickets = ({ tickets, agents, FD_URL, putContent, fields, postContent, get
 	const [selectedUser, setSelectedUser] = useState(
 		localStorage.getItem('selectedUser') ? +JSON.parse(localStorage.getItem('selectedUser')) : 100
 	)
-	useEffect(() => addExpandBtn, [selectedUser])
 	useEffect(() => addExpandBtn, [])
+	useEffect(() => addExpandBtn, [selectedUser])
 	useEffect(() => {
 		localStorage.setItem('selectedUser', JSON.stringify(selectedUser))
 		setSelectedUser(selectedUser)

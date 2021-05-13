@@ -14,4 +14,5 @@
 ~~10. Overdue styling~~  
 ~~11. Shrink install files~~  
 12. Expand animations  
-13. Add ticket toast 14. Style select list
+13. Add ticket toast  
+14. Style select list

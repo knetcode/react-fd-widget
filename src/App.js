@@ -92,10 +92,11 @@ function App() {
 
 	useEffect(() => {
 		getTickets()
-		setInterval(() => {
-			getTickets()
-			console.log('refreshed')
-		}, 60000)
+		// setInterval(() => {
+		// 	getTickets()
+		// 	console.log('refreshed')
+		// }, 60000)
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
 	useEffect(() => {
