@@ -35,10 +35,9 @@ const AddModal = ({ fields, selectedUser, postContent, getTickets }) => {
 			},
 		}
 		console.log(body)
-		// postContent('helpdesk/tickets', body, getTickets())
-		// setTimeout(getTickets, 500)
-		// addModal.classList.remove('open')
-		// addModal.classList.add('modal-close')
+
+		postContent('helpdesk/tickets', body, getTickets())
+
 		addEmail.value = ''
 		addSubject.value = ''
 		addDescription.value = ''
