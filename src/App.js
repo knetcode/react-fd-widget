@@ -1,6 +1,6 @@
 import AppHeader from './Components/AppHeader'
 import AppFooter from './Components/AppFooter'
-import { Tab, Tabs } from 'react-materialize'
+import { Tab, Tabs, Toast } from 'react-materialize'
 import Tickets from './Components/Tickets'
 import { useState, useEffect } from 'react'
 
@@ -50,7 +50,7 @@ function App() {
 			method: 'PUT',
 		})
 		const dataObj = await res.json()
-		console.log(dataObj)
+		// console.log(dataObj)
 		return dataObj
 	}
 
@@ -62,27 +62,40 @@ function App() {
 		})
 		const dataObj = await res.json()
 		console.log(dataObj.item.helpdesk_ticket.display_id)
+		callToast(dataObj.item.helpdesk_ticket.display_id)
 		return dataObj
 	}
 
+	const callToast = (message) => {
+		return (
+			<Toast
+				options={{
+					html: `Ticket #${message} created`,
+				}}
+			>
+				Toast
+			</Toast>
+		)
+	}
+
+	const getTickets = async () => {
+		// const ticketsFromServer = await fetchContent('helpdesk/tickets/filter/all_tickets?format=json')
+		const ticketsFromServer = await fetchContent('helpdesk/tickets/filter/unresolved?format=json')
+		ticketsFromServer.forEach((ticket) => {
+			if (ticket.responder_id === null) {
+				ticket.responder_id = 100
+			}
+		})
+		setTickets(ticketsFromServer)
+		console.log(ticketsFromServer)
+	}
+
 	useEffect(() => {
-		const getTickets = async () => {
-			// const ticketsFromServer = await fetchContent('helpdesk/tickets/filter/all_tickets?format=json')
-			const ticketsFromServer = await fetchContent('helpdesk/tickets/filter/unresolved?format=json')
-
-			ticketsFromServer.forEach((ticket) => {
-				if (ticket.responder_id === null) {
-					ticket.responder_id = 100
-				}
-			})
-
-			setTickets(ticketsFromServer)
-			console.log(ticketsFromServer)
-		}
 		getTickets()
-		// setInterval(() => {
-		// 	getTickets(pageIndex)
-		// }, 15000)
+		setInterval(() => {
+			getTickets()
+			console.log('refreshed')
+		}, 60000)
 	}, [])
 
 	useEffect(() => {
@@ -116,12 +129,20 @@ function App() {
 								putContent={putContent}
 								fields={fields}
 								postContent={postContent}
+								getTickets={getTickets}
 							/>
 						)}
 					</div>
 				</Tab>
 				<Tab title='TAB 2'>TAB 2</Tab>
 			</Tabs>
+			{/* <Toast
+				options={{
+					html: `hello`,
+				}}
+			>
+				Toast
+			</Toast> */}
 			<AppFooter />
 		</div>
 	)

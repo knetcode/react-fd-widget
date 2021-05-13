@@ -8,27 +8,33 @@ const trigger = (
 	</button>
 )
 
-const AddModal = ({ fields, selectedUser, postContent }) => {
+const AddModal = ({ fields, selectedUser, postContent, getTickets }) => {
 	const prioritiesArr = fields[7].ticket_field.choices
+	const firstArr = prioritiesArr[0]
+	firstArr[2] = true
+	// console.log(firstArr)
 
-	const modalSubmit = (e) => {
+	const modalSubmit = async (e) => {
 		e.preventDefault()
 		// console.log('submitted')
 		const addEmail = document.querySelector('#modal-add-email').value
 		const addSubject = document.querySelector('#modal-add-subject').value
 		const addDescription = document.querySelector('#modal-add-description').value
-		console.log(addEmail, addSubject, addDescription)
+		const addPriority = document.querySelector('input[type="radio"]:checked').value
+		// console.log(addEmail, addSubject, addDescription, addPriority)
+		// console.log(addPriority)
 		const body = {
 			helpdesk_ticket: {
 				description: addDescription,
 				subject: addSubject,
 				email: addEmail,
 				responder_id: +selectedUser,
-				priority: 1,
+				priority: +addPriority,
 				status: 2,
 			},
 		}
-		postContent('helpdesk/tickets', body)
+		postContent('helpdesk/tickets', body, getTickets())
+		// setTimeout(getTickets, 500)
 	}
 
 	return (
@@ -44,12 +50,11 @@ const AddModal = ({ fields, selectedUser, postContent }) => {
 				<TextInput email id='modal-add-email' label='Requester Email' validate required />
 				<TextInput id='modal-add-subject' label='Subject' required />
 				<Textarea id='modal-add-description' l={12} m={12} s={12} xl={12} label='Description' required />
-				<div className='modal-radio-priority'>
+				<div className='modal-radio-priority' id='modal-radio-priority'>
 					{prioritiesArr.map((priority) => {
-						// console.log(priority)
 						return (
 							<label key={priority[0]}>
-								<input name='priorities' type='radio' value={priority[1]} defaultChecked />
+								<input name='priorities' type='radio' value={priority[1]} defaultChecked={priority[2]} />
 								<span>{priority[0]}</span>
 							</label>
 						)

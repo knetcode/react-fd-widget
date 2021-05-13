@@ -6,7 +6,7 @@ import NoTicket from './NoTicket'
 
 import AddModal from './AddModal'
 
-const Tickets = ({ tickets, agents, FD_URL, putContent, fields, postContent }) => {
+const Tickets = ({ tickets, agents, FD_URL, putContent, fields, postContent, getTickets }) => {
 	const ticketsArr = tickets
 	const agentsArr = agents
 
@@ -60,6 +60,7 @@ const Tickets = ({ tickets, agents, FD_URL, putContent, fields, postContent }) =
 
 	const filteredArr = ticketsArr.filter((ticket) => ticket.responder_id === selectedUser).sort(comparePriority)
 	// console.log(filteredArr)
+	// console.log(selectedUser)
 
 	return (
 		<div className='tickets white-text'>
@@ -89,7 +90,15 @@ const Tickets = ({ tickets, agents, FD_URL, putContent, fields, postContent }) =
 
 			{filteredArr.length > 0 ? (
 				filteredArr.map((ticket) => {
-					return <Ticket ticket={ticket} key={ticket.display_id} FD_URL={FD_URL} putContent={putContent} />
+					return (
+						<Ticket
+							ticket={ticket}
+							key={ticket.display_id}
+							FD_URL={FD_URL}
+							putContent={putContent}
+							getTickets={getTickets}
+						/>
+					)
 				})
 			) : (
 				<NoTicket />
@@ -111,7 +120,7 @@ const Tickets = ({ tickets, agents, FD_URL, putContent, fields, postContent }) =
 				Load More
 			</button> */}
 
-			<AddModal fields={fields} selectedUser={selectedUser} postContent={postContent} />
+			<AddModal fields={fields} selectedUser={selectedUser} postContent={postContent} getTickets={getTickets} />
 		</div>
 	)
 }

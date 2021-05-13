@@ -1,4 +1,4 @@
-const Ticket = ({ ticket, FD_URL, putContent }) => {
+const Ticket = ({ ticket, FD_URL, putContent, getTickets }) => {
 	const expand = (e) => {
 		e.target.parentElement.previousElementSibling.classList.toggle('expanded')
 
@@ -114,7 +114,7 @@ const Ticket = ({ ticket, FD_URL, putContent }) => {
 			},
 		}
 		await putContent('helpdesk/tickets/', ticketID, body)
-		window.location.reload()
+		getTickets()
 	}
 
 	const formatDate = (date) => {
