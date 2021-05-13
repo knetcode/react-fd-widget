@@ -22,9 +22,9 @@ const AddModal = ({ fields, selectedUser, postContent, getTickets }) => {
 		const addPriority = document.querySelector('input[type="radio"]:checked')
 		const body = {
 			helpdesk_ticket: {
-				description: addDescription.value,
-				subject: addSubject.value,
-				email: addEmail.value,
+				description: addDescription.value.trim(),
+				subject: addSubject.value.trim(),
+				email: addEmail.value.trim(),
 				responder_id: +selectedUser === 100 ? null : +selectedUser,
 				priority: +addPriority.value,
 				status: 2,

@@ -1,4 +1,4 @@
-const Ticket = ({ ticket, FD_URL, putContent, getTickets }) => {
+const Ticket = ({ ticket, API_URL, putContent, getTickets }) => {
 	const expand = (e) => {
 		e.target.parentElement.previousElementSibling.classList.toggle('expanded')
 
@@ -70,7 +70,7 @@ const Ticket = ({ ticket, FD_URL, putContent, getTickets }) => {
 			<div className='ticket-header'>
 				<div className='ticket-header-top'>
 					<a
-						href={`${FD_URL}tickets/${ticket.display_id}`}
+						href={`${API_URL}tickets/${ticket.display_id}`}
 						target='_blank'
 						rel='noreferrer'
 						className='ticket-subject'

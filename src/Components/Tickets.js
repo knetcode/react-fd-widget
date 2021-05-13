@@ -3,7 +3,7 @@ import NoTicket from './NoTicket'
 import Ticket from './Ticket'
 import AddModal from './AddModal'
 
-const Tickets = ({ tickets, agents, FD_URL, putContent, fields, postContent, getTickets }) => {
+const Tickets = ({ API_URL, tickets, agents, putContent, fields, postContent, getTickets }) => {
 	const ticketsArr = tickets
 	const agentsArr = agents
 
@@ -70,7 +70,7 @@ const Tickets = ({ tickets, agents, FD_URL, putContent, fields, postContent, get
 						<Ticket
 							ticket={ticket}
 							key={ticket.display_id}
-							FD_URL={FD_URL}
+							API_URL={API_URL}
 							putContent={putContent}
 							getTickets={getTickets}
 						/>

@@ -41,6 +41,8 @@ img {
 .btn-block {
   display: block;
   width: 100%;
+  max-width: 60rem;
+  margin: 0 auto;
 }
 
 .btn-reset {
@@ -382,6 +384,20 @@ body::-webkit-scrollbar-thumb {
   align-items: flex-start;
   margin-bottom: 3rem;
   font-size: 1.6rem;
+}
+
+.no-key {
+  width: 100%;
+  padding: 1rem 0;
+  margin: 10rem 0 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.no-key-form {
+  width: 90%;
 }
 
 .red {

@@ -1,122 +1,40 @@
+import { useState, useEffect } from 'react'
+import { Tab, Tabs } from 'react-materialize'
 import AppHeader from './Components/AppHeader'
 import AppFooter from './Components/AppFooter'
-import { Tab, Tabs } from 'react-materialize'
-import Tickets from './Components/Tickets'
-import { useState, useEffect } from 'react'
+import FDApp from './Components/FDApp'
+import NoKey from './Components/NoKey'
 
-const APP_NAME = process.env.REACT_APP_APP_NAME
-const API = {
-	URL: process.env.REACT_APP_API_URL,
-	KEY: process.env.REACT_APP_API_KEY,
-}
-const FD_URL = process.env.REACT_APP_FD_URL
+const APP_NAME = 'withIT'
+// const API_KEY_Input = 'JDC6SqLNp33yxFf87jmv'
+// const API_KEY = `Basic ${window.btoa(API_KEY_Input)}=`
+// const API_KEY = null
+const API_URL = 'https://itsd-computicket.freshservice.com/'
 
 function App() {
-	const [tickets, setTickets] = useState(null)
-	const [agents, setAgents] = useState(null)
-	const [fields, setFields] = useState(null)
-
-	const fetchContent = async (query) => {
-		const res = await fetch(`${API.URL}${query}`, {
-			headers: { Authorization: `${API.KEY}`, 'Content-Type': 'application/json' },
-			method: 'GET',
-		})
-		const dataObj = await res.json()
-		return dataObj
-	}
+	const [API_KEY, setAPI_KEY] = useState(null)
 
 	useEffect(() => {
-		const getAgents = async () => {
-			const agentsFromServer = await fetchContent('/agents.json')
-			setAgents(agentsFromServer)
+		if (localStorage.getItem('API_KEY')) {
+			const API_KEY_ls = JSON.parse(localStorage.getItem('API_KEY'))
+			setAPI_KEY(API_KEY_ls)
 		}
-		getAgents()
 	}, [])
-
-	useEffect(() => {
-		const getFields = async () => {
-			const fieldsFromServer = await fetchContent('/ticket_fields.json')
-			setFields(fieldsFromServer)
-		}
-		getFields()
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [])
-
-	const putContent = async (query, id, body) => {
-		const res = await fetch(`${API.URL}${query}${id}.json`, {
-			body: JSON.stringify(body),
-			headers: { Authorization: `${API.KEY}`, 'Content-Type': 'application/json' },
-			method: 'PUT',
-		})
-		const dataObj = await res.json()
-
-		return dataObj
-	}
-
-	const postContent = async (query, body) => {
-		const res = await fetch(`${API.URL}${query}.json`, {
-			body: JSON.stringify(body),
-			headers: { Authorization: `${API.KEY}`, 'Content-Type': 'application/json' },
-			method: 'POST',
-		})
-		const dataObj = await res.json()
-		console.log(dataObj.item.helpdesk_ticket.display_id)
-		return dataObj
-	}
-
-	const getTickets = async () => {
-		const ticketsFromServer = await fetchContent('helpdesk/tickets/filter/unresolved?format=json')
-		ticketsFromServer.forEach((ticket) => {
-			if (ticket.responder_id === null) {
-				ticket.responder_id = 100
-			}
-		})
-		setTickets(ticketsFromServer)
-		console.log(ticketsFromServer)
-	}
-
-	useEffect(() => {
-		getTickets()
-		// setInterval(() => {
-		// 	getTickets()
-		// 	console.log('refreshed')
-		// }, 60000)
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [])
-
-	useEffect(() => {
-		const getAgents = async () => {
-			const agentsFromServer = await fetchContent('/agents.json')
-			setAgents(agentsFromServer)
-		}
-		getAgents()
-	}, [])
-
-	const eg = 'JDC6SqLNp33yxFf87jmv:X'
-	const cv = `Basic ${window.btoa(eg)}`
-	console.log(cv)
 
 	return (
 		<div className='app-container'>
 			<AppHeader appName={APP_NAME} />
-			<Tabs className='red top-tabs'>
-				<Tab title='Tickets' className=' white-text '>
-					<div className='container'>
-						{tickets && agents && (
-							<Tickets
-								tickets={tickets}
-								agents={agents}
-								FD_URL={FD_URL}
-								putContent={putContent}
-								fields={fields}
-								postContent={postContent}
-								getTickets={getTickets}
-							/>
-						)}
-					</div>
-				</Tab>
-				<Tab title='TAB 2'>TAB 2</Tab>
-			</Tabs>
+			{!API_KEY && <NoKey setAPI_KEY={setAPI_KEY} API_KEY={API_KEY} />}
+
+			{API_KEY && (
+				<Tabs className='red top-tabs'>
+					<Tab title='Tickets' className=' white-text '>
+						<FDApp API_URL={API_URL} API_KEY={API_KEY} />
+					</Tab>
+					<Tab title='TAB 2'>TAB 2</Tab>
+				</Tabs>
+			)}
+
 			<AppFooter />
 		</div>
 	)
