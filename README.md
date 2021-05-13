@@ -22,7 +22,7 @@ URL
 
 Working CURL
 
-> curl -v -u JDC6SqLNp33yxFf87jmv:X -H "Content-Type: application/json" -X GET 'https://itsd-computicket.freshservice.com/api/v2/tickets/19111?include=requesters'
+> curl -v -u JDC6SqLNp33yxFf87jmv:X -H "Content-Type: application/json" -X GET 'https://itsd-computicket.freshservice.com/api/v2/tickets/19092'
 
 Working Fetch
 
@@ -30,11 +30,17 @@ Working Fetch
 
 Update CURL
 
-> curl -u JDC6SqLNp33yxFf87jmv:X -H "Content-Type: application/json" -X PUT -d '{ "helpdesk_ticket": { "status":4}}' https://itsd-computicket.freshservice.com/helpdesk/tickets/1.json
+> curl -u JDC6SqLNp33yxFf87jmv:X -H "Content-Type: application/json" -X PUT -d '{ "helpdesk_ticket": { "due_by": "2021-05-12T09:03:38+02:00", "frDueBy": "2021-05-11T09:03:38+02:00"}}' https://itsd-computicket.freshservice.com/helpdesk/tickets/19234.json
+
+> curl -v -u JDC6SqLNp33yxFf87jmv:X -H "Content-Type: application/json" -X PUT -d '{ "status": 6 }' 'https://itsd-computicket.freshservice.com/api/v2/tickets/19234'
+
+> curl -v -u JDC6SqLNp33yxFf87jmv:X -H "Content-Type: application/json" -X PUT -d '{ "due_by": "2021-05-11T09:03:38+02:00", "fr_due_by": "2021-05-11T06:03:38+02:00", "status": 2, "responder_id": 5000179003 }' 'https://itsd-computicket.freshservice.com/api/v2/tickets/19092'
 
 POST CURL
 
-> curl -u JDC6SqLNp33yxFf87jmv:X -H "Content-Type: application/json" -d '{ "helpdesk_ticket": { "description": "kyles test", "subject": "test", "email": "kylee@computicket.com", "responder_id": 5000165441, "priority": 1, "status": 2 }}' -X POST https://itsd-computicket.freshservice.com/helpdesk/tickets.json
+> curl -u JDC6SqLNp33yxFf87jmv:X -H "Content-Type: application/json" -d '{ "helpdesk_ticket": { "description": "This ticket is overdue", "subject": "Over Due Ticket", "email": "kylee@computicket.com", "responder_id": 5000179003, "priority": 2, "status": 2}}' -X POST https://itsd-computicket.freshservice.com/helpdesk/tickets.json
+
+> curl -v -u JDC6SqLNp33yxFf87jmv:X -H "Content-Type: application/json" -X PUT -d '{ "due_by": "2021-05-02T12:29:59+02:00", "fr_due_by": "2021-05-02T11:29:59+02:00" }' 'https://itsd-computicket.com.freshservice.com/api/v2/tickets/19234'
 
 Ticket Fields
 

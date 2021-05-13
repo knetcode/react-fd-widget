@@ -15,4 +15,5 @@
 ~~11. Shrink install files~~  
 12. Expand animations  
 13. Add ticket toast  
-14. Style select list
+14. Style select list  
+15. Allow login with API Token var
