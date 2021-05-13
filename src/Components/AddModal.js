@@ -17,7 +17,6 @@ const AddModal = ({ fields, selectedUser, postContent, getTickets }) => {
 	const modalSubmit = async (e) => {
 		e.preventDefault()
 		// console.log('submitted')
-		const addModal = document.querySelector('#add-modal')
 		const addEmail = document.querySelector('#modal-add-email')
 		const addSubject = document.querySelector('#modal-add-subject')
 		const addDescription = document.querySelector('#modal-add-description')
@@ -36,11 +35,13 @@ const AddModal = ({ fields, selectedUser, postContent, getTickets }) => {
 		}
 		console.log(body)
 
-		postContent('helpdesk/tickets', body, getTickets())
+		postContent('helpdesk/tickets', body)
 
 		addEmail.value = ''
 		addSubject.value = ''
 		addDescription.value = ''
+
+		window.location.reload()
 	}
 
 	return (

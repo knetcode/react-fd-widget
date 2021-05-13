@@ -113,6 +113,7 @@ const Ticket = ({ ticket, FD_URL, putContent, getTickets }) => {
 				status: 4,
 			},
 		}
+		console.log(ticketID, body)
 		await putContent('helpdesk/tickets/', ticketID, body)
 		getTickets()
 	}

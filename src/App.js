@@ -62,20 +62,7 @@ function App() {
 		})
 		const dataObj = await res.json()
 		console.log(dataObj.item.helpdesk_ticket.display_id)
-		callToast(dataObj.item.helpdesk_ticket.display_id)
 		return dataObj
-	}
-
-	const callToast = (message) => {
-		return (
-			<Toast
-				options={{
-					html: `Ticket #${message} created`,
-				}}
-			>
-				Toast
-			</Toast>
-		)
 	}
 
 	const getTickets = async () => {
@@ -92,10 +79,10 @@ function App() {
 
 	useEffect(() => {
 		getTickets()
-		// setInterval(() => {
-		// 	getTickets()
-		// 	console.log('refreshed')
-		// }, 60000)
+		setInterval(() => {
+			getTickets()
+			console.log('refreshed')
+		}, 60000)
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 

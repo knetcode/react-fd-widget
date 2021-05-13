@@ -14,7 +14,7 @@
 			"icon": "./public/logo-small.ico"
 		},
 		"files": [
-			"!./build/**/*",
+			"./build/**/*",
 			"!./dist/**/*",
 			"!./node_modules/**/*",
 			"./public/**/*",

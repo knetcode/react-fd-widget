@@ -30,7 +30,7 @@ Working Fetch
 
 Update CURL
 
-> curl -u JDC6SqLNp33yxFf87jmv:X -H "Content-Type: application/json" -X PUT -d '{ "helpdesk_ticket": { "priority":1}}' https://itsd-computicket.freshservice.com/helpdesk/tickets/1.json
+> curl -u JDC6SqLNp33yxFf87jmv:X -H "Content-Type: application/json" -X PUT -d '{ "helpdesk_ticket": { "status":4}}' https://itsd-computicket.freshservice.com/helpdesk/tickets/1.json
 
 POST CURL
 
