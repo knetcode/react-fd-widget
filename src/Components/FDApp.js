@@ -6,6 +6,8 @@ const FDApp = ({ API_URL, API_KEY }) => {
 	const [tickets, setTickets] = useState(null)
 	const [agents, setAgents] = useState(null)
 	const [fields, setFields] = useState(null)
+	const [isModalOpen, setIsModalOpen] = useState(!!false)
+	console.log(isModalOpen)
 
 	const fetchContent = async (query) => {
 		const res = await fetch(`${API_URL}${query}`, {
@@ -45,10 +47,10 @@ const FDApp = ({ API_URL, API_KEY }) => {
 
 	useEffect(() => {
 		getTickets()
-		// setInterval(() => {
-		// 	getTickets()
-		// 	console.log('refreshed')
-		// }, 60000)
+		setInterval(() => {
+			getTickets()
+			console.log('refreshed')
+		}, 60000)
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
@@ -77,7 +79,7 @@ const FDApp = ({ API_URL, API_KEY }) => {
 			method: 'PUT',
 		})
 		const dataObj = await res.json()
-
+		getTickets()
 		return dataObj
 	}
 
@@ -89,6 +91,7 @@ const FDApp = ({ API_URL, API_KEY }) => {
 		})
 		const dataObj = await res.json()
 		console.log(dataObj.item.helpdesk_ticket.display_id)
+		getTickets()
 		return dataObj
 	}
 
@@ -103,6 +106,8 @@ const FDApp = ({ API_URL, API_KEY }) => {
 					fields={fields}
 					postContent={postContent}
 					getTickets={getTickets}
+					isModalOpen={isModalOpen}
+					setIsModalOpen={setIsModalOpen}
 				/>
 			)}
 		</div>

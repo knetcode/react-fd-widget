@@ -1,9 +1,20 @@
 import { useEffect, useState } from 'react'
+import { FaPlus } from 'react-icons/fa'
 import NoTicket from './NoTicket'
 import Ticket from './Ticket'
 import AddModal from './AddModal'
 
-const Tickets = ({ API_URL, tickets, agents, putContent, fields, postContent, getTickets }) => {
+const Tickets = ({
+	API_URL,
+	tickets,
+	agents,
+	putContent,
+	fields,
+	postContent,
+	getTickets,
+	isModalOpen,
+	setIsModalOpen,
+}) => {
 	const ticketsArr = tickets
 	const agentsArr = agents
 
@@ -80,7 +91,18 @@ const Tickets = ({ API_URL, tickets, agents, putContent, fields, postContent, ge
 				<NoTicket />
 			)}
 
-			<AddModal fields={fields} selectedUser={selectedUser} postContent={postContent} getTickets={getTickets} />
+			<AddModal
+				fields={fields}
+				selectedUser={selectedUser}
+				postContent={postContent}
+				getTickets={getTickets}
+				isModalOpen={isModalOpen}
+				setIsModalOpen={setIsModalOpen}
+			/>
+
+			<button className='btn-floating btn-large ctk-pink btn-add' onClick={() => setIsModalOpen(!!true)}>
+				<FaPlus />
+			</button>
 		</div>
 	)
 }

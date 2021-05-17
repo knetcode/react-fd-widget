@@ -1,21 +1,15 @@
-import { Modal, TextInput, Textarea } from 'react-materialize'
+import { Modal, TextInput, Textarea, Button } from 'react-materialize'
 import { FaPlus } from 'react-icons/fa'
-import React from 'react'
 
-const trigger = (
-	<button className='btn-floating btn-large ctk-pink btn-add'>
-		<FaPlus />
-	</button>
-)
-
-const AddModal = ({ fields, selectedUser, postContent, getTickets }) => {
+const AddModal = ({ fields, selectedUser, postContent, isModalOpen, setIsModalOpen }) => {
 	const prioritiesArr = fields[7].ticket_field.choices
 	const firstArr = prioritiesArr[0]
 	firstArr[2] = true
+	console.log(!!isModalOpen)
 
 	const modalSubmit = async (e) => {
 		e.preventDefault()
-		// console.log('submitted')
+		console.log('submitted')
 		const addEmail = document.querySelector('#modal-add-email')
 		const addSubject = document.querySelector('#modal-add-subject')
 		const addDescription = document.querySelector('#modal-add-description')
@@ -30,19 +24,28 @@ const AddModal = ({ fields, selectedUser, postContent, getTickets }) => {
 				status: 2,
 			},
 		}
-		console.log(body)
+		// console.log(body)
 
-		postContent('helpdesk/tickets', body)
+		// postContent('helpdesk/tickets', body)
 
 		addEmail.value = ''
 		addSubject.value = ''
 		addDescription.value = ''
 
-		window.location.reload()
+		setIsModalOpen(!!false)
 	}
 
 	return (
-		<Modal header='Quick Add Ticket' trigger={trigger} id='add-modal'>
+		<Modal
+			header='Quick Add Ticket'
+			id='add-modal'
+			open={!!isModalOpen}
+			actions={[
+				<Button flat node='button' waves='green' onClick={() => setIsModalOpen(!!false)}>
+					Close
+				</Button>,
+			]}
+		>
 			<form
 				className='modal-form'
 				id='modal-form'
@@ -64,7 +67,7 @@ const AddModal = ({ fields, selectedUser, postContent, getTickets }) => {
 						)
 					})}
 				</div>
-				<button type='submit' className='btn ctk-red btn-block waves-effect waves-light'>
+				<button type='submit' id='modal-submit' className='btn ctk-red btn-block waves-effect waves-light'>
 					Submit
 				</button>
 				<button type='reset' className='btn transparent btn-block z-depth-0 btn-reset waves-effect'>
