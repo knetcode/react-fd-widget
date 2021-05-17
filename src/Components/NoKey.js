@@ -11,9 +11,10 @@ const NoKey = ({ setAPI_KEY }) => {
 	}
 
 	return (
-		<div className='no-key'>
+		<div className='no-key' id='no-key'>
 			<form className='no-key-form' onSubmit={(e) => apiCapture(e)}>
 				<TextInput id='api-input' label='Enter your API Key' />
+
 				<button type='submit' className='btn ctk-red btn-block waves-effect waves-light'>
 					Submit
 				</button>

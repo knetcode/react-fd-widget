@@ -18,11 +18,29 @@ const FDApp = ({ API_URL, API_KEY }) => {
 
 	const getTickets = async () => {
 		const ticketsFromServer = await fetchContent('helpdesk/tickets/filter/unresolved?format=json')
+		console.log(ticketsFromServer)
+
+		if (ticketsFromServer.require_login || ticketsFromServer.status) {
+			console.log('login fail')
+			localStorage.setItem('API_KEY', JSON.stringify(null))
+			const incorrectKey = document.createElement('div')
+			incorrectKey.setAttribute('id', 'incorrect-key')
+			incorrectKey.innerHTML = `
+				<h1 style="margin-top:10rem; color:#444;">Incorrect API Key</h1>
+				<button class="btn ctk-red btn-block" onClick="window.location.reload()">Retry</button>
+			`
+			if (!document.querySelector('#incorrect-key')) {
+				document.querySelector('.app-container').appendChild(incorrectKey)
+			}
+			return
+		}
+
 		ticketsFromServer.forEach((ticket) => {
 			if (ticket.responder_id === null) {
 				ticket.responder_id = 100
 			}
 		})
+
 		setTickets(ticketsFromServer)
 		console.log(ticketsFromServer)
 	}
@@ -38,7 +56,7 @@ const FDApp = ({ API_URL, API_KEY }) => {
 
 	useEffect(() => {
 		const getAgents = async () => {
-			const agentsFromServer = await fetchContent('/agents.json')
+			const agentsFromServer = await fetchContent('agents.json')
 			setAgents(agentsFromServer)
 		}
 		getAgents()
@@ -46,7 +64,7 @@ const FDApp = ({ API_URL, API_KEY }) => {
 
 	useEffect(() => {
 		const getFields = async () => {
-			const fieldsFromServer = await fetchContent('/ticket_fields.json')
+			const fieldsFromServer = await fetchContent('ticket_fields.json')
 			setFields(fieldsFromServer)
 		}
 		getFields()
