@@ -26,7 +26,7 @@ const AddModal = ({ fields, selectedUser, postContent, isModalOpen, setIsModalOp
 		}
 		// console.log(body)
 
-		// postContent('helpdesk/tickets', body)
+		postContent('helpdesk/tickets', body)
 
 		addEmail.value = ''
 		addSubject.value = ''

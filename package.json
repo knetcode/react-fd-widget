@@ -10,8 +10,41 @@
 		"productName": "withIT",
 		"copyright": "Copyright © 2021 ${author}",
 		"compression": "maximum",
+		"mac": {
+			"target": [
+				"dmg"
+			],
+			"type": "distribution",
+			"hardenedRuntime": true,
+			"entitlements": "assets/entitlements.mac.plist",
+			"entitlementsInherit": "assets/entitlements.mac.plist",
+			"gatekeeperAssess": false
+		},
+		"dmg": {
+			"contents": [
+				{
+					"x": 130,
+					"y": 220
+				},
+				{
+					"x": 410,
+					"y": 220,
+					"type": "link",
+					"path": "/Applications"
+				}
+			]
+		},
 		"win": {
-			"icon": "./public/logo-small.ico"
+			"icon": "./public/logo-small.ico",
+			"target": [
+				"nsis"
+			]
+		},
+		"linux": {
+			"target": [
+				"AppImage"
+			],
+			"category": "Development"
 		},
 		"files": [
 			"./build/**/*",
