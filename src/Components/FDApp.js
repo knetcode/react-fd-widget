@@ -7,7 +7,7 @@ const FDApp = ({ API_URL, API_KEY }) => {
 	const [agents, setAgents] = useState(null)
 	const [fields, setFields] = useState(null)
 	const [isModalOpen, setIsModalOpen] = useState(!!false)
-	console.log(isModalOpen)
+	// console.log(isModalOpen)
 
 	const fetchContent = async (query) => {
 		const res = await fetch(`${API_URL}${query}`, {
@@ -22,7 +22,7 @@ const FDApp = ({ API_URL, API_KEY }) => {
 		const ticketsFromServer = await fetchContent('helpdesk/tickets/filter/unresolved?format=json')
 
 		if (ticketsFromServer.require_login || ticketsFromServer.status) {
-			console.log('login fail')
+			// console.log('login fail')
 			localStorage.setItem('API_KEY', JSON.stringify(null))
 			const incorrectKey = document.createElement('div')
 			incorrectKey.setAttribute('id', 'incorrect-key')
@@ -49,7 +49,7 @@ const FDApp = ({ API_URL, API_KEY }) => {
 		getTickets()
 		setInterval(() => {
 			getTickets()
-			console.log('refreshed')
+			// console.log('refreshed')
 		}, 60000)
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
@@ -73,7 +73,7 @@ const FDApp = ({ API_URL, API_KEY }) => {
 	}, [])
 
 	const putContent = async (query, id, body) => {
-		const res = await fetch(`${API_URL}${query}${id}.json`, {
+		const res = await fetch(`https://itsd-computicket.freshservice.com/api/v2/${query}/${id}`, {
 			body: JSON.stringify(body),
 			headers: { Authorization: `${API_KEY}`, 'Content-Type': 'application/json' },
 			method: 'PUT',
@@ -84,13 +84,13 @@ const FDApp = ({ API_URL, API_KEY }) => {
 	}
 
 	const postContent = async (query, body) => {
-		const res = await fetch(`${API_URL}${query}.json`, {
+		const res = await fetch(` https://itsd-computicket.freshservice.com/api/v2/${query}`, {
 			body: JSON.stringify(body),
 			headers: { Authorization: `${API_KEY}`, 'Content-Type': 'application/json' },
 			method: 'POST',
 		})
 		const dataObj = await res.json()
-		console.log(dataObj.item.helpdesk_ticket.display_id)
+		// console.log(dataObj)
 		getTickets()
 		return dataObj
 	}

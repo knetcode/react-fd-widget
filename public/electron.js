@@ -7,12 +7,16 @@ const path = require('path')
 let mainWindow
 
 function createWindow() {
+	app.commandLine.appendSwitch('disable-web-security')
+	app.commandLine.appendSwitch('disable-features', 'OutOfBlinkCors')
+
 	mainWindow = new BrowserWindow({
 		width: 350,
 		height: 700,
 		show: false,
 		webPreferences: {
 			nodeIntegration: true,
+			webSecurity: false,
 		},
 		icon: './favicon.ico',
 		minWidth: 350,

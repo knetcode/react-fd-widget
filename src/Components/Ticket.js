@@ -31,12 +31,10 @@ const Ticket = ({ ticket, API_URL, putContent, getTickets }) => {
 	const resolveTicket = async (e) => {
 		const ticketID = +e.target.value
 		const body = {
-			helpdesk_ticket: {
-				status: 4,
-			},
+			status: 4,
 		}
-		console.log(ticketID, body)
-		await putContent('helpdesk/tickets/', ticketID, body)
+		// console.log(ticketID, body)
+		await putContent('tickets', ticketID, body)
 		getTickets()
 	}
 

@@ -1,32 +1,29 @@
 import { Modal, TextInput, Textarea, Button } from 'react-materialize'
-import { FaPlus } from 'react-icons/fa'
 
 const AddModal = ({ fields, selectedUser, postContent, isModalOpen, setIsModalOpen }) => {
 	const prioritiesArr = fields[7].ticket_field.choices
 	const firstArr = prioritiesArr[0]
 	firstArr[2] = true
-	console.log(!!isModalOpen)
+	// console.log(!!isModalOpen)
 
 	const modalSubmit = async (e) => {
 		e.preventDefault()
-		console.log('submitted')
+		// console.log('submitted')
 		const addEmail = document.querySelector('#modal-add-email')
 		const addSubject = document.querySelector('#modal-add-subject')
 		const addDescription = document.querySelector('#modal-add-description')
 		const addPriority = document.querySelector('input[type="radio"]:checked')
 		const body = {
-			helpdesk_ticket: {
-				description: addDescription.value.trim(),
-				subject: addSubject.value.trim(),
-				email: addEmail.value.trim(),
-				responder_id: +selectedUser === 100 ? null : +selectedUser,
-				priority: +addPriority.value,
-				status: 2,
-			},
+			description: addDescription.value.trim(),
+			subject: addSubject.value.trim(),
+			email: addEmail.value.trim(),
+			responder_id: +selectedUser === 100 ? null : +selectedUser,
+			priority: +addPriority.value,
+			status: 2,
 		}
 		// console.log(body)
 
-		postContent('helpdesk/tickets', body)
+		postContent('tickets', body)
 
 		addEmail.value = ''
 		addSubject.value = ''
