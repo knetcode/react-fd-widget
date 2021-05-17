@@ -84,3 +84,8 @@ textarea.materialize-textarea:focus:not([readonly]) + label {
 [type='radio']:checked + span {
 	font-size: 1.6rem;
 }
+
+.tabs .tab a:hover,
+.tabs .tab a.active {
+	background-color: #6b0c7d;
+}
