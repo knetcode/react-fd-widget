@@ -18,7 +18,6 @@ const FDApp = ({ API_URL, API_KEY }) => {
 
 	const getTickets = async () => {
 		const ticketsFromServer = await fetchContent('helpdesk/tickets/filter/unresolved?format=json')
-		console.log(ticketsFromServer)
 
 		if (ticketsFromServer.require_login || ticketsFromServer.status) {
 			console.log('login fail')
@@ -42,7 +41,6 @@ const FDApp = ({ API_URL, API_KEY }) => {
 		})
 
 		setTickets(ticketsFromServer)
-		console.log(ticketsFromServer)
 	}
 
 	useEffect(() => {
@@ -60,6 +58,7 @@ const FDApp = ({ API_URL, API_KEY }) => {
 			setAgents(agentsFromServer)
 		}
 		getAgents()
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
 	useEffect(() => {

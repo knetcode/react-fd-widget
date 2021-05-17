@@ -147,6 +147,10 @@ body::-webkit-scrollbar-thumb {
   right: 4rem;
 }
 
+.header .app-btn-user {
+  right: 7rem;
+}
+
 .top-tabs {
   position: fixed;
   top: 5rem;
