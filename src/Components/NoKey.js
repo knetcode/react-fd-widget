@@ -21,10 +21,10 @@ const NoKey = ({ setAPI_KEY }) => {
 		const api_formatted = `Basic ${window.btoa(api_input)}=`
 
 		const testRes = await testFetch(api_formatted)
-		console.log(testRes.code)
+		// console.log(testRes.code)
 
 		if (testRes.code === 'access_denied') {
-			console.log('login fail')
+			// console.log('login fail')
 			localStorage.setItem('API_KEY', JSON.stringify(null))
 
 			setIsValid(true)
@@ -47,7 +47,7 @@ const NoKey = ({ setAPI_KEY }) => {
 		}
 	}, [isValid])
 
-	console.log(isValid)
+	// console.log(isValid)
 
 	return (
 		<div className='no-key' id='no-key'>
