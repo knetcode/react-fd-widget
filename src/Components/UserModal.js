@@ -5,7 +5,6 @@ const UserModal = ({ agentsArr, selectedUser, setSelectedUser, isUserModalOpen, 
 	const getName = () => {
 		let displayName
 		agentsArr.forEach((agent) => {
-			console.log(agent)
 			if (selectedUser === agent.agent.user_id) {
 				displayName = agent.agent.user.name
 				return
@@ -19,6 +18,55 @@ const UserModal = ({ agentsArr, selectedUser, setSelectedUser, isUserModalOpen, 
 		return displayName
 	}
 
+	const colorPicker = (index) => {
+		const colorArr = [
+			'#f6a7c1', //0
+			'#ff9770', //1
+			'#97f2f3', //2
+			'#c1cd97', //3
+			'#39808f', //4
+			'#5e96ae', //5
+			'#e08963', //6
+			'#9dabdd', //7
+			'#a02c2d', //8
+			'#fa6e4f', //9
+			'#ffadad', //10
+			'#ffd6a5', //11
+			'#ffca3a', //12
+			'#80b918', //13
+			'#9bf6ff', //14
+			'#a0c4ff', //15
+			'#bdb2ff', //16
+			'#6d6875', //17
+			'#5a189a', //18
+			'#e5383b', //19
+			'#1982c4', //20
+		]
+
+		return colorArr[index]
+	}
+
+	const getInitials = (name) => {
+		const nameArr = name.split(' ')
+		const firstName = nameArr[0].split('')
+		const lastName = nameArr[1].split('')
+
+		const firstInitial = firstName.splice(0, 1)
+		const lastInitial = lastName.splice(0, 1)
+
+		const color =
+			(firstName.length * lastName.length * name.length) % (firstName.length + lastName.length + name.length)
+
+		return (
+			<div className='user-select-initials' style={{ backgroundColor: colorPicker(color > 20 ? 20 : color) }}>
+				<p>
+					{firstInitial}
+					{lastInitial}
+				</p>
+			</div>
+		)
+	}
+
 	return (
 		<div className='user-select'>
 			<div className='user-select-selector'>
@@ -26,7 +74,6 @@ const UserModal = ({ agentsArr, selectedUser, setSelectedUser, isUserModalOpen, 
 					Select a user
 				</button>
 				<h4>{getName()}</h4>
-				{/* {console.log(agentsArr)} */}
 			</div>
 			<Modal
 				header='Select a user'
@@ -49,6 +96,9 @@ const UserModal = ({ agentsArr, selectedUser, setSelectedUser, isUserModalOpen, 
 							setIsUserModalOpen(!!false)
 						}}
 					>
+						<div className='user-select-initials' style={{ backgroundColor: '#ffadad' }}>
+							<p>UL</p>
+						</div>
 						Unassigned
 					</li>
 					{agentsArr.map((agent) => {
@@ -61,6 +111,7 @@ const UserModal = ({ agentsArr, selectedUser, setSelectedUser, isUserModalOpen, 
 									setIsUserModalOpen(!!false)
 								}}
 							>
+								{getInitials(agent.agent.user.name)}
 								{agent.agent.user.name}
 							</li>
 						)

@@ -34,7 +34,7 @@ const Tickets = ({
 	const [selectedUser, setSelectedUser] = useState(
 		localStorage.getItem('selectedUser') ? +JSON.parse(localStorage.getItem('selectedUser')) : 100
 	)
-	useEffect(() => addExpandBtn, [])
+
 	useEffect(() => addExpandBtn, [selectedUser])
 	useEffect(() => {
 		localStorage.setItem('selectedUser', JSON.stringify(selectedUser))
@@ -51,6 +51,7 @@ const Tickets = ({
 			}
 		})
 	}
+
 	window.addEventListener('resize', addExpandBtn)
 
 	const filteredArr = ticketsArr.filter((ticket) => ticket.responder_id === selectedUser).sort(comparePriority)
@@ -75,6 +76,7 @@ const Tickets = ({
 							API_URL={API_URL}
 							putContent={putContent}
 							getTickets={getTickets}
+							addExpandBtn={addExpandBtn}
 						/>
 					)
 				})

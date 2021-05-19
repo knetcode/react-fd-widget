@@ -4,11 +4,9 @@ const AddModal = ({ fields, selectedUser, postContent, isAddModalOpen, setIsAddM
 	const prioritiesArr = fields[7].ticket_field.choices
 	const firstArr = prioritiesArr[0]
 	firstArr[2] = true
-	// console.log(!!isAddModalOpen)
 
 	const modalSubmit = async (e) => {
 		e.preventDefault()
-		// console.log('submitted')
 		const addEmail = document.querySelector('#modal-add-email')
 		const addSubject = document.querySelector('#modal-add-subject')
 		const addDescription = document.querySelector('#modal-add-description')
@@ -21,7 +19,6 @@ const AddModal = ({ fields, selectedUser, postContent, isAddModalOpen, setIsAddM
 			priority: +addPriority.value,
 			status: 2,
 		}
-		// console.log(body)
 
 		postContent('tickets', body)
 

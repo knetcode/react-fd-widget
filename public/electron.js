@@ -2,8 +2,6 @@ const { app, BrowserWindow, shell } = require('electron')
 const isDev = require('electron-is-dev')
 const path = require('path')
 
-// console.log(shell)
-
 let mainWindow
 
 function createWindow() {
