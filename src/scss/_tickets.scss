@@ -4,30 +4,6 @@
 	margin: 2rem 0 5rem;
 	position: relative;
 
-	&-user-select {
-		width: 100%;
-		color: #333;
-		height: 100%;
-		position: relative;
-
-		label {
-			font-size: 1.2rem;
-		}
-
-		select {
-			height: 5rem;
-			display: block;
-			font-size: 1.6rem;
-			appearance: none;
-			line-height: unset;
-
-			option {
-				line-height: unset;
-				height: 5rem;
-			}
-		}
-	}
-
 	.btn-add {
 		display: flex;
 		justify-content: center;

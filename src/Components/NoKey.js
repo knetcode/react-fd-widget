@@ -1,16 +1,15 @@
 import { useState, useEffect } from 'react'
 import { TextInput } from 'react-materialize'
 
-const NoKey = ({ setAPI_KEY }) => {
+const NoKey = ({ setAPI_KEY, API_URL }) => {
 	const [isValid, setIsValid] = useState(true)
 
 	const testFetch = async (apikey) => {
-		const res = await fetch(`https://itsd-computicket.freshservice.com/api/v2/tickets/19028`, {
+		const res = await fetch(`${API_URL}/api/v2/tickets/19028`, {
 			headers: { Authorization: `${apikey}`, 'Content-Type': 'application/json' },
 			method: 'GET',
 		})
 		const dataObj = await res.json()
-		// console.log(dataObj)
 		return dataObj
 	}
 
@@ -21,10 +20,8 @@ const NoKey = ({ setAPI_KEY }) => {
 		const api_formatted = `Basic ${window.btoa(api_input)}=`
 
 		const testRes = await testFetch(api_formatted)
-		// console.log(testRes.code)
 
 		if (testRes.code === 'access_denied') {
-			// console.log('login fail')
 			localStorage.setItem('API_KEY', JSON.stringify(null))
 
 			setIsValid(true)
@@ -46,8 +43,6 @@ const NoKey = ({ setAPI_KEY }) => {
 			window.clearTimeout(timer)
 		}
 	}, [isValid])
-
-	// console.log(isValid)
 
 	return (
 		<div className='no-key' id='no-key'>

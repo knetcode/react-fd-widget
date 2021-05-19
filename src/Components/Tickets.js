@@ -3,6 +3,7 @@ import { FaPlus } from 'react-icons/fa'
 import NoTicket from './NoTicket'
 import Ticket from './Ticket'
 import AddModal from './AddModal'
+import UserModal from './UserModal'
 
 const Tickets = ({
 	API_URL,
@@ -12,8 +13,10 @@ const Tickets = ({
 	fields,
 	postContent,
 	getTickets,
-	isModalOpen,
-	setIsModalOpen,
+	isAddModalOpen,
+	setIsAddModalOpen,
+	isUserModalOpen,
+	setIsUserModalOpen,
 }) => {
 	const ticketsArr = tickets
 	const agentsArr = agents
@@ -31,7 +34,7 @@ const Tickets = ({
 	const [selectedUser, setSelectedUser] = useState(
 		localStorage.getItem('selectedUser') ? +JSON.parse(localStorage.getItem('selectedUser')) : 100
 	)
-	useEffect(() => addExpandBtn, [])
+
 	useEffect(() => addExpandBtn, [selectedUser])
 	useEffect(() => {
 		localStorage.setItem('selectedUser', JSON.stringify(selectedUser))
@@ -48,32 +51,21 @@ const Tickets = ({
 			}
 		})
 	}
+
 	window.addEventListener('resize', addExpandBtn)
 
 	const filteredArr = ticketsArr.filter((ticket) => ticket.responder_id === selectedUser).sort(comparePriority)
 
 	return (
-		<div className='tickets white-text'>
-			<div className='tickets-user-select'>
-				<label htmlFor='users-drop'>Choose a User:</label>
-				<select
-					name='users-drop'
-					id='users-drop'
-					defaultValue={selectedUser}
-					onChange={(e) => {
-						setSelectedUser(+e.target.value || e.target.value)
-					}}
-				>
-					<option value='100'>Unassigned</option>
-					{agentsArr.map((agent) => {
-						return (
-							<option key={agent.agent.user.id} value={agent.agent.user.id}>
-								{agent.agent.user.name}
-							</option>
-						)
-					})}
-				</select>
-			</div>
+		<div className='tickets'>
+			<UserModal
+				agents={agents}
+				selectedUser={selectedUser}
+				setSelectedUser={setSelectedUser}
+				agentsArr={agentsArr}
+				isUserModalOpen={isUserModalOpen}
+				setIsUserModalOpen={setIsUserModalOpen}
+			/>
 
 			{filteredArr.length > 0 ? (
 				filteredArr.map((ticket) => {
@@ -84,6 +76,7 @@ const Tickets = ({
 							API_URL={API_URL}
 							putContent={putContent}
 							getTickets={getTickets}
+							addExpandBtn={addExpandBtn}
 						/>
 					)
 				})
@@ -96,11 +89,11 @@ const Tickets = ({
 				selectedUser={selectedUser}
 				postContent={postContent}
 				getTickets={getTickets}
-				isModalOpen={isModalOpen}
-				setIsModalOpen={setIsModalOpen}
+				isAddModalOpen={isAddModalOpen}
+				setIsAddModalOpen={setIsAddModalOpen}
 			/>
 
-			<button className='btn-floating btn-large ctk-pink btn-add' onClick={() => setIsModalOpen(!!true)}>
+			<button className='btn-floating btn-large ctk-pink btn-add' onClick={() => setIsAddModalOpen(!!true)}>
 				<FaPlus />
 			</button>
 		</div>
