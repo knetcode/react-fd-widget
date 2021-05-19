@@ -1,0 +1,29 @@
+.user-select {
+	&-selector {
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;
+		align-items: center;
+
+		h4 {
+			margin: 0;
+			margin-left: 2rem;
+			color: #333;
+		}
+	}
+	&-ul {
+		margin-top: 2rem;
+		padding-left: 2rem !important;
+	}
+
+	&-li {
+		cursor: pointer;
+		padding: 2rem 0;
+		font-size: 2rem;
+		border-bottom: 1px solid #eee;
+
+		&:hover {
+			color: $ctk-red;
+		}
+	}
+}

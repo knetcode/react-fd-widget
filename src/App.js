@@ -28,7 +28,7 @@ function App() {
 
 			{API_KEY && (
 				<Tabs className='top-tabs container'>
-					<Tab title='Tickets' className='white-text'>
+					<Tab title='Tickets'>
 						<FDApp API_URL={API_URL} API_KEY={API_KEY} />
 					</Tab>
 					{/* <Tab title='TAB 2'>TAB 2</Tab> */}

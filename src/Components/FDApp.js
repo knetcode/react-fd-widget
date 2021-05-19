@@ -6,8 +6,10 @@ const FDApp = ({ API_URL, API_KEY }) => {
 	const [tickets, setTickets] = useState(null)
 	const [agents, setAgents] = useState(null)
 	const [fields, setFields] = useState(null)
-	const [isModalOpen, setIsModalOpen] = useState(!!false)
-	// console.log(isModalOpen)
+	const [isAddModalOpen, setIsAddModalOpen] = useState(!!false)
+	const [isUserModalOpen, setIsUserModalOpen] = useState(!!false)
+	// console.log(isAddModalOpen)
+	// console.log(isUserModalOpen)
 
 	const fetchContent = async (query) => {
 		const res = await fetch(`${API_URL}${query}`, {
@@ -91,8 +93,10 @@ const FDApp = ({ API_URL, API_KEY }) => {
 					fields={fields}
 					postContent={postContent}
 					getTickets={getTickets}
-					isModalOpen={isModalOpen}
-					setIsModalOpen={setIsModalOpen}
+					isAddModalOpen={isAddModalOpen}
+					setIsAddModalOpen={setIsAddModalOpen}
+					isUserModalOpen={isUserModalOpen}
+					setIsUserModalOpen={setIsUserModalOpen}
 				/>
 			)}
 		</div>

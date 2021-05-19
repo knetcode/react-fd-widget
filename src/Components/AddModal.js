@@ -1,10 +1,10 @@
 import { Modal, TextInput, Textarea, Button } from 'react-materialize'
 
-const AddModal = ({ fields, selectedUser, postContent, isModalOpen, setIsModalOpen }) => {
+const AddModal = ({ fields, selectedUser, postContent, isAddModalOpen, setIsAddModalOpen }) => {
 	const prioritiesArr = fields[7].ticket_field.choices
 	const firstArr = prioritiesArr[0]
 	firstArr[2] = true
-	// console.log(!!isModalOpen)
+	// console.log(!!isAddModalOpen)
 
 	const modalSubmit = async (e) => {
 		e.preventDefault()
@@ -29,16 +29,19 @@ const AddModal = ({ fields, selectedUser, postContent, isModalOpen, setIsModalOp
 		addSubject.value = ''
 		addDescription.value = ''
 
-		setIsModalOpen(!!false)
+		setIsAddModalOpen(!!false)
 	}
 
 	return (
 		<Modal
 			header='Quick Add Ticket'
 			id='add-modal'
-			open={!!isModalOpen}
+			open={!!isAddModalOpen}
+			options={{
+				dismissible: false,
+			}}
 			actions={[
-				<Button flat node='button' waves='green' onClick={() => setIsModalOpen(!!false)}>
+				<Button flat node='button' waves='green' onClick={() => setIsAddModalOpen(!!false)}>
 					Close
 				</Button>,
 			]}
