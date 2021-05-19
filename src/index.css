@@ -12,6 +12,7 @@ html {
 
 body {
   font-family: 'Noto Sans JP', sans-serif;
+  overflow-x: hidden;
 }
 
 button:active,
@@ -25,7 +26,7 @@ img {
 }
 
 .container {
-  width: clamp(300px, 90%, 1000px);
+  width: clamp(350px, 90%, 1000px);
 }
 
 .app-container {
@@ -116,17 +117,14 @@ body::-webkit-scrollbar-thumb {
 }
 
 .header h1 {
-  margin: 0;
+  margin: 0 auto;
   text-align: center;
   padding: 0;
+  padding-left: 14rem;
   font-size: 2.5rem;
   -webkit-app-region: drag;
   cursor: pointer;
-  flex: 1;
   font-family: 'Press Start 2P', cursive;
-  position: absolute;
-  left: 0;
-  right: 0;
 }
 
 .header .app-btn {
@@ -137,6 +135,7 @@ body::-webkit-scrollbar-thumb {
   font-size: 3rem;
   cursor: pointer;
   margin-left: 1rem;
+  z-index: 100;
 }
 
 .header .app-btn-user {
@@ -154,13 +153,6 @@ body::-webkit-scrollbar-thumb {
 
 .top-tabs {
   z-index: 100;
-}
-
-@media only screen and (max-width: 450px) {
-  .header h1 {
-    right: unset;
-    left: 3rem;
-  }
 }
 
 .footer {
@@ -212,8 +204,8 @@ body::-webkit-scrollbar-thumb {
   align-items: center;
   font-size: 2.6rem;
   position: fixed;
-  bottom: 0;
-  right: 1rem;
+  bottom: 0rem;
+  right: 0rem;
   transform: translate(-50%, -50%);
 }
 

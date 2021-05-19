@@ -13,6 +13,7 @@ html {
 
 body {
 	font-family: 'Noto Sans JP', sans-serif;
+	overflow-x: hidden;
 }
 
 button:active,
@@ -27,7 +28,7 @@ img {
 }
 
 .container {
-	width: clamp(300px, 90%, 1000px);
+	width: clamp(350px, 90%, 1000px);
 }
 
 .app-container {
@@ -39,6 +40,7 @@ img {
 	background-color: #fff;
 	min-height: 100vh;
 	position: relative;
+	// min-width: 400px;
 }
 
 .btn-block {
