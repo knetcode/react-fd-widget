@@ -7,7 +7,7 @@
 }
 
 html {
-  font-size: 10px;
+  font-size: 9px;
 }
 
 body {
@@ -104,7 +104,7 @@ img {
   color: #fff;
 }
 
-.header {
+.app-header {
   background-color: #fff;
   color: #333;
   display: flex;
@@ -112,11 +112,14 @@ img {
   align-items: center;
   z-index: 100;
   padding: 2rem 0;
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
 }
 
-.header h1 {
+.app-header h1 {
   margin: 0 auto;
   text-align: center;
   padding: 0;
@@ -127,7 +130,7 @@ img {
   font-family: 'Press Start 2P', cursive;
 }
 
-.header .app-btn {
+.app-header .app-btn {
   background: transparent;
   border: 0;
   color: #e71f3e;
@@ -138,12 +141,12 @@ img {
   z-index: 100;
 }
 
-.header .app-btn-user {
+.app-header .app-btn-user {
   font-size: 2.5rem;
   margin-right: 0.4rem;
 }
 
-.header .header-wrapper {
+.app-header .header-wrapper {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -152,13 +155,17 @@ img {
 }
 
 .top-tabs {
+  position: fixed;
+  top: 7rem;
+  left: 0;
+  right: 0;
   z-index: 100;
 }
 
 .tickets {
   width: 100%;
   padding: 1rem 0;
-  margin: 2rem 0 5rem;
+  margin: 14rem 0rem 2rem 0rem;
   position: relative;
 }
 
@@ -207,9 +214,15 @@ img {
 
 .user-select-li {
   cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
   padding: 2rem 0;
   font-size: 2rem;
   border-bottom: 1px solid #eee;
+  flex-shrink: none;
+  width: 100%;
 }
 
 .user-select-li:hover {
@@ -218,12 +231,13 @@ img {
 
 .user-select-initials {
   border-radius: 50%;
-  margin-right: 2rem;
-  width: 5rem;
+  margin-right: 1rem;
+  min-width: 5rem;
+  max-width: 5rem;
   height: 5rem;
   color: #fff;
   text-align: center;
-  display: inline-flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   letter-spacing: 1px;

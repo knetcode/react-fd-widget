@@ -1,4 +1,4 @@
-.header {
+.app-header {
 	background-color: #fff;
 	color: #333;
 	display: flex;
@@ -6,7 +6,10 @@
 	align-items: center;
 	z-index: 100;
 	padding: 2rem 0;
-	position: relative;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
 	box-shadow: 0 4px 4px rgba($color: #000000, $alpha: 0.2);
 
 	h1 {
@@ -46,5 +49,9 @@
 }
 
 .top-tabs {
+	position: fixed;
+	top: 7rem;
+	left: 0;
+	right: 0;
 	z-index: 100;
 }
