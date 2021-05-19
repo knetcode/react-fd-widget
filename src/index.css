@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 * {
   box-sizing: border-box;
   margin: 0rem;
@@ -33,7 +34,7 @@ img {
   justify-content: flex-start;
   align-items: center;
   margin: 0 auto;
-  background-color: #fff7f5;
+  background-color: #fff;
   min-height: 100vh;
   position: relative;
 }
@@ -103,60 +104,63 @@ body::-webkit-scrollbar-thumb {
 }
 
 .header {
-  background-color: #e71f3e;
-  color: #fff;
-  width: 100%;
-  height: 5rem;
+  background-color: #fff;
+  color: #333;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
   z-index: 100;
-  width: 100%;
+  padding: 2rem 0;
+  position: relative;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
 }
 
 .header h1 {
   margin: 0;
   text-align: center;
   padding: 0;
-  font-size: 3rem;
+  font-size: 2.5rem;
   -webkit-app-region: drag;
   cursor: pointer;
+  flex: 1;
+  font-family: 'Press Start 2P', cursive;
+  position: absolute;
+  left: 0;
+  right: 0;
 }
 
 .header .app-btn {
   background: transparent;
   border: 0;
-  color: #fff;
+  color: #e71f3e;
   display: inline-flex;
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
-  font-size: 2rem;
+  font-size: 3rem;
   cursor: pointer;
-}
-
-.header .app-btn-close {
-  right: 1rem;
-}
-
-.header .app-btn-refresh {
-  right: 4rem;
+  margin-left: 1rem;
 }
 
 .header .app-btn-user {
-  right: 7rem;
+  font-size: 2.5rem;
+  margin-right: 0.4rem;
+}
+
+.header .header-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  margin-right: 1rem;
 }
 
 .top-tabs {
-  position: fixed;
-  top: 5rem;
-  left: 0;
-  right: 0;
   z-index: 100;
+}
+
+@media only screen and (max-width: 450px) {
+  .header h1 {
+    right: unset;
+    left: 3rem;
+  }
 }
 
 .footer {
@@ -174,7 +178,8 @@ body::-webkit-scrollbar-thumb {
 .tickets {
   width: 100%;
   padding: 1rem 0;
-  margin: 10rem 0 5rem;
+  margin: 2rem 0 5rem;
+  position: relative;
 }
 
 .tickets-user-select {
@@ -233,9 +238,29 @@ body::-webkit-scrollbar-thumb {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 2rem 0;
-  padding: 2rem;
+  margin: 4rem 0;
   border-radius: 1rem;
+  position: relative;
+}
+
+.ticket .badge {
+  border-radius: 3rem;
+  font-size: 1.4rem;
+  color: #fff;
+  height: 4rem;
+  min-width: 8rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  margin-right: 0;
+  margin-bottom: 0.5rem;
+  font-weight: normal;
+  padding: 0 2rem;
+  position: absolute;
+  top: -2rem;
+  right: 2rem;
 }
 
 .ticket h4 {
@@ -250,18 +275,19 @@ body::-webkit-scrollbar-thumb {
   width: 100%;
   font-weight: bold;
   margin-bottom: 1rem;
-}
-
-.ticket-header .ticket-subject,
-.ticket-header h4 {
-  padding: 0;
-  margin: 0;
+  padding: 2rem 2rem 0;
 }
 
 .ticket-header .ticket-subject {
   font-size: 1.8rem;
   font-weight: normal;
   text-align: left;
+}
+
+.ticket-header .ticket-subject,
+.ticket-header h4 {
+  padding: 0;
+  margin: 0;
 }
 
 .ticket-header h4 {
@@ -298,72 +324,41 @@ body::-webkit-scrollbar-thumb {
   margin: 0 1rem;
 }
 
-.ticket-header-top .badge {
-  border-radius: 3rem;
-  font-size: 1.4rem;
-  color: #fff;
-  height: 4rem;
-  width: 8rem;
-  min-width: 8rem;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-transform: uppercase;
-  margin-right: 0;
-  font-weight: normal;
-  margin-bottom: 0.5rem;
-}
-
 .ticket-header-bottom {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   flex-direction: row;
   width: 100%;
 }
 
-.ticket-header-bottom .due-date {
-  margin-right: 0;
-  text-align: center;
-  color: rgba(0, 0, 0, 0.6);
+.ticket-header-bottom h4 {
   font-weight: 700;
-  width: 8rem;
+  margin-right: 1rem;
+  display: inline-block;
 }
 
-.ticket-header-bottom .due-date h4 {
-  font-weight: 700;
-}
-
-.ticket-header-bottom .due-date.overdue {
-  background-color: #e91414;
-  padding-bottom: 1rem;
-  border-radius: 0.4rem;
-}
-
-.ticket-header-bottom .due-date.overdue * {
-  color: #fff;
-}
-
-.ticket-header .ticket-info h4 {
-  font-weight: 700;
+.ticket-header-bottom h4.overdue {
+  color: #e91414;
+  margin-left: auto;
 }
 
 .ticket-body {
   font-size: 1.4rem;
   color: rgba(0, 0, 0, 0.6);
-  max-height: 5rem;
+  max-height: 10rem;
   overflow: hidden;
   transition: height 0.4s ease-out;
   white-space: wrap;
   overflow-wrap: break-word;
   width: 100%;
-  transition: all 0.4s ease-out;
+  transition: all 1s ease-out;
+  padding: 0 2rem;
 }
 
 .ticket-body.expanded {
   max-height: unset;
-  transition: all 0.4s ease-out;
+  transition: all 1s ease-out;
 }
 
 .ticket-footer {
@@ -373,11 +368,18 @@ body::-webkit-scrollbar-thumb {
   align-items: center;
   width: 100%;
   margin-top: 1rem;
+  border-radius: 0 0 1rem 1rem;
+  background-image: linear-gradient(90deg, white 0%, white 50%, rgba(255, 255, 255, 0.8) 60%, rgba(255, 255, 255, 0.6) 70%, rgba(255, 255, 255, 0.4) 80%, transparent 100%);
+}
+
+.ticket-footer .btn {
+  border-radius: 0.4rem 0.4rem 0.4rem 1rem;
 }
 
 .ticket-footer .expanding-btn {
   transition: all 1s ease;
   display: none;
+  color: #fff;
 }
 
 .modal-form {
@@ -495,7 +497,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .tabs {
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
 }
 
 .tabs a {
@@ -579,5 +581,5 @@ textarea.materialize-textarea:focus:not([readonly]) + label {
 
 .tabs .tab a:hover,
 .tabs .tab a.active {
-  background-color: #6b0c7d;
+  background-color: #e71f3e;
 }

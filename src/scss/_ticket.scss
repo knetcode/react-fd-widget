@@ -5,9 +5,29 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	margin: 2rem 0;
-	padding: 2rem;
+	margin: 4rem 0;
 	border-radius: 1rem;
+	position: relative;
+
+	.badge {
+		border-radius: 3rem;
+		font-size: 1.4rem;
+		color: #fff;
+		height: 4rem;
+		min-width: 8rem;
+		text-align: center;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		text-transform: uppercase;
+		margin-right: 0;
+		margin-bottom: 0.5rem;
+		font-weight: normal;
+		padding: 0 2rem;
+		position: absolute;
+		top: -2rem;
+		right: 2rem;
+	}
 
 	h4 {
 		color: rgba($color: #000000, $alpha: 0.6);
@@ -21,17 +41,18 @@
 		width: 100%;
 		font-weight: bold;
 		margin-bottom: 1rem;
-
-		.ticket-subject,
-		h4 {
-			padding: 0;
-			margin: 0;
-		}
+		padding: 2rem 2rem 0;
 
 		.ticket-subject {
 			font-size: 1.8rem;
 			font-weight: normal;
 			text-align: left;
+		}
+
+		.ticket-subject,
+		h4 {
+			padding: 0;
+			margin: 0;
 		}
 
 		h4 {
@@ -66,74 +87,43 @@
 			> * {
 				margin: 0 1rem;
 			}
-
-			.badge {
-				border-radius: 3rem;
-				font-size: 1.4rem;
-				color: #fff;
-				height: 4rem;
-				width: 8rem;
-				min-width: 8rem;
-				text-align: center;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				text-transform: uppercase;
-				margin-right: 0;
-				font-weight: normal;
-				margin-bottom: 0.5rem;
-			}
 		}
 
 		&-bottom {
 			display: flex;
-			justify-content: space-between;
+			justify-content: flex-start;
 			align-items: center;
 			flex-direction: row;
 			width: 100%;
 
-			.due-date {
-				margin-right: 0;
-				text-align: center;
-				color: rgba($color: #000000, $alpha: 0.6);
+			& h4 {
 				font-weight: 700;
-				width: 8rem;
-
-				& h4 {
-					font-weight: 700;
-				}
+				margin-right: 1rem;
+				display: inline-block;
 
 				&.overdue {
-					background-color: $urgent-priority-color;
-					padding-bottom: 1rem;
-					border-radius: 0.4rem;
-
-					* {
-						color: #fff;
-					}
+					color: $urgent-priority-color;
+					margin-left: auto;
 				}
 			}
-		}
-
-		.ticket-info h4 {
-			font-weight: 700;
 		}
 	}
 
 	&-body {
 		font-size: 1.4rem;
 		color: rgba($color: #000000, $alpha: 0.6);
-		max-height: 5rem;
+		max-height: 10rem;
 		overflow: hidden;
 		transition: height 0.4s ease-out;
 		white-space: wrap;
 		overflow-wrap: break-word;
 		width: 100%;
-		transition: all 0.4s ease-out;
+		transition: all 1s ease-out;
+		padding: 0 2rem;
 
 		&.expanded {
 			max-height: unset;
-			transition: all 0.4s ease-out;
+			transition: all 1s ease-out;
 		}
 	}
 
@@ -144,10 +134,26 @@
 		align-items: center;
 		width: 100%;
 		margin-top: 1rem;
+		// padding: 0 2rem;
+		border-radius: 0 0 1rem 1rem;
+		background-image: linear-gradient(
+			90deg,
+			rgba(255, 255, 255, 1) 0%,
+			rgba(255, 255, 255, 1) 50%,
+			rgba(255, 255, 255, 0.8) 60%,
+			rgba(255, 255, 255, 0.6) 70%,
+			rgba(255, 255, 255, 0.4) 80%,
+			transparent 100%
+		);
+
+		.btn {
+			border-radius: 0.4rem 0.4rem 0.4rem 1rem;
+		}
 
 		.expanding-btn {
 			transition: all 1s ease;
 			display: none;
+			color: #fff;
 		}
 	}
 }

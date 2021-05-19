@@ -27,15 +27,15 @@ function App() {
 			{!API_KEY && <NoKey setAPI_KEY={setAPI_KEY} API_KEY={API_KEY} />}
 
 			{API_KEY && (
-				<Tabs className='red top-tabs'>
-					<Tab title='Tickets' className=' white-text '>
+				<Tabs className='top-tabs container'>
+					<Tab title='Tickets' className='white-text'>
 						<FDApp API_URL={API_URL} API_KEY={API_KEY} />
 					</Tab>
 					{/* <Tab title='TAB 2'>TAB 2</Tab> */}
 				</Tabs>
 			)}
 
-			<AppFooter />
+			{/* <AppFooter /> */}
 		</div>
 	)
 }

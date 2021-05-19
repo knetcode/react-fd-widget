@@ -46,25 +46,28 @@ const Ticket = ({ ticket, API_URL, putContent, getTickets }) => {
 		const m = months[new Date(date).getMonth()]
 		const y = new Date(date).getFullYear()
 		const displayDate = `${d} ${m} ${y}`
+		return (
+			<div className='due-date'>
+				<p>{displayDate}</p>
+			</div>
+		)
+	}
+
+	const overdueChecker = (date) => {
+		const now = new Date()
+		const dueDate = new Date(date)
 		if (now > dueDate) {
-			return (
-				<div className='overdue due-date'>
-					<h4>Due By</h4>
-					<p>{displayDate}</p>
-				</div>
-			)
+			return true
 		} else {
-			return (
-				<div className='due-date'>
-					<h4>Due By</h4>
-					<p>{displayDate}</p>
-				</div>
-			)
+			return false
 		}
 	}
 
 	return (
 		<div id={`tx${ticket.display_id}`} className='ticket z-depth-2'>
+			<div className='badge' style={{ backgroundColor: setPriorityColor(ticket.priority_name) }}>
+				{formatDate(ticket.due_by)}
+			</div>
 			<div className='ticket-header'>
 				<div className='ticket-header-top'>
 					<a
@@ -75,24 +78,19 @@ const Ticket = ({ ticket, API_URL, putContent, getTickets }) => {
 					>
 						{ticket.subject}
 					</a>
-					<div className='badge' style={{ backgroundColor: setPriorityColor(ticket.priority_name) }}>
-						{ticket.priority_name}
-					</div>
 				</div>
 				<div className='ticket-header-bottom'>
-					<div className='ticket-info'>
-						<h4>ID#{ticket.display_id}</h4>
-						<h4>Status: {ticket.status_name}</h4>
-					</div>
-					{formatDate(ticket.due_by)}
+					<h4>ID#{ticket.display_id}</h4>
+					<h4>Status: {ticket.status_name}</h4>
+					{overdueChecker(ticket.due_by) && <h4 className='overdue'>OVERDUE</h4>}
 				</div>
 			</div>
 
 			<div className='ticket-body'>
-				<p>{ticket.description}</p>
+				<p dangerouslySetInnerHTML={{ __html: ticket.description_html }}></p>
 			</div>
 
-			<div className='ticket-footer'>
+			<div className='ticket-footer' style={{ backgroundColor: setPriorityColor(ticket.priority_name) }}>
 				<button
 					className='btn ctk-red waves-light waves-effect'
 					value={ticket.display_id}

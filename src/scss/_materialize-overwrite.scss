@@ -3,7 +3,7 @@
 }
 
 .tabs {
-	box-shadow: 0 4px 4px rgba($color: #000000, $alpha: 0.4);
+	box-shadow: 0 4px 4px rgba($color: #000000, $alpha: 0.2);
 
 	a {
 		color: lighten($color: #e71f3e, $amount: 25) !important;
@@ -87,5 +87,5 @@ textarea.materialize-textarea:focus:not([readonly]) + label {
 
 .tabs .tab a:hover,
 .tabs .tab a.active {
-	background-color: #6b0c7d;
+	background-color: $ctk-red;
 }
