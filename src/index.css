@@ -7,7 +7,7 @@
 }
 
 html {
-  font-size: 9px;
+  font-size: 10px;
 }
 
 body {
@@ -241,6 +241,27 @@ img {
   justify-content: center;
   align-items: center;
   letter-spacing: 1px;
+}
+
+.user-select .user-btn {
+  background-color: transparent;
+  color: #ccc;
+  box-shadow: none;
+  height: unset;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  text-transform: unset;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 1rem;
+  border-radius: 0;
+  font-size: 2rem;
+}
+
+.user-select .pencil {
+  margin-left: auto;
 }
 
 .ticket {

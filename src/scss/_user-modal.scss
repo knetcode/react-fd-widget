@@ -46,4 +46,25 @@
 		align-items: center;
 		letter-spacing: 1px;
 	}
+
+	.user-btn {
+		background-color: transparent;
+		color: #ccc;
+		box-shadow: none;
+		height: unset;
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;
+		align-items: center;
+		width: 100%;
+		text-transform: unset;
+		border-bottom: 1px solid #ccc;
+		padding-bottom: 1rem;
+		border-radius: 0;
+		font-size: 2rem;
+	}
+
+	.pencil {
+		margin-left: auto;
+	}
 }

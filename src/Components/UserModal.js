@@ -1,4 +1,5 @@
 import { Modal, Button } from 'react-materialize'
+import { FaEdit } from 'react-icons/fa'
 import React from 'react'
 
 const UserModal = ({ agentsArr, selectedUser, setSelectedUser, isUserModalOpen, setIsUserModalOpen }) => {
@@ -46,8 +47,15 @@ const UserModal = ({ agentsArr, selectedUser, setSelectedUser, isUserModalOpen, 
 		return colorArr[index]
 	}
 
-	const getInitials = (name) => {
-		const nameArr = name.split(' ')
+	const getInitials = (id) => {
+		let userName
+		agentsArr.forEach((agent) => {
+			if (id === agent.agent.user.id) {
+				userName = agent.agent.user.name
+			}
+		})
+
+		const nameArr = userName.split(' ')
 		const firstName = nameArr[0].split('')
 		const lastName = nameArr[1].split('')
 
@@ -55,7 +63,7 @@ const UserModal = ({ agentsArr, selectedUser, setSelectedUser, isUserModalOpen, 
 		const lastInitial = lastName.splice(0, 1)
 
 		const color =
-			(firstName.length * lastName.length * name.length) % (firstName.length + lastName.length + name.length)
+			(firstName.length * lastName.length * userName.length) % (firstName.length + lastName.length + userName.length)
 
 		return (
 			<div className='user-select-initials' style={{ backgroundColor: colorPicker(color > 20 ? 20 : color) }}>
@@ -70,10 +78,14 @@ const UserModal = ({ agentsArr, selectedUser, setSelectedUser, isUserModalOpen, 
 	return (
 		<div className='user-select'>
 			<div className='user-select-selector'>
-				<button className='btn ctk-red waves-effect waves-light' onClick={() => setIsUserModalOpen(!!true)}>
-					Select a user
+				<button className='user-btn btn waves-effect waves-light' onClick={() => setIsUserModalOpen(!!true)}>
+					{/* <FaUserCircle /> */}
+					{getInitials(selectedUser)}
+					<h4>{getName()}</h4>
+					<span className='pencil'>
+						<FaEdit />
+					</span>
 				</button>
-				<h4>{getName()}</h4>
 			</div>
 			<Modal
 				header='Select a user'
@@ -111,7 +123,7 @@ const UserModal = ({ agentsArr, selectedUser, setSelectedUser, isUserModalOpen, 
 									setIsUserModalOpen(!!false)
 								}}
 							>
-								{getInitials(agent.agent.user.name)}
+								{getInitials(agent.agent.user.id)}
 								{agent.agent.user.name}
 							</li>
 						)
