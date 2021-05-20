@@ -1,4 +1,6 @@
-const Ticket = ({ ticket, API_URL, putContent, getTickets }) => {
+import { useEffect } from 'react'
+
+const Ticket = ({ ticket, API_URL, putContent, getTickets, addExpandBtn }) => {
 	const expand = (e) => {
 		e.target.parentElement.previousElementSibling.classList.toggle('expanded')
 
@@ -55,6 +57,8 @@ const Ticket = ({ ticket, API_URL, putContent, getTickets }) => {
 			return false
 		}
 	}
+
+	useEffect(addExpandBtn, [])
 
 	return (
 		<div id={`tx${ticket.display_id}`} className='ticket z-depth-2'>
