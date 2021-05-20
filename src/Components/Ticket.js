@@ -33,6 +33,7 @@ const Ticket = ({ ticket, API_URL, putContent, getTickets, addExpandBtn }) => {
 	const resolveTicket = async (e) => {
 		const ticketID = +e.target.value
 		const body = {
+			type: 'Incident',
 			status: 4,
 		}
 		await putContent('tickets', ticketID, body)
@@ -58,6 +59,7 @@ const Ticket = ({ ticket, API_URL, putContent, getTickets, addExpandBtn }) => {
 		}
 	}
 
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	useEffect(addExpandBtn, [])
 
 	return (

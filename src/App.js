@@ -27,7 +27,7 @@ function App() {
 					<Tab title='Tickets'>
 						<FDApp API_URL={API_URL} API_KEY={API_KEY} />
 					</Tab>
-					{/* <Tab title='Tab 2'>TAB 2</Tab> */}
+					<Tab title='Tab 2'>TAB 2</Tab>
 				</Tabs>
 			)}
 		</div>

@@ -57,7 +57,7 @@ const FDApp = ({ API_URL, API_KEY }) => {
 	}, [])
 
 	const putContent = async (query, id, body) => {
-		const res = await fetch(`${API_URL}/api/v2/${query}/${id}`, {
+		const res = await fetch(`${API_URL}api/v2/${query}/${id}`, {
 			body: JSON.stringify(body),
 			headers: { Authorization: `${API_KEY}`, 'Content-Type': 'application/json' },
 			method: 'PUT',

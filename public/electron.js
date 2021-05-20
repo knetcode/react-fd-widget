@@ -18,7 +18,7 @@ function createWindow() {
 		},
 		icon: './favicon.ico',
 		minWidth: 400,
-		frame: false,
+		//frame: false,
 	})
 
 	mainWindow.webContents.on('new-window', (event, url) => {
