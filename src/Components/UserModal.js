@@ -49,6 +49,15 @@ const UserModal = ({ agentsArr, selectedUser, setSelectedUser, isUserModalOpen, 
 
 	const getInitials = (id) => {
 		let userName
+
+		if (id === 100) {
+			return (
+				<div className='user-select-initials' style={{ backgroundColor: colorPicker(10) }}>
+					<p>UN</p>
+				</div>
+			)
+		}
+
 		agentsArr.forEach((agent) => {
 			if (id === agent.agent.user.id) {
 				userName = agent.agent.user.name
@@ -109,7 +118,7 @@ const UserModal = ({ agentsArr, selectedUser, setSelectedUser, isUserModalOpen, 
 						}}
 					>
 						<div className='user-select-initials' style={{ backgroundColor: '#ffadad' }}>
-							<p>UL</p>
+							<p>UN</p>
 						</div>
 						Unassigned
 					</li>
