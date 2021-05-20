@@ -14,4 +14,12 @@
 		margin-bottom: 3rem;
 		font-size: 1.6rem;
 	}
+
+	.message {
+		font-size: 2rem;
+		width: 100%;
+		text-align: center;
+		animation: shake 0.5s;
+		animation-iteration-count: 1;
+	}
 }

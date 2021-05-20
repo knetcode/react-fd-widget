@@ -95,3 +95,9 @@ textarea.materialize-textarea:focus:not([readonly]) + label {
 .tab a {
 	border-radius: 0.4rem 0.4rem;
 }
+
+.tabs .tab a:focus,
+.tabs .tab a:focus.active {
+	background-color: $ctk-red;
+	outline: none;
+}

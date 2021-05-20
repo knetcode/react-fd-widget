@@ -104,6 +104,60 @@ img {
   color: #fff;
 }
 
+.modal-close-btn {
+  font-size: 4rem;
+  position: absolute;
+  top: 14px;
+  right: 0;
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(1px, 1px) rotate(0deg);
+    color: #ff0000;
+  }
+  10% {
+    transform: translate(-1px, -2px) rotate(-1deg);
+    color: #ee0000;
+  }
+  20% {
+    transform: translate(-3px, 0px) rotate(1deg);
+    color: #dd0000;
+  }
+  30% {
+    transform: translate(3px, 2px) rotate(0deg);
+    color: #cc0000;
+  }
+  40% {
+    transform: translate(1px, -1px) rotate(1deg);
+    color: #bb0000;
+  }
+  50% {
+    transform: translate(-1px, 2px) rotate(-1deg);
+    color: #aa0000;
+  }
+  60% {
+    transform: translate(-3px, 1px) rotate(0deg);
+    color: #990000;
+  }
+  70% {
+    transform: translate(3px, 1px) rotate(-1deg);
+    color: #880000;
+  }
+  80% {
+    transform: translate(-1px, -1px) rotate(1deg);
+    color: #770000;
+  }
+  90% {
+    transform: translate(1px, 2px) rotate(0deg);
+    color: #660000;
+  }
+  100% {
+    transform: translate(1px, -2px) rotate(-1deg);
+    color: #550000;
+  }
+}
+
 .app-header {
   background-color: #fff;
   color: #333;
@@ -424,7 +478,6 @@ img {
 
 .ticket-footer .expanding-btn {
   transition: all 1s ease;
-  display: none;
   color: #fff;
 }
 
@@ -444,6 +497,14 @@ img {
   align-items: flex-start;
   margin-bottom: 3rem;
   font-size: 1.6rem;
+}
+
+.modal-form .message {
+  font-size: 2rem;
+  width: 100%;
+  text-align: center;
+  animation: shake 0.5s;
+  animation-iteration-count: 1;
 }
 
 .no-key {
@@ -489,53 +550,6 @@ img {
 
 .no-key .incorrect-key.invisible {
   opacity: 0;
-}
-
-@keyframes shake {
-  0% {
-    transform: translate(1px, 1px) rotate(0deg);
-    color: #ff0000;
-  }
-  10% {
-    transform: translate(-1px, -2px) rotate(-1deg);
-    color: #ee0000;
-  }
-  20% {
-    transform: translate(-3px, 0px) rotate(1deg);
-    color: #dd0000;
-  }
-  30% {
-    transform: translate(3px, 2px) rotate(0deg);
-    color: #cc0000;
-  }
-  40% {
-    transform: translate(1px, -1px) rotate(1deg);
-    color: #bb0000;
-  }
-  50% {
-    transform: translate(-1px, 2px) rotate(-1deg);
-    color: #aa0000;
-  }
-  60% {
-    transform: translate(-3px, 1px) rotate(0deg);
-    color: #990000;
-  }
-  70% {
-    transform: translate(3px, 1px) rotate(-1deg);
-    color: #880000;
-  }
-  80% {
-    transform: translate(-1px, -1px) rotate(1deg);
-    color: #770000;
-  }
-  90% {
-    transform: translate(1px, 2px) rotate(0deg);
-    color: #660000;
-  }
-  100% {
-    transform: translate(1px, -2px) rotate(-1deg);
-    color: #550000;
-  }
 }
 
 .red {
@@ -634,4 +648,10 @@ textarea.materialize-textarea:focus:not([readonly]) + label {
 .tab,
 .tab a {
   border-radius: 0.4rem 0.4rem;
+}
+
+.tabs .tab a:focus,
+.tabs .tab a:focus.active {
+  background-color: #e71f3e;
+  outline: none;
 }

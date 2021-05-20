@@ -1,5 +1,6 @@
 import { Modal, Button } from 'react-materialize'
 import { FaEdit } from 'react-icons/fa'
+import { RiCloseCircleFill } from 'react-icons/ri'
 import React from 'react'
 
 const UserModal = ({ agentsArr, selectedUser, setSelectedUser, isUserModalOpen, setIsUserModalOpen }) => {
@@ -104,8 +105,8 @@ const UserModal = ({ agentsArr, selectedUser, setSelectedUser, isUserModalOpen, 
 					dismissible: false,
 				}}
 				actions={[
-					<Button flat node='button' waves='green' onClick={() => setIsUserModalOpen(!!false)}>
-						Close
+					<Button className='modal-close-btn' flat node='button' onClick={() => setIsUserModalOpen(!!false)}>
+						<RiCloseCircleFill />
 					</Button>,
 				]}
 			>

@@ -35,24 +35,10 @@ const Tickets = ({
 		localStorage.getItem('selectedUser') ? +JSON.parse(localStorage.getItem('selectedUser')) : 100
 	)
 
-	useEffect(() => addExpandBtn, [selectedUser])
 	useEffect(() => {
 		localStorage.setItem('selectedUser', JSON.stringify(selectedUser))
 		setSelectedUser(selectedUser)
 	}, [selectedUser])
-
-	const addExpandBtn = () => {
-		const paras = document.querySelectorAll('.ticket-body')
-		paras.forEach((para) => {
-			if (para.scrollHeight > para.clientHeight) {
-				para.nextElementSibling.firstElementChild.nextElementSibling.style.display = 'block'
-			} else {
-				para.nextElementSibling.firstElementChild.nextElementSibling.style.display = 'none'
-			}
-		})
-	}
-
-	window.addEventListener('resize', addExpandBtn)
 
 	const filteredArr = ticketsArr.filter((ticket) => ticket.responder_id === selectedUser).sort(comparePriority)
 
@@ -76,7 +62,6 @@ const Tickets = ({
 							API_URL={API_URL}
 							putContent={putContent}
 							getTickets={getTickets}
-							addExpandBtn={addExpandBtn}
 						/>
 					)
 				})

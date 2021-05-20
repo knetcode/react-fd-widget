@@ -1,18 +1,34 @@
-import { useEffect } from 'react'
+import { useEffect, useState, useRef } from 'react'
 
-const Ticket = ({ ticket, API_URL, putContent, getTickets, addExpandBtn }) => {
-	const expand = (e) => {
-		e.target.parentElement.previousElementSibling.classList.toggle('expanded')
+const Ticket = ({ ticket, API_URL, putContent, getTickets }) => {
+	const buttonRef = useRef(null)
+	const bodyRef = useRef(null)
 
-		if (e.target.parentElement.previousElementSibling.classList.contains('expanded')) {
-			e.target.innerText = 'COLLAPSE'
+	useEffect(() => {
+		addExpandBtn()
+	}, [])
+
+	const addExpandBtn = () => {
+		const scroll_height = bodyRef.current.scrollHeight
+		const client_height = bodyRef.current.clientHeight
+
+		if (scroll_height > client_height) {
+			buttonRef.current.innerText = 'Expand'
 		}
 
-		if (!e.target.parentElement.previousElementSibling.classList.contains('expanded')) {
-			e.target.innerText = 'EXPAND'
+		if (client_height >= scroll_height && bodyRef.current.classList.contains('expanded')) {
+			buttonRef.current.innerText = 'Collapse'
 		}
 
+		console.log(scroll_height)
+		console.log(client_height)
+	}
+
+	const expand = () => {
+		const thisTicket = document.querySelector(`#body${ticket.display_id}`)
+		thisTicket.classList.toggle('expanded')
 		document.querySelector(`#tx${ticket.display_id}`).scrollIntoView({ behavior: 'smooth' })
+		addExpandBtn()
 	}
 
 	const setPriorityColor = (priority) => {
@@ -59,11 +75,8 @@ const Ticket = ({ ticket, API_URL, putContent, getTickets, addExpandBtn }) => {
 		}
 	}
 
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	useEffect(addExpandBtn, [])
-
 	return (
-		<div id={`tx${ticket.display_id}`} className='ticket z-depth-2'>
+		<div id={`tx${ticket.display_id}`} className='ticket z-depth-2' onDoubleClick={expand}>
 			<div className='badges'>
 				{overdueChecker(ticket.due_by) && (
 					<div className='badge'>
@@ -77,7 +90,7 @@ const Ticket = ({ ticket, API_URL, putContent, getTickets, addExpandBtn }) => {
 			<div className='ticket-header'>
 				<div className='ticket-header-top'>
 					<a
-						href={`${API_URL}tickets/${ticket.display_id}`}
+						href={`${API_URL}helpdesk/tickets/${ticket.display_id}`}
 						target='_blank'
 						rel='noreferrer'
 						className='ticket-subject'
@@ -94,7 +107,7 @@ const Ticket = ({ ticket, API_URL, putContent, getTickets, addExpandBtn }) => {
 				</div>
 			</div>
 
-			<div className='ticket-body'>
+			<div className='ticket-body' id={`body${ticket.display_id}`} ref={bodyRef}>
 				<p dangerouslySetInnerHTML={{ __html: ticket.description_html }}></p>
 			</div>
 
@@ -107,9 +120,12 @@ const Ticket = ({ ticket, API_URL, putContent, getTickets, addExpandBtn }) => {
 					Resolve
 				</button>
 
-				<button className='btn transparent waves-effect z-depth-0 text-ctk-pink expanding-btn' onClick={expand}>
-					Expand
-				</button>
+				<button
+					id={`btn${ticket.display_id}`}
+					className='btn transparent waves-effect z-depth-0 text-ctk-pink expanding-btn'
+					onClick={(e) => expand(e)}
+					ref={buttonRef}
+				></button>
 			</div>
 		</div>
 	)
