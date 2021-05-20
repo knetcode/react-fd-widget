@@ -9,7 +9,7 @@ function createWindow() {
 	app.commandLine.appendSwitch('disable-features', 'OutOfBlinkCors')
 
 	mainWindow = new BrowserWindow({
-		width: 350,
+		width: 400,
 		height: 700,
 		show: false,
 		webPreferences: {
@@ -17,8 +17,8 @@ function createWindow() {
 			webSecurity: false,
 		},
 		icon: './favicon.ico',
-		minWidth: 350,
-		// frame: false,
+		minWidth: 400,
+		frame: false,
 	})
 
 	mainWindow.webContents.on('new-window', (event, url) => {
