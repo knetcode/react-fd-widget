@@ -354,7 +354,14 @@ img {
   justify-content: center;
   align-items: center;
   margin-left: 1rem;
-  background-color: #e91414;
+  background-color: #9e2121;
+}
+
+.ticket .badges .badge.overdue {
+  background-color: #ff0000;
+  box-shadow: 0 0 0 0 red;
+  transform: scale(1);
+  animation: pulse 2s infinite;
 }
 
 .ticket .badges .badge h4 {
@@ -479,6 +486,21 @@ img {
 .ticket-footer .expanding-btn {
   transition: all 1s ease;
   color: #fff;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(255, 0, 0, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
+  }
 }
 
 .modal-form {

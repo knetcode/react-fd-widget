@@ -33,7 +33,7 @@ const Ticket = ({ ticket, API_URL, putContent, getTickets }) => {
 
 	const setPriorityColor = (priority) => {
 		if (priority === 'Urgent') {
-			return '#e91414'
+			return '#d80000'
 		}
 		if (priority === 'High') {
 			return '#ff7a00'
@@ -79,7 +79,7 @@ const Ticket = ({ ticket, API_URL, putContent, getTickets }) => {
 		<div id={`tx${ticket.display_id}`} className='ticket z-depth-2' onDoubleClick={expand}>
 			<div className='badges'>
 				{overdueChecker(ticket.due_by) && (
-					<div className='badge'>
+					<div className='badge overdue'>
 						<h4>OVERDUE</h4>
 					</div>
 				)}
