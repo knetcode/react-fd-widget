@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 
 const Ticket = ({ ticket, API_URL, putContent, getTickets }) => {
 	const buttonRef = useRef(null)
@@ -16,7 +16,7 @@ const Ticket = ({ ticket, API_URL, putContent, getTickets }) => {
 			buttonRef.current.innerText = 'Expand'
 		}
 
-		if (client_height >= scroll_height && bodyRef.current.classList.contains('expanded')) {
+		if (scroll_height >= client_height && bodyRef.current.classList.contains('expanded')) {
 			buttonRef.current.innerText = 'Collapse'
 		}
 
