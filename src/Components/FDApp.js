@@ -4,6 +4,7 @@ import Tickets from './Tickets'
 
 const FDApp = ({ API_URL, API_KEY }) => {
 	const [tickets, setTickets] = useState(null)
+
 	const [agents, setAgents] = useState(null)
 	const [fields, setFields] = useState(null)
 	const [isAddModalOpen, setIsAddModalOpen] = useState(!!false)
@@ -16,11 +17,15 @@ const FDApp = ({ API_URL, API_KEY }) => {
 			method: 'GET',
 		})
 		const dataObj = await res.json()
+		console.log(res)
+
 		return dataObj
 	}
 
-	const getTickets = async () => {
-		const ticketsFromServer = await fetchContent('helpdesk/tickets/filter/unresolved?format=json')
+	const getTickets = async (idx) => {
+		idx = idx || 1
+		console.log(idx)
+		const ticketsFromServer = await fetchContent(`helpdesk/tickets/filter/unresolved?format=json&page=${idx}`)
 
 		ticketsFromServer.forEach((ticket) => {
 			if (ticket.responder_id === null) {

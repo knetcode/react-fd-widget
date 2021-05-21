@@ -42,6 +42,12 @@ const Tickets = ({
 
 	const filteredArr = ticketsArr.filter((ticket) => ticket.responder_id === selectedUser).sort(comparePriority)
 
+	const [pageIndex, setPageIndex] = useState(1)
+
+	useEffect(() => {
+		getTickets(pageIndex)
+	}, [pageIndex])
+
 	return (
 		<div className='tickets'>
 			<UserModal
@@ -81,6 +87,30 @@ const Tickets = ({
 			<button className='btn-floating btn-large ctk-pink btn-add' onClick={() => setIsAddModalOpen(!!true)}>
 				<FaPlus />
 			</button>
+
+			<div className='pagination-wrapper'>
+				{pageIndex > 1 && (
+					<button
+						className='btn-block ctk-red btn'
+						onClick={() => {
+							setPageIndex((pageIndex) => (pageIndex - 1 < 1 ? 1 : pageIndex - 1))
+						}}
+					>
+						Load Less Page:{pageIndex}
+					</button>
+				)}
+
+				{ticketsArr.length === 30 && (
+					<button
+						className='btn-block ctk-red btn'
+						onClick={() => {
+							setPageIndex((pageIndex) => pageIndex + 1)
+						}}
+					>
+						Load More Page:{pageIndex}
+					</button>
+				)}
+			</div>
 		</div>
 	)
 }

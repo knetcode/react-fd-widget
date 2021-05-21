@@ -19,9 +19,6 @@ const Ticket = ({ ticket, API_URL, putContent, getTickets }) => {
 		if (scroll_height >= client_height && bodyRef.current.classList.contains('expanded')) {
 			buttonRef.current.innerText = 'Collapse'
 		}
-
-		console.log(scroll_height)
-		console.log(client_height)
 	}
 
 	const expand = () => {

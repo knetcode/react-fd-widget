@@ -10,7 +10,6 @@ const NoKey = ({ setAPI_KEY, API_URL }) => {
 			method: 'GET',
 		})
 		const dataObj = await res.json()
-		console.log(dataObj)
 		return dataObj
 	}
 

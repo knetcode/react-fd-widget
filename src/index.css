@@ -248,6 +248,13 @@ img {
   text-align: center;
 }
 
+.tickets .pagination-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
 .user-select-selector {
   display: flex;
   flex-direction: row;
