@@ -354,7 +354,7 @@ img {
   justify-content: center;
   align-items: center;
   margin-left: 1rem;
-  background-color: #9e2121;
+  background-color: #d80000;
 }
 
 .ticket .badges .badge.overdue {
@@ -504,11 +504,11 @@ img {
 }
 
 .modal-form {
-  margin-top: 2rem;
+  margin-top: 3rem;
 }
 
 .modal-form .input-field {
-  margin-top: 3rem;
+  margin: 3rem 0 4rem;
   font-size: 1.6rem;
 }
 
@@ -519,15 +519,49 @@ img {
   align-items: flex-start;
   margin-bottom: 3rem;
   font-size: 1.6rem;
+  margin-top: 3rem;
 }
 
 .modal-form .message {
-  font-size: 2rem;
-  width: 100%;
+  font-size: 1.6rem;
   text-align: center;
-  animation: shake 0.5s;
+  animation: shake 0.2s;
   animation-iteration-count: 1;
   margin-bottom: 2rem;
+  width: fit-content;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  position: relative;
+  box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.3), 0 0.0625rem 0.125rem rgba(0, 0, 0, 0.2);
+  margin-bottom: -5rem;
+  position: relative;
+  top: -35px;
+}
+
+.modal-form .message::before {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  bottom: 100%;
+  left: 4rem;
+  border: 0.75rem solid transparent;
+  border-top: none;
+  border-bottom-color: #fff;
+  filter: drop-shadow(0 -0.0625rem 0.0625rem rgba(0, 0, 0, 0.1));
+}
+
+.modal-form .message-description {
+  top: -55px;
+}
+
+.modal-form .message svg {
+  color: #d80000;
+  margin-right: 0.5rem;
+  font-size: 2rem;
 }
 
 .no-key {

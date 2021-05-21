@@ -1,8 +1,8 @@
 .modal-form {
-	margin-top: 2rem;
+	margin-top: 3rem;
 
 	.input-field {
-		margin-top: 3rem;
+		margin: 3rem 0 4rem;
 		font-size: 1.6rem;
 	}
 
@@ -13,14 +13,51 @@
 		align-items: flex-start;
 		margin-bottom: 3rem;
 		font-size: 1.6rem;
+		margin-top: 3rem;
 	}
 
 	.message {
-		font-size: 2rem;
-		width: 100%;
+		font-size: 1.6rem;
 		text-align: center;
-		animation: shake 0.5s;
+		animation: shake 0.2s;
 		animation-iteration-count: 1;
 		margin-bottom: 2rem;
+		width: fit-content;
+		padding: 1rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: 4px;
+		position: relative;
+		box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.3), 0 0.0625rem 0.125rem rgba(0, 0, 0, 0.2);
+		margin-bottom: -5rem;
+		position: relative;
+		top: -35px;
+
+		&::before {
+			// layout
+			content: '';
+			position: absolute;
+			width: 0;
+			height: 0;
+			bottom: 100%;
+			left: 4rem;
+			border: 0.75rem solid transparent;
+			border-top: none;
+
+			// looks
+			border-bottom-color: #fff;
+			filter: drop-shadow(0 -0.0625rem 0.0625rem rgba(0, 0, 0, 0.1));
+		}
+
+		&-description {
+			top: -55px;
+		}
+
+		svg {
+			color: $urgent-priority-color;
+			margin-right: 0.5rem;
+			font-size: 2rem;
+		}
 	}
 }
