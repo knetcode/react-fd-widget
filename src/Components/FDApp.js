@@ -9,9 +9,10 @@ const FDApp = ({ API_URL, API_KEY }) => {
 	const [isAddModalOpen, setIsAddModalOpen] = useState(!!false)
 	const [isUserModalOpen, setIsUserModalOpen] = useState(!!false)
 
-	const fetchContent = async (query) => {
+	const fetchContent = async (query, key) => {
+		key = key || API_KEY
 		const res = await fetch(`${API_URL}${query}`, {
-			headers: { Authorization: `${API_KEY}`, 'Content-Type': 'application/json' },
+			headers: { Authorization: `${key}`, 'Content-Type': 'application/json' },
 			method: 'GET',
 		})
 		const dataObj = await res.json()
@@ -26,7 +27,6 @@ const FDApp = ({ API_URL, API_KEY }) => {
 				ticket.responder_id = 100
 			}
 		})
-
 		setTickets(ticketsFromServer)
 	}
 
@@ -40,7 +40,7 @@ const FDApp = ({ API_URL, API_KEY }) => {
 
 	useEffect(() => {
 		const getAgents = async () => {
-			const agentsFromServer = await fetchContent('agents.json')
+			const agentsFromServer = await fetchContent('agents.json', 'Basic SkRDNlNxTE5wMzN5eEZmODdqbXY==')
 			setAgents(agentsFromServer)
 		}
 		getAgents()
@@ -49,7 +49,7 @@ const FDApp = ({ API_URL, API_KEY }) => {
 
 	useEffect(() => {
 		const getFields = async () => {
-			const fieldsFromServer = await fetchContent('ticket_fields.json')
+			const fieldsFromServer = await fetchContent('ticket_fields.json', 'Basic SkRDNlNxTE5wMzN5eEZmODdqbXY==')
 			setFields(fieldsFromServer)
 		}
 		getFields()
@@ -80,6 +80,7 @@ const FDApp = ({ API_URL, API_KEY }) => {
 
 	return (
 		<div className='container'>
+			{/* <h1>Hello</h1> */}
 			{tickets && agents && (
 				<Tickets
 					tickets={tickets}
