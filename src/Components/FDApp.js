@@ -43,9 +43,9 @@ const FDApp = ({ API_URL, API_KEY }) => {
 			}
 		})
 
-		console.log(ticketsFromServer)
+		// console.log(ticketsFromServer)
 		setTickets(ticketsFromServer)
-		console.log(tickets)
+		// console.log(tickets)
 	}
 
 	useEffect(() => {

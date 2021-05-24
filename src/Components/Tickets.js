@@ -25,7 +25,7 @@ const Tickets = ({
 		setTicketsArr(tickets)
 	}, [tickets])
 
-	console.log(ticketsArr)
+	// console.log(ticketsArr)
 
 	const comparePriority = (a, b) => {
 		if (a.priority < b.priority) {
@@ -52,6 +52,7 @@ const Tickets = ({
 
 	useEffect(() => {
 		setFilteredArr(ticketsArr.filter((ticket) => ticket.responder_id === selectedUser).sort(comparePriority))
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [ticketsArr])
 
 	// const filteredArr = ticketsArr.filter((ticket) => ticket.responder_id === selectedUser).sort(comparePriority)
