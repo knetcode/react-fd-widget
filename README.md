@@ -38,7 +38,7 @@ Update CURL
 
 POST CURL
 
-> curl -u JDC6SqLNp33yxFf87jmv:X -H "Content-Type: application/json" -d '{ "helpdesk_ticket": { "description": "This ticket is overdue", "subject": "Over Due Ticket", "email": "kylee@computicket.com", "responder_id": 5000179003, "priority": 2, "status": 2}}' -X POST https://itsd-computicket.freshservice.com/helpdesk/tickets.json
+> curl -u JDC6SqLNp33yxFf87jmv:X -H "Content-Type: application/json" -d '{ "helpdesk_ticket": { "description": "page file testing", "subject": "page file testing", "email": "kylee@computicket.com", "responder_id": 5000179003, "priority": 2, "status": 2}}' -X POST https://itsd-computicket.freshservice.com/helpdesk/tickets.json
 
 > curl -v -u JDC6SqLNp33yxFf87jmv:X -H "Content-Type: application/json" -X PUT -d '{ "due_by": "2021-05-02T12:29:59+02:00", "fr_due_by": "2021-05-02T11:29:59+02:00" }' 'https://itsd-computicket.com.freshservice.com/api/v2/tickets/19234'
 

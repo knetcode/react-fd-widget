@@ -17,25 +17,25 @@ const FDApp = ({ API_URL, API_KEY }) => {
 			method: 'GET',
 		})
 		const dataObj = await res.json()
-		// console.log(res)
 
 		return dataObj
 	}
 
 	const getTickets = async () => {
 		const ticketsFromServer = []
+		let i = 1
 		const callsFn = async (page) => {
+			console.log(`called ${i}`)
 			const ticketsFromServerPart = await fetchContent(`helpdesk/tickets/filter/unresolved?format=json&page=${page}`)
 			ticketsFromServerPart.forEach((part) => {
 				ticketsFromServer.push(part)
 			})
+			// console.log(ticketsFromServerPart.length)
+			i++
+			ticketsFromServerPart.length === 30 && (await callsFn(i))
 		}
 
-		await callsFn(1)
-		await callsFn(2)
-		await callsFn(3)
-		await callsFn(4)
-		await callsFn(5)
+		await callsFn(i)
 
 		ticketsFromServer.forEach((ticket) => {
 			if (ticket.responder_id === null) {
