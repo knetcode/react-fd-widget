@@ -18,8 +18,14 @@ const Tickets = ({
 	isUserModalOpen,
 	setIsUserModalOpen,
 }) => {
-	const ticketsArr = tickets
 	const agentsArr = agents
+	const [ticketsArr, setTicketsArr] = useState(tickets)
+
+	useEffect(() => {
+		setTicketsArr(tickets)
+	}, [tickets])
+
+	console.log(ticketsArr)
 
 	const comparePriority = (a, b) => {
 		if (a.priority < b.priority) {
@@ -40,13 +46,15 @@ const Tickets = ({
 		setSelectedUser(selectedUser)
 	}, [selectedUser])
 
-	const filteredArr = ticketsArr.filter((ticket) => ticket.responder_id === selectedUser).sort(comparePriority)
-
-	const [pageIndex, setPageIndex] = useState(1)
+	const [filteredArr, setFilteredArr] = useState(
+		ticketsArr.filter((ticket) => ticket.responder_id === selectedUser).sort(comparePriority)
+	)
 
 	useEffect(() => {
-		getTickets(pageIndex)
-	}, [pageIndex])
+		setFilteredArr(ticketsArr.filter((ticket) => ticket.responder_id === selectedUser).sort(comparePriority))
+	}, [ticketsArr])
+
+	// const filteredArr = ticketsArr.filter((ticket) => ticket.responder_id === selectedUser).sort(comparePriority)
 
 	return (
 		<div className='tickets'>
@@ -75,42 +83,20 @@ const Tickets = ({
 				<NoTicket />
 			)}
 
-			<AddModal
-				fields={fields}
-				selectedUser={selectedUser}
-				postContent={postContent}
-				getTickets={getTickets}
-				isAddModalOpen={isAddModalOpen}
-				setIsAddModalOpen={setIsAddModalOpen}
-			/>
+			{fields && (
+				<AddModal
+					fields={fields}
+					selectedUser={selectedUser}
+					postContent={postContent}
+					getTickets={getTickets}
+					isAddModalOpen={isAddModalOpen}
+					setIsAddModalOpen={setIsAddModalOpen}
+				/>
+			)}
 
 			<button className='btn-floating btn-large ctk-pink btn-add' onClick={() => setIsAddModalOpen(!!true)}>
 				<FaPlus />
 			</button>
-
-			<div className='pagination-wrapper'>
-				{pageIndex > 1 && (
-					<button
-						className='btn-block ctk-red btn'
-						onClick={() => {
-							setPageIndex((pageIndex) => (pageIndex - 1 < 1 ? 1 : pageIndex - 1))
-						}}
-					>
-						Load Less Page:{pageIndex}
-					</button>
-				)}
-
-				{ticketsArr.length === 30 && (
-					<button
-						className='btn-block ctk-red btn'
-						onClick={() => {
-							setPageIndex((pageIndex) => pageIndex + 1)
-						}}
-					>
-						Load More Page:{pageIndex}
-					</button>
-				)}
-			</div>
 		</div>
 	)
 }

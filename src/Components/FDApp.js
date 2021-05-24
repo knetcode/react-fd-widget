@@ -17,22 +17,35 @@ const FDApp = ({ API_URL, API_KEY }) => {
 			method: 'GET',
 		})
 		const dataObj = await res.json()
-		console.log(res)
+		// console.log(res)
 
 		return dataObj
 	}
 
-	const getTickets = async (idx) => {
-		idx = idx || 1
-		console.log(idx)
-		const ticketsFromServer = await fetchContent(`helpdesk/tickets/filter/unresolved?format=json&page=${idx}`)
+	const getTickets = async () => {
+		const ticketsFromServer = []
+		const callsFn = async (page) => {
+			const ticketsFromServerPart = await fetchContent(`helpdesk/tickets/filter/unresolved?format=json&page=${page}`)
+			ticketsFromServerPart.forEach((part) => {
+				ticketsFromServer.push(part)
+			})
+		}
+
+		await callsFn(1)
+		await callsFn(2)
+		await callsFn(3)
+		await callsFn(4)
+		await callsFn(5)
 
 		ticketsFromServer.forEach((ticket) => {
 			if (ticket.responder_id === null) {
 				ticket.responder_id = 100
 			}
 		})
+
+		console.log(ticketsFromServer)
 		setTickets(ticketsFromServer)
+		console.log(tickets)
 	}
 
 	useEffect(() => {
