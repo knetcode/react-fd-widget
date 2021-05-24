@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 
 const Ticket = ({ ticket, API_URL, putContent, getTickets }) => {
 	const buttonRef = useRef(null)
+	const ticketRef = useRef(null)
 	const bodyRef = useRef(null)
 
 	useEffect(() => {
@@ -44,6 +45,8 @@ const Ticket = ({ ticket, API_URL, putContent, getTickets }) => {
 	}
 
 	const resolveTicket = async (e) => {
+		ticketRef.current.classList.add('loading')
+
 		const ticketID = +e.target.value
 		const body = {
 			type: 'Incident',
@@ -73,7 +76,7 @@ const Ticket = ({ ticket, API_URL, putContent, getTickets }) => {
 	}
 
 	return (
-		<div id={`tx${ticket.display_id}`} className='ticket z-depth-2' onDoubleClick={expand}>
+		<div id={`tx${ticket.display_id}`} className='ticket z-depth-2' onDoubleClick={expand} ref={ticketRef}>
 			<div className='badges'>
 				{overdueChecker(ticket.due_by) && (
 					<div className='badge overdue'>
