@@ -53,7 +53,7 @@ const Tickets = ({
 	useEffect(() => {
 		setFilteredArr(ticketsArr.filter((ticket) => ticket.responder_id === selectedUser).sort(comparePriority))
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [ticketsArr])
+	}, [ticketsArr, selectedUser])
 
 	// const filteredArr = ticketsArr.filter((ticket) => ticket.responder_id === selectedUser).sort(comparePriority)
 
