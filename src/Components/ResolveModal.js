@@ -61,7 +61,7 @@ const ResolveModal = ({
 				<Textarea id='modal-add-resolve' l={12} m={12} s={12} xl={12} label='Description' />
 
 				<button type='submit' id='modal-submit' className='btn ctk-red btn-block waves-effect waves-light'>
-					Resolve
+					Add comment &amp; resolve
 				</button>
 				<button type='reset' className='btn transparent btn-block z-depth-0 btn-reset waves-effect'>
 					Reset
