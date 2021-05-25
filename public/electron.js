@@ -5,7 +5,6 @@ const path = require('path')
 require('update-electron-app')({
 	repo: 'knetcode/react-fd-widget',
 	updateInterval: '5 minutes',
-	logger: require('electron-log'),
 	notifyUser: true,
 })
 
@@ -25,7 +24,7 @@ function createWindow() {
 		},
 		icon: './favicon.ico',
 		minWidth: 400,
-		frame: true,
+		frame: false,
 	})
 
 	mainWindow.webContents.on('new-window', (event, url) => {
