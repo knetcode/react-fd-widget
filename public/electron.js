@@ -1,12 +1,12 @@
 const { app, BrowserWindow, shell, autoUpdater, dialog } = require('electron')
 const isDev = require('electron-is-dev')
+const log = require('electron-log')
 const path = require('path')
+const { autoUpdater } = require('electron-updater')
 
-require('update-electron-app')({
-	repo: 'knetcode/react-fd-widget',
-	updateInterval: '10 minutes',
-	// logger: require('electron-log'),
-})
+autoUpdater.logger = log
+autoUpdater.logger.transports.file.level = 'info'
+log.info('App starting...')
 
 let mainWindow
 
@@ -42,3 +42,6 @@ function createWindow() {
 	})
 }
 app.on('ready', createWindow)
+app.on('ready', function () {
+	autoUpdater.checkForUpdatesAndNotify()
+})
