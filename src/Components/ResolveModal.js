@@ -38,7 +38,7 @@ const ResolveModal = ({
 
 	return (
 		<Modal
-			header='Resolve Text'
+			header='Resolve & Reply'
 			id='resolve-modal'
 			open={!!isResolveModalOpen}
 			options={{
