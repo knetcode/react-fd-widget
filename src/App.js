@@ -4,7 +4,7 @@ import AppHeader from './Components/AppHeader'
 import FDApp from './Components/FDApp'
 import NoKey from './Components/NoKey'
 
-const APP_NAME = 'withIT'
+const APP_NAME = 'POGGERS'
 const API_URL = 'https://itsd-computicket.freshservice.com/'
 
 function App() {
