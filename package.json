@@ -4,7 +4,7 @@
 	"author": "Kyle Esterhuizen",
 	"homepage": "./",
 	"main": "./public/electron.js",
-	"version": "0.0.8",
+	"version": "0.0.9",
 	"build": {
 		"appId": "com.computicket.withIT",
 		"productName": "withIT",

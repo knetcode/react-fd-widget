@@ -4,6 +4,7 @@ import NoTicket from './NoTicket'
 import Ticket from './Ticket'
 import AddModal from './AddModal'
 import UserModal from './UserModal'
+import ResolveModal from './ResolveModal'
 
 const Tickets = ({
 	API_URL,
@@ -17,6 +18,8 @@ const Tickets = ({
 	setIsAddModalOpen,
 	isUserModalOpen,
 	setIsUserModalOpen,
+	isResolveModalOpen,
+	setIsResolveModalOpen,
 }) => {
 	const agentsArr = agents
 	const [ticketsArr, setTicketsArr] = useState(tickets)
@@ -24,8 +27,6 @@ const Tickets = ({
 	useEffect(() => {
 		setTicketsArr(tickets)
 	}, [tickets])
-
-	// console.log(ticketsArr)
 
 	const comparePriority = (a, b) => {
 		if (a.priority < b.priority) {
@@ -41,6 +42,8 @@ const Tickets = ({
 		localStorage.getItem('selectedUser') ? +JSON.parse(localStorage.getItem('selectedUser')) : 100
 	)
 
+	const [resolvingTicket, setResolvingTicket] = useState(null)
+
 	useEffect(() => {
 		localStorage.setItem('selectedUser', JSON.stringify(selectedUser))
 		setSelectedUser(selectedUser)
@@ -54,8 +57,6 @@ const Tickets = ({
 		setFilteredArr(ticketsArr.filter((ticket) => ticket.responder_id === selectedUser).sort(comparePriority))
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [ticketsArr, selectedUser])
-
-	// const filteredArr = ticketsArr.filter((ticket) => ticket.responder_id === selectedUser).sort(comparePriority)
 
 	return (
 		<div className='tickets'>
@@ -77,6 +78,10 @@ const Tickets = ({
 							API_URL={API_URL}
 							putContent={putContent}
 							getTickets={getTickets}
+							isResolveModalOpen={isResolveModalOpen}
+							setIsResolveModalOpen={setIsResolveModalOpen}
+							resolvingTicket={resolvingTicket}
+							setResolvingTicket={setResolvingTicket}
 						/>
 					)
 				})
@@ -94,6 +99,16 @@ const Tickets = ({
 					setIsAddModalOpen={setIsAddModalOpen}
 				/>
 			)}
+
+			<ResolveModal
+				putContent={putContent}
+				isResolveModalOpen={isResolveModalOpen}
+				setIsResolveModalOpen={setIsResolveModalOpen}
+				getTickets={getTickets}
+				resolvingTicket={resolvingTicket}
+				setResolvingTicket={setResolvingTicket}
+				postContent={postContent}
+			/>
 
 			<button className='btn-floating btn-large ctk-pink btn-add' onClick={() => setIsAddModalOpen(!!true)}>
 				<FaPlus />

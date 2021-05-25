@@ -9,6 +9,7 @@ const FDApp = ({ API_URL, API_KEY }) => {
 	const [fields, setFields] = useState(null)
 	const [isAddModalOpen, setIsAddModalOpen] = useState(!!false)
 	const [isUserModalOpen, setIsUserModalOpen] = useState(!!false)
+	const [isResolveModalOpen, setIsResolveModalOpen] = useState(!!false)
 
 	const fetchContent = async (query, key) => {
 		key = key || API_KEY
@@ -25,12 +26,10 @@ const FDApp = ({ API_URL, API_KEY }) => {
 		const ticketsFromServer = []
 		let i = 1
 		const callsFn = async (page) => {
-			console.log(`called ${i}`)
 			const ticketsFromServerPart = await fetchContent(`helpdesk/tickets/filter/unresolved?format=json&page=${page}`)
 			ticketsFromServerPart.forEach((part) => {
 				ticketsFromServer.push(part)
 			})
-			// console.log(ticketsFromServerPart.length)
 			i++
 			ticketsFromServerPart.length === 30 && (await callsFn(i))
 		}
@@ -42,10 +41,7 @@ const FDApp = ({ API_URL, API_KEY }) => {
 				ticket.responder_id = 100
 			}
 		})
-
-		console.log(ticketsFromServer)
 		setTickets(ticketsFromServer)
-		// console.log(tickets)
 	}
 
 	useEffect(() => {
@@ -98,7 +94,6 @@ const FDApp = ({ API_URL, API_KEY }) => {
 
 	return (
 		<div className='container'>
-			{/* <h1>Hello</h1> */}
 			{tickets && agents && (
 				<Tickets
 					tickets={tickets}
@@ -112,6 +107,8 @@ const FDApp = ({ API_URL, API_KEY }) => {
 					setIsAddModalOpen={setIsAddModalOpen}
 					isUserModalOpen={isUserModalOpen}
 					setIsUserModalOpen={setIsUserModalOpen}
+					isResolveModalOpen={isResolveModalOpen}
+					setIsResolveModalOpen={setIsResolveModalOpen}
 				/>
 			)}
 		</div>

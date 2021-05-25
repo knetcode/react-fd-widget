@@ -89,7 +89,6 @@ const UserModal = ({ agentsArr, selectedUser, setSelectedUser, isUserModalOpen, 
 		<div className='user-select'>
 			<div className='user-select-selector'>
 				<button className='user-btn btn waves-effect waves-light' onClick={() => setIsUserModalOpen(!!true)}>
-					{/* <FaUserCircle /> */}
 					{getInitials(selectedUser)}
 					<h4>{getName()}</h4>
 					<span className='pencil'>

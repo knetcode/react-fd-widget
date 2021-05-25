@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 
-const Ticket = ({ ticket, API_URL, putContent, getTickets }) => {
+const Ticket = ({ ticket, API_URL, setIsResolveModalOpen, setResolvingTicket }) => {
 	const buttonRef = useRef(null)
 	const ticketRef = useRef(null)
 	const bodyRef = useRef(null)
@@ -42,18 +42,6 @@ const Ticket = ({ ticket, API_URL, putContent, getTickets }) => {
 		if (priority === 'Low') {
 			return '#20e800'
 		}
-	}
-
-	const resolveTicket = async (e) => {
-		ticketRef.current.classList.add('loading')
-
-		const ticketID = +e.target.value
-		const body = {
-			type: 'Incident',
-			status: 4,
-		}
-		await putContent('tickets', ticketID, body)
-		getTickets()
 	}
 
 	const formatDate = (date) => {
@@ -115,7 +103,10 @@ const Ticket = ({ ticket, API_URL, putContent, getTickets }) => {
 				<button
 					className='btn ctk-red waves-light waves-effect'
 					value={ticket.display_id}
-					onClick={(e) => resolveTicket(e)}
+					onClick={(e) => {
+						setResolvingTicket(e.target.value)
+						setIsResolveModalOpen(true)
+					}}
 				>
 					Resolve
 				</button>
