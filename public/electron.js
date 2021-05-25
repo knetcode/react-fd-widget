@@ -41,3 +41,5 @@ function createWindow() {
 		mainWindow = null
 	})
 }
+
+app.on('ready', createWindow)
