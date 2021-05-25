@@ -1,6 +1,12 @@
-const { app, BrowserWindow, shell } = require('electron')
+const { app, BrowserWindow, shell, autoUpdater, dialog } = require('electron')
 const isDev = require('electron-is-dev')
 const path = require('path')
+
+require('update-electron-app')({
+	repo: 'knetcode/react-fd-widget',
+	updateInterval: '10 minutes',
+	// logger: require('electron-log'),
+})
 
 let mainWindow
 
@@ -18,7 +24,7 @@ function createWindow() {
 		},
 		icon: './favicon.ico',
 		minWidth: 400,
-		frame: false,
+		// frame: false,
 	})
 
 	mainWindow.webContents.on('new-window', (event, url) => {
