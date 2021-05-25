@@ -1,4 +1,4 @@
-const { app, BrowserWindow, shell, autoUpdater, dialog } = require('electron')
+const { app, BrowserWindow, shell, dialog } = require('electron')
 const isDev = require('electron-is-dev')
 const log = require('electron-log')
 const path = require('path')
