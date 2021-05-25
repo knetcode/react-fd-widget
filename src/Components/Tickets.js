@@ -4,6 +4,7 @@ import NoTicket from './NoTicket'
 import Ticket from './Ticket'
 import AddModal from './AddModal'
 import UserModal from './UserModal'
+import ResolveModal from './ResolveModal'
 
 const Tickets = ({
 	API_URL,
@@ -17,9 +18,15 @@ const Tickets = ({
 	setIsAddModalOpen,
 	isUserModalOpen,
 	setIsUserModalOpen,
+	isResolveModalOpen,
+	setIsResolveModalOpen,
 }) => {
-	const ticketsArr = tickets
 	const agentsArr = agents
+	const [ticketsArr, setTicketsArr] = useState(tickets)
+
+	useEffect(() => {
+		setTicketsArr(tickets)
+	}, [tickets])
 
 	const comparePriority = (a, b) => {
 		if (a.priority < b.priority) {
@@ -35,18 +42,21 @@ const Tickets = ({
 		localStorage.getItem('selectedUser') ? +JSON.parse(localStorage.getItem('selectedUser')) : 100
 	)
 
+	const [resolvingTicket, setResolvingTicket] = useState(null)
+
 	useEffect(() => {
 		localStorage.setItem('selectedUser', JSON.stringify(selectedUser))
 		setSelectedUser(selectedUser)
 	}, [selectedUser])
 
-	const filteredArr = ticketsArr.filter((ticket) => ticket.responder_id === selectedUser).sort(comparePriority)
-
-	const [pageIndex, setPageIndex] = useState(1)
+	const [filteredArr, setFilteredArr] = useState(
+		ticketsArr.filter((ticket) => ticket.responder_id === selectedUser).sort(comparePriority)
+	)
 
 	useEffect(() => {
-		getTickets(pageIndex)
-	}, [pageIndex])
+		setFilteredArr(ticketsArr.filter((ticket) => ticket.responder_id === selectedUser).sort(comparePriority))
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [ticketsArr, selectedUser])
 
 	return (
 		<div className='tickets'>
@@ -68,6 +78,10 @@ const Tickets = ({
 							API_URL={API_URL}
 							putContent={putContent}
 							getTickets={getTickets}
+							isResolveModalOpen={isResolveModalOpen}
+							setIsResolveModalOpen={setIsResolveModalOpen}
+							resolvingTicket={resolvingTicket}
+							setResolvingTicket={setResolvingTicket}
 						/>
 					)
 				})
@@ -75,42 +89,30 @@ const Tickets = ({
 				<NoTicket />
 			)}
 
-			<AddModal
-				fields={fields}
-				selectedUser={selectedUser}
-				postContent={postContent}
+			{fields && (
+				<AddModal
+					fields={fields}
+					selectedUser={selectedUser}
+					postContent={postContent}
+					getTickets={getTickets}
+					isAddModalOpen={isAddModalOpen}
+					setIsAddModalOpen={setIsAddModalOpen}
+				/>
+			)}
+
+			<ResolveModal
+				putContent={putContent}
+				isResolveModalOpen={isResolveModalOpen}
+				setIsResolveModalOpen={setIsResolveModalOpen}
 				getTickets={getTickets}
-				isAddModalOpen={isAddModalOpen}
-				setIsAddModalOpen={setIsAddModalOpen}
+				resolvingTicket={resolvingTicket}
+				setResolvingTicket={setResolvingTicket}
+				postContent={postContent}
 			/>
 
 			<button className='btn-floating btn-large ctk-pink btn-add' onClick={() => setIsAddModalOpen(!!true)}>
 				<FaPlus />
 			</button>
-
-			<div className='pagination-wrapper'>
-				{pageIndex > 1 && (
-					<button
-						className='btn-block ctk-red btn'
-						onClick={() => {
-							setPageIndex((pageIndex) => (pageIndex - 1 < 1 ? 1 : pageIndex - 1))
-						}}
-					>
-						Load Less Page:{pageIndex}
-					</button>
-				)}
-
-				{ticketsArr.length === 30 && (
-					<button
-						className='btn-block ctk-red btn'
-						onClick={() => {
-							setPageIndex((pageIndex) => pageIndex + 1)
-						}}
-					>
-						Load More Page:{pageIndex}
-					</button>
-				)}
-			</div>
 		</div>
 	)
 }
