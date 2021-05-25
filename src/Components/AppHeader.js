@@ -5,8 +5,7 @@ import { FaUserCircle } from 'react-icons/fa'
 const AppHeader = ({ appName }) => {
 	return (
 		<header className='app-header container'>
-			{/* <h1>{appName}</h1> */}
-			<h1>Private Title</h1>
+			<h1>{appName}</h1>
 			<div className='header-wrapper'>
 				<button
 					id='user-app-btn'
