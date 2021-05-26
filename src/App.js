@@ -5,7 +5,9 @@ import FDApp from './Components/FDApp'
 import NoKey from './Components/NoKey'
 
 const APP_NAME = 'withIT'
-const API_URL = 'https://itsd-computicket.freshservice.com/'
+
+const API_URL = process.env.REACT_APP_API_URL
+const ADMIN_KEY = process.env.REACT_APP_ADMIN_KEY
 
 function App() {
 	const [API_KEY, setAPI_KEY] = useState(null)
@@ -25,7 +27,7 @@ function App() {
 			{API_KEY && (
 				<Tabs className='top-tabs container'>
 					<Tab title='Tickets'>
-						<FDApp API_URL={API_URL} API_KEY={API_KEY} />
+						<FDApp API_URL={API_URL} API_KEY={API_KEY} ADMIN_KEY={ADMIN_KEY} />
 					</Tab>
 					{/* <Tab title='Tab 2'>TAB 2</Tab> */}
 				</Tabs>
