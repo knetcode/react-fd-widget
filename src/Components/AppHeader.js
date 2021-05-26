@@ -2,10 +2,11 @@ import React from 'react'
 import { RiRefreshFill, RiCloseCircleFill } from 'react-icons/ri'
 import { FaUserCircle } from 'react-icons/fa'
 
-const AppHeader = ({ appName }) => {
+const AppHeader = ({ APP_NAME, VERSION }) => {
 	return (
 		<header className='app-header container'>
-			<h1>{appName}</h1>
+			<span className='version'>{VERSION}</span>
+			<h1>{APP_NAME}</h1>
 			<div className='header-wrapper'>
 				<button
 					id='user-app-btn'

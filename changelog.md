@@ -4,6 +4,14 @@
 
 ---
 
+## v0.0.32
+
+-  Added version identifier to UI
+
+---
+
+---
+
 ## v0.0.31
 
 -  Updates to view changes on Preleen's Machine

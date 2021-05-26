@@ -4,7 +4,8 @@ import AppHeader from './Components/AppHeader'
 import FDApp from './Components/FDApp'
 import NoKey from './Components/NoKey'
 
-const APP_NAME = 'withIT v0.0.31'
+const APP_NAME = 'withIT'
+const VERSION = 'v0.0.32'
 
 const API_URL = process.env.REACT_APP_API_URL
 const ADMIN_KEY = process.env.REACT_APP_ADMIN_KEY
@@ -21,7 +22,7 @@ function App() {
 
 	return (
 		<div className='app-container'>
-			<AppHeader appName={APP_NAME} />
+			<AppHeader APP_NAME={APP_NAME} VERSION={VERSION} />
 			{!API_KEY && <NoKey setAPI_KEY={setAPI_KEY} API_KEY={API_KEY} API_URL={API_URL} />}
 
 			{API_KEY && (

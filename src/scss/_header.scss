@@ -12,11 +12,15 @@
 	right: 0;
 	box-shadow: 0 4px 4px rgba($color: #000000, $alpha: 0.2);
 
+	.version {
+		margin-left: 1rem;
+	}
+
 	h1 {
 		margin: 0 auto;
 		text-align: center;
 		padding: 0;
-		padding-left: 14rem;
+		padding-left: 15%;
 		font-size: 2.5rem;
 		-webkit-app-region: drag;
 		cursor: pointer;

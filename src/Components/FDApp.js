@@ -18,7 +18,7 @@ const FDApp = ({ API_URL, API_KEY, ADMIN_KEY }) => {
 			method: 'GET',
 		})
 		const dataObj = await res.json()
-		console.log(res)
+		// console.log(res)
 		return dataObj
 	}
 

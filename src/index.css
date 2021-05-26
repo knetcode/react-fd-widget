@@ -173,11 +173,15 @@ img {
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
 }
 
+.app-header .version {
+  margin-left: 1rem;
+}
+
 .app-header h1 {
   margin: 0 auto;
   text-align: center;
   padding: 0;
-  padding-left: 14rem;
+  padding-left: 15%;
   font-size: 2.5rem;
   -webkit-app-region: drag;
   cursor: pointer;
