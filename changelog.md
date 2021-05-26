@@ -4,6 +4,22 @@
 
 ---
 
+## v0.0.34
+
+-  Fixed height of navbar
+
+---
+
+---
+
+## v0.0.33
+
+-  Changed position of version indicator
+
+---
+
+---
+
 ## v0.0.32
 
 -  Added version identifier to UI
