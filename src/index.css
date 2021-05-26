@@ -174,14 +174,17 @@ img {
 }
 
 .app-header .version {
-  margin-left: 1rem;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  display: block;
+  line-height: unset;
 }
 
 .app-header h1 {
   margin: 0 auto;
   text-align: center;
   padding: 0;
-  padding-left: 15%;
+  padding-left: 14rem;
   font-size: 2.5rem;
   -webkit-app-region: drag;
   cursor: pointer;
