@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import Tickets from './Tickets'
 
-const FDApp = ({ API_URL, API_KEY }) => {
+const FDApp = ({ API_URL, API_KEY, ADMIN_KEY }) => {
 	const [tickets, setTickets] = useState(null)
 
 	const [agents, setAgents] = useState(null)
@@ -54,7 +54,7 @@ const FDApp = ({ API_URL, API_KEY }) => {
 
 	useEffect(() => {
 		const getAgents = async () => {
-			const agentsFromServer = await fetchContent('agents.json', 'Basic SkRDNlNxTE5wMzN5eEZmODdqbXY==')
+			const agentsFromServer = await fetchContent('agents.json', ADMIN_KEY)
 			setAgents(agentsFromServer)
 		}
 		getAgents()
@@ -63,7 +63,7 @@ const FDApp = ({ API_URL, API_KEY }) => {
 
 	useEffect(() => {
 		const getFields = async () => {
-			const fieldsFromServer = await fetchContent('ticket_fields.json', 'Basic SkRDNlNxTE5wMzN5eEZmODdqbXY==')
+			const fieldsFromServer = await fetchContent('ticket_fields.json', ADMIN_KEY)
 			setFields(fieldsFromServer)
 		}
 		getFields()

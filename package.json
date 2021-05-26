@@ -4,7 +4,7 @@
 	"author": "Kyle Esterhuizen",
 	"homepage": "./",
 	"main": "./public/electron.js",
-	"version": "0.0.28",
+	"version": "0.0.29",
 	"build": {
 		"publish": [
 			{
@@ -67,7 +67,7 @@
 		"eject": "react-scripts eject",
 		"electron-build": "electron-builder",
 		"ebuild": "npm run build && node_modules/.bin/build",
-		"build": "yarn react-build && yarn electron-build -p always"
+		"build": "yarn react-build && yarn electron-build"
 	},
 	"eslintConfig": {
 		"extends": [
