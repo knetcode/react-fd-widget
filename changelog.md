@@ -2,6 +2,16 @@
 
 ---
 
+---
+
+## v0.0.31
+
+-  Updates to view changes on Preleen's Machine
+
+---
+
+---
+
 ## v0.0.30
 
 -  Tested and confirmed workflow process with new variable structure

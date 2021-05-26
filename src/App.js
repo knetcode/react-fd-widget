@@ -4,7 +4,7 @@ import AppHeader from './Components/AppHeader'
 import FDApp from './Components/FDApp'
 import NoKey from './Components/NoKey'
 
-const APP_NAME = 'withIT'
+const APP_NAME = 'withIT v0.0.31'
 
 const API_URL = process.env.REACT_APP_API_URL
 const ADMIN_KEY = process.env.REACT_APP_ADMIN_KEY
