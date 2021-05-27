@@ -35,7 +35,7 @@ const UserModal = ({ agentsArr, selectedUser, setSelectedUser, isUserModalOpen, 
 			'#ffadad', //10
 			'#ffd6a5', //11
 			'#ffca3a', //12
-			'#e8209c', //13
+			'#bb4b9f', //13
 			'#9bf6ff', //14
 			'#a0c4ff', //15
 			'#bdb2ff', //16
