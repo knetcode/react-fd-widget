@@ -4,6 +4,14 @@
 
 ---
 
+## v0.0.38
+
+-  Changes to colorpicker
+
+---
+
+---
+
 ## v0.0.37
 
 -  Changed login test login to check against global filter as opposed to a specific ticket. This fixes an issue where certain users couldn't login due to the test call being made against a ticket they do not have access to.

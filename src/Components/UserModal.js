@@ -27,7 +27,7 @@ const UserModal = ({ agentsArr, selectedUser, setSelectedUser, isUserModalOpen, 
 			'#97f2f3', //2
 			'#c1cd97', //3
 			'#39808f', //4
-			'#5e96ae', //5
+			'#80b918', //5
 			'#e08963', //6
 			'#9dabdd', //7
 			'#a02c2d', //8
@@ -35,7 +35,7 @@ const UserModal = ({ agentsArr, selectedUser, setSelectedUser, isUserModalOpen, 
 			'#ffadad', //10
 			'#ffd6a5', //11
 			'#ffca3a', //12
-			'#80b918', //13
+			'#e8209c', //13
 			'#9bf6ff', //14
 			'#a0c4ff', //15
 			'#bdb2ff', //16
@@ -77,6 +77,7 @@ const UserModal = ({ agentsArr, selectedUser, setSelectedUser, isUserModalOpen, 
 
 		return (
 			<div className='user-select-initials' style={{ backgroundColor: colorPicker(color > 20 ? 20 : color) }}>
+				{console.log(color)}
 				<p>
 					{firstInitial}
 					{lastInitial}
