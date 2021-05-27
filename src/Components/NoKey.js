@@ -5,11 +5,12 @@ const NoKey = ({ setAPI_KEY, API_URL }) => {
 	const [isValid, setIsValid] = useState(true)
 
 	const testFetch = async (apikey) => {
-		const res = await fetch(`${API_URL}/api/v2/tickets/19028`, {
+		const res = await fetch(`${API_URL}api/v2/tickets?filter=watching`, {
 			headers: { Authorization: `${apikey}`, 'Content-Type': 'application/json' },
 			method: 'GET',
 		})
 		const dataObj = await res.json()
+		console.log(dataObj)
 		return dataObj
 	}
 

@@ -4,6 +4,14 @@
 
 ---
 
+## v0.0.37
+
+-  Changed login test login to check against global filter as opposed to a specific ticket. This fixes an issue where certain users couldn't login due to the test call being made against a ticket they do not have access to.
+
+---
+
+---
+
 ## v0.0.36
 
 -  Added a feature to handle if an API Key gets changed while the user is logged in. On 403, the API Key will reset to null and bring the user back to the login screen.

@@ -4,7 +4,7 @@
 	"author": "Kyle Esterhuizen",
 	"homepage": "./",
 	"main": "./public/electron.js",
-	"version": "0.0.36",
+	"version": "0.0.37",
 	"build": {
 		"publish": [
 			{
