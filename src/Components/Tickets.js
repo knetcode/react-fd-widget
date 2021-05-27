@@ -38,6 +38,16 @@ const Tickets = ({
 		}
 	}
 
+	const compareDueDate = (a, b) => {
+		if (a.due_by < b.due_by) {
+			return -1
+		} else if (a.due_by > b.due_by) {
+			return 1
+		} else {
+			return 0
+		}
+	}
+
 	const [selectedUser, setSelectedUser] = useState(
 		localStorage.getItem('selectedUser') ? +JSON.parse(localStorage.getItem('selectedUser')) : 100
 	)
@@ -54,7 +64,12 @@ const Tickets = ({
 	)
 
 	useEffect(() => {
-		setFilteredArr(ticketsArr.filter((ticket) => ticket.responder_id === selectedUser).sort(comparePriority))
+		setFilteredArr(
+			ticketsArr
+				.filter((ticket) => ticket.responder_id === selectedUser)
+				.sort(compareDueDate)
+				.sort(comparePriority)
+		)
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [ticketsArr, selectedUser])
 

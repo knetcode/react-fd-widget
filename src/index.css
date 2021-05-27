@@ -472,7 +472,6 @@ img {
 .ticket-body {
   font-size: 1.4rem;
   color: rgba(0, 0, 0, 0.6);
-  max-height: 10rem;
   overflow: hidden;
   transition: height 0.4s ease-out;
   white-space: wrap;
@@ -480,11 +479,18 @@ img {
   width: 100%;
   transition: all 1s ease-out;
   padding: 0 2rem;
+  transform: scaleY(0);
+  transition: all 0.4s ease-out;
+  max-height: 0;
+  transform-origin: top;
+  opacity: 0;
 }
 
 .ticket-body.expanded {
   max-height: unset;
-  transition: all 1s ease-out;
+  transition: all 0.4s ease-out;
+  transform: scaleY(1);
+  opacity: 1;
 }
 
 .ticket-footer {

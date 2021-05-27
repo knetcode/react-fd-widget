@@ -4,6 +4,15 @@
 
 ---
 
+## v0.0.35
+
+-  Changed ticket description to be completely hidden when collapsed.
+-  Changed sorting order. Now sort by closest due date, then by priority
+
+---
+
+---
+
 ## v0.0.34
 
 -  Fixed height of navbar
