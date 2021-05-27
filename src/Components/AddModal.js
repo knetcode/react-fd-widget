@@ -56,7 +56,6 @@ const AddModal = ({ fields, selectedUser, postContent, isAddModalOpen, setIsAddM
 			status: 2,
 		}
 
-		console.log(body)
 		postContent('tickets', body)
 
 		addEmail.value = ''

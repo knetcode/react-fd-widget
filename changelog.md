@@ -4,6 +4,14 @@
 
 ---
 
+## v0.0.36
+
+-  Added a feature to handle if an API Key gets changed while the user is logged in. On 403, the API Key will reset to null and bring the user back to the login screen.
+
+---
+
+---
+
 ## v0.0.35
 
 -  Changed ticket description to be completely hidden when collapsed.

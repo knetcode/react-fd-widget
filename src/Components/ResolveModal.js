@@ -26,8 +26,6 @@ const ResolveModal = ({
 
 		await postContent(`tickets/${+resolvingTicket}/reply`, bodyPost)
 		await putContent('tickets', +resolvingTicket, bodyPut)
-		console.log(bodyPost)
-		console.log(+resolvingTicket)
 
 		addResolve.value = ''
 

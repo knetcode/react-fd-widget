@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import Tickets from './Tickets'
 
-const FDApp = ({ API_URL, API_KEY, ADMIN_KEY }) => {
+const FDApp = ({ API_URL, API_KEY, ADMIN_KEY, setAPI_KEY }) => {
 	const [tickets, setTickets] = useState(null)
 
 	const [agents, setAgents] = useState(null)
@@ -17,8 +17,13 @@ const FDApp = ({ API_URL, API_KEY, ADMIN_KEY }) => {
 			headers: { Authorization: `${key}`, 'Content-Type': 'application/json' },
 			method: 'GET',
 		})
+
+		if (res.status === 403) {
+			setAPI_KEY(null)
+			return
+		}
+
 		const dataObj = await res.json()
-		// console.log(res)
 		return dataObj
 	}
 
@@ -27,9 +32,16 @@ const FDApp = ({ API_URL, API_KEY, ADMIN_KEY }) => {
 		let i = 1
 		const callsFn = async (page) => {
 			const ticketsFromServerPart = await fetchContent(`helpdesk/tickets/filter/unresolved?format=json&page=${page}`)
+
+			if (ticketsFromServerPart.require_login === true) {
+				setAPI_KEY(null)
+				return
+			}
+
 			ticketsFromServerPart.forEach((part) => {
 				ticketsFromServer.push(part)
 			})
+
 			i++
 			ticketsFromServerPart.length === 30 && (await callsFn(i))
 		}
@@ -76,7 +88,14 @@ const FDApp = ({ API_URL, API_KEY, ADMIN_KEY }) => {
 			headers: { Authorization: `${API_KEY}`, 'Content-Type': 'application/json' },
 			method: 'PUT',
 		})
+
+		if (res.status === 403) {
+			setAPI_KEY(null)
+			return
+		}
+
 		const dataObj = await res.json()
+
 		getTickets()
 		return dataObj
 	}
@@ -87,6 +106,12 @@ const FDApp = ({ API_URL, API_KEY, ADMIN_KEY }) => {
 			headers: { Authorization: `${API_KEY}`, 'Content-Type': 'application/json' },
 			method: 'POST',
 		})
+
+		if (res.status === 403) {
+			setAPI_KEY(null)
+			return
+		}
+
 		const dataObj = await res.json()
 		getTickets()
 		return dataObj
