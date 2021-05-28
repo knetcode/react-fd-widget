@@ -3,17 +3,11 @@ import { RiCloseCircleFill } from 'react-icons/ri'
 import { FaExclamationCircle } from 'react-icons/fa'
 import { useEffect, useState } from 'react'
 
-const AddModal = ({ fields, selectedUser, postContent, isAddModalOpen, setIsAddModalOpen }) => {
+const AddModal = ({ fields, selectedUser, postContent, isAddModalOpen, setIsAddModalOpen, getRequesterEmail }) => {
 	const [message, setMessage] = useState([null, null])
 	const prioritiesArr = fields[7].ticket_field.choices
 	const firstArr = prioritiesArr[0]
 	firstArr[2] = true
-
-	function validateEmail(email) {
-		const re =
-			/^(([^<>()\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@(([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-		return re.test(email)
-	}
 
 	useEffect(() => {
 		let timer = setTimeout(() => setMessage([null, null]), 3000)
@@ -24,17 +18,12 @@ const AddModal = ({ fields, selectedUser, postContent, isAddModalOpen, setIsAddM
 
 	const modalSubmit = async (e) => {
 		e.preventDefault()
-		const addEmail = document.querySelector('#modal-add-email')
+		const addEmail = getRequesterEmail(selectedUser)
 		const addSubject = document.querySelector('#modal-add-subject')
 		const addDescription = document.querySelector('#modal-add-description')
 		const addPriority = document.querySelector('input[type="radio"]:checked')
 
 		setMessage([null, null])
-
-		if (!validateEmail(addEmail.value)) {
-			setMessage(['email', 'Invalid Email Address'])
-			return
-		}
 
 		if (addSubject.value === '') {
 			setMessage(['subject', 'Please enter a subject'])
@@ -50,15 +39,15 @@ const AddModal = ({ fields, selectedUser, postContent, isAddModalOpen, setIsAddM
 		const body = {
 			description: addDescription.value.trim(),
 			subject: addSubject.value.trim(),
-			email: addEmail.value.trim(),
+			email: addEmail,
 			responder_id: +selectedUser === 100 ? null : +selectedUser,
 			priority: +addPriority.value,
 			status: 2,
 		}
 
 		postContent('tickets', body)
+		console.log(body)
 
-		addEmail.value = ''
 		addSubject.value = ''
 		addDescription.value = ''
 
@@ -89,13 +78,13 @@ const AddModal = ({ fields, selectedUser, postContent, isAddModalOpen, setIsAddM
 					modalSubmit(e)
 				}}
 			>
-				<TextInput id='modal-add-email' label='Requester Email' />
+				{/* <TextInput id='modal-add-email' label='Requester Email' />
 				{message[0] === 'email' && (
 					<div className='message'>
 						<FaExclamationCircle />
 						<p>{message[1]}</p>
 					</div>
-				)}
+				)} */}
 
 				<TextInput id='modal-add-subject' label='Subject' />
 				{message[0] === 'subject' && (

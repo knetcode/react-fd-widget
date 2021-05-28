@@ -73,6 +73,16 @@ const Tickets = ({
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [ticketsArr, selectedUser])
 
+	const getRequesterEmail = (userID) => {
+		let userEmail
+		agentsArr.forEach((agent) => {
+			if (agent.agent.user.id === userID) {
+				userEmail = agent.agent.user.email
+			}
+		})
+		return userEmail
+	}
+
 	return (
 		<div className='tickets'>
 			<UserModal
@@ -112,6 +122,7 @@ const Tickets = ({
 					getTickets={getTickets}
 					isAddModalOpen={isAddModalOpen}
 					setIsAddModalOpen={setIsAddModalOpen}
+					getRequesterEmail={getRequesterEmail}
 				/>
 			)}
 

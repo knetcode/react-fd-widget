@@ -77,7 +77,6 @@ const UserModal = ({ agentsArr, selectedUser, setSelectedUser, isUserModalOpen, 
 
 		return (
 			<div className='user-select-initials' style={{ backgroundColor: colorPicker(color > 20 ? 20 : color) }}>
-				{console.log(color)}
 				<p>
 					{firstInitial}
 					{lastInitial}

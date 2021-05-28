@@ -7,6 +7,7 @@
 ## v0.0.38
 
 -  Changes to colorpicker
+-  Removed the Requester Email field from the Add Ticket form. Now defaults to the requester to the user that creates the ticket.
 
 ---
 
